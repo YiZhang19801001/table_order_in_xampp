@@ -1,0 +1,185 @@
+{
+    "result":
+    {
+        "isopen": true,
+        "shopInfo":
+        {
+            "name": "Fresh Curry Sans Souci",
+            "logo": "http://mk.l.onebound.cn/image/cache/catalog/logo-140x140.png",
+            "address": " 1/341 Rocky Point Road, Sans Souci NSW 2219",
+            "tag": "Pizza1, Pizza2",
+            "AboutUs": "Start of DoubleClick Floodlight Tag:",
+            "open": "16:30 to 21:45",
+            "photos": ["http://mk.l.onebound.cn/image/cache/catalog/cart-600x400.png", "http://mk.l.onebound.cn/image/cache/catalog/cart-600x400.png"],
+            "star": 1,
+            "totalReview": 10,
+            "schedule":
+            {
+                "delivery":
+                {
+                    "Sun": [null, "17:00 to 21:30"],
+                    "Mon": [null, "17:00 to 21:30"],
+                    "Tue": [null, "17:00 to 21:30"],
+                    "Wed": [null, "17:00 to 21:30"],
+                    "Thu": [null, "17:00 to 21:30"],
+                    "Fri": [null, "17:00 to 22:00"]
+                },
+                "takeaway":
+                {
+                    "Sun": ["11:00 to 15:30", "15:30 to 22:00"],
+                    "Mon": ["11:00 to 15:30", "15:30 to 22:00"],
+                    "Tue": ["11:00 to 15:30", "15:30 to 22:00"],
+                    "Wed": ["11:00 to 15:30", "15:30 to 22:00"],
+                    "Thu": ["11:00 to 15:30", "15:30 to 22:00"],
+                    "Fri": ["11:00 to 15:30", "15:30 to 22:00"]
+                },
+                "unavailable": ["Fri  21 April to Fri 16 June 2017 (delivery not available)", "Fri  21 April to Fri 16 June 2017 (delivery not available)"]
+            }
+        },
+        "couponList":
+        [
+            {
+                "id" : 1,
+                "name": "123",
+                "description": "Not available with other offers or meal deals",
+                "isShow": false
+            },
+            {
+                "id": 1,
+                "name": "123",
+                "description": "Not available with other offers or meal deals",
+                "isShow": true
+            },
+            {
+                "id" : 1,
+                "name": "123",
+                "description": "Not available with other offers or meal deals",
+                "isShow": true
+            }
+        ],
+        "shopList":
+        [
+            {
+                "id": 0,
+                "title": "Popular Dishes",
+                "description": "we proudly present to you, our healthy and increasingly popular seafood dishes made from only the freshest ingredients",
+                "foodItems":
+                [
+                    {
+                        "id": 0,
+                        "subtitle": "Hawaiian Pizza",
+                        "img": "http://mk.l.onebound.cn/image/cache/catalog/logo-140x140.png",
+                        "description": "tomato, cheese, ham, pineapple",
+                        "price":
+                        [
+                            {
+                                "name": "Small",
+                                "price": "$14.90",
+                                "option_id": 0,
+                                "option_value_id": 1
+                            },
+                            {
+                                "name": "Small",
+                                "price": "$14.90",
+                                "option_id": 0,
+                                "option_value_id": 1
+                            },
+                            {
+                                "name": "Small",
+                                "price": "$14.90",
+                                "option_id": 0,
+                                "option_value_id": 1
+                            }
+                        ],
+                        "special":
+                        {
+                            "popular": true,
+                            "hot": true,
+                            "veg": false,
+                            "health": false
+                        }
+                    }
+                ]
+            },
+            {
+                "title": "Popular Dishes",
+                "foodItems":
+                [
+                    {
+                        "subtitle": "Hawaiian Pizza",
+                        "description": "tomato, cheese, ham, pineapple",
+                        "price":
+                        [
+                            "Small $10.00",
+                            "Large $13.00",
+                            "Family $19.00",
+                            "Party $24.00",
+                            "King $42.00",
+                            "Large Gluten Free $17.00"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Popular Dishes",
+                "foodItems":
+                [
+                    {
+                        "subtitle": "Hawaiian Pizza",
+                        "description": "tomato, cheese, ham, pineapple",
+                        "price":
+                        [
+                            "Small $10.00",
+                            "Large $13.00",
+                            "Family $19.00",
+                            "Party $24.00",
+                            "King $42.00",
+                            "Large Gluten Free $17.00"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "delivery":
+        {
+            "id": 0,
+            "areaList":
+            [
+                {
+                    "id": 0,
+                    "name": "test"
+                },
+                {
+                    "id": 0,
+                    "name": "test"
+                },
+                {
+                    "id": 0,
+                    "name": "test"
+                }
+            ]
+        },
+        "Price":
+        {
+            "total": "$110",
+            "productPrice": "$100",
+            "deliveryPrice" : "$10",
+            "remainPrice": "$5",
+            "progress":
+            {
+                "remain": 5,
+                "min": 10
+            }
+        },
+        "cart":
+        [
+            {
+                "name": "test",
+                "product_id": 64,
+                "product_option_id": 0,
+                "product_option_value_id": 0,
+                "quantity": 0
+            }
+        ]
+    }
+}

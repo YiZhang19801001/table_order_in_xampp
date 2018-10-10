@@ -1,0 +1,29 @@
+.widget_menulog_app_widget {
+    text-align: center;
+}
+.widget_menulog_app_widget h3 {
+    font-size: 23px;
+}
+.widget_menulog_app_widget h4 {
+    font-size: 16px;
+}
+.widget-app__buttons {
+    margin-top: 10px;
+}
+.widget-app__buttons a {
+    text-indent: -9999px;
+    display: inline-block;
+    width: 90px;
+    height: 28px;
+    background-size: 100%;
+}
+.widget-app__buttons .ios {
+    background: url(../images/badge_app_store.png?v=2) no-repeat;
+
+}
+.widget-app__buttons .android {
+    background: url(../images/badge_play_store.png?v=2) no-repeat;
+}
+.widget-app__buttons .windows {
+    background: url(../images/badge_windows_store.png?v=2) no-repeat;
+}

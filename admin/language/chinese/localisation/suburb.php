@@ -1,0 +1,37 @@
+<?php
+/**
+ * $Author: http://www.opencartchina.com 
+**/
+// Heading
+$_['heading_title']          = '地区';
+
+// Text
+$_['text_success']           = '成功: 已修改地区！';
+$_['text_list']              = '地区列表';
+$_['text_add']               = '添加地区';
+$_['text_edit']              = '编辑地区';
+$_['text_none']             = '--- 无 --- ';
+$_['text_select']           = '--- 请选择 --- ';
+
+// Column
+$_['column_name']            = '市';
+$_['column_country']         = '国家';
+$_['column_action']          = '操作';
+$_['column_state']          = '州';
+
+// Entry
+$_['entry_status']           = '地区状态';
+$_['entry_name']             = '地区名称';
+$_['entry_country']          = '国家';
+$_['entry_state']          = '州';
+$_['entry_suburb']          = '市';
+
+// Error
+$_['error_permission']       = '警告: 无权限修改地区！';
+$_['error_name']             = '地区名称必须为3-128字符！';
+$_['error_state']             = '州必须选择！';
+$_['error_suburb']             = '市必须选择！';
+$_['error_default']          = '警告: 不能删除此地区，该地区已被关联为商店默认地区！';
+$_['error_store']            = '警告: 不能删除此地区，该地区已被关联到 %s 个商店！';
+$_['error_address']          = '警告: 不能删除此地区，该地区已被关联到 %s 地址簿！';
+$_['error_affiliate']        = '警告: 不能删除此地区，该地区已被关联到 %s 加盟会员！';

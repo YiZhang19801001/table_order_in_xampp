@@ -1,0 +1,176 @@
+body {
+    background: url("/images/general/bottom_lighting.png") repeat-x scroll 0 250px transparent;
+    height: 900px;
+}
+.pageBody {
+    background: none repeat scroll 0 0 transparent;
+}
+.embedVideo {
+    background-color: transparent;
+    border: medium none;
+    border-radius: 0 0 0 0;
+    box-shadow: none;
+    padding: 0;
+}
+#appsTopMain {
+    width: 580px;
+    text-align: center;
+    float: left;
+}
+.appsTopDevices {
+    float: right;
+    height: 549px;
+    width: 412px;
+    margin-top: -7px;
+}
+#appsTopDevicesAU, #appsTopDevicesNZ {
+    background: url(/catalog/view/theme/menulog/image/download_app_thumbnail_v3.png) no-repeat;
+    background-position: center;
+    background-size: 100%;
+}
+#appsTopMain .downloadLinks {
+    padding-right: 25px;
+}
+
+#appsTopMain .downloadLinks img {
+    height: 37px;
+}
+#appsTop h1 {
+    color: #575959;
+    font-size: 60px;
+    line-height: 62px;
+    padding-top: 46px;
+}
+#appsTop #message {
+    text-align: center;
+    margin-top: -10px;
+    color: #7E7E7E;
+    font-size: 40px;
+    line-height: 42px;
+}
+#appsTop #storesWrapper {
+    margin-left: 7px;
+}
+#appsTop #videoButtonWrapper {
+    background: url(/images/general/btn_video.png) no-repeat top center;
+    width: 100%;
+    height: 49px;
+    margin-bottom: 60px;
+    margin-top: -20px;;
+    cursor: pointer;
+}
+#appsTop #message .highlightPart {
+    color: #A1C93A;
+}
+#appsTop .reviewWrapper {
+    margin-top: 30px;
+    margin-right: 20px;
+    text-align: center;
+    background: url(/images/general/5stars.png) no-repeat top center;
+    display: inline-block;
+    vertical-align: top;
+}
+#appsTop .review {
+    text-align: center;
+    margin-bottom: 5px;
+    padding-top: 27px;
+    font-size: 14px;
+    line-height: 17px;
+    color: #585A5A;
+}
+#appsTop .review .reviewer {
+    display: inline-block;
+    padding-top: 5px;
+    color: #575959;
+}
+#appsBottom {
+    background: #FFF;
+    border: 1px solid #E1E1E1;
+    clear: both;
+    padding: 30px 25px 25px 25px;
+    position: relative;
+    top: -10px;
+    margin-bottom: 30px;
+}
+#appsBottom h3 {
+    text-align: center;
+    color: #575959;
+    font-size: 26px;
+    line-height: 28px;
+}
+#appsBottom ul {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    padding-left: 20px;
+}
+#appsBottom ul li,
+#appsTop .smsFormWrapper span {
+    font-size: 16px;
+    line-height: 18px;
+}
+#appsBottom ul li {
+    color: #575959;
+    list-style: disc;
+    list-style-position: outside;
+    margin-bottom: 10px;
+    padding-left: 8px;
+}
+#appsTop {
+    position: relative;
+}
+#appsTop .smsFormWrapper {
+    background-color: #FFF;
+    border: 1px solid #E1E1E1;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    padding-left: 125px;
+    position: relative;
+    top: -20px;
+}
+#appsTop .smsFormWrapper span {
+    float: left;
+    margin-right: 20px;
+    padding-top: 7px;
+}
+#appsTop .smsFormWrapper .core-ifhBlock {
+    margin-left: 90px;
+}
+#appsTop .smsFormWrapper .send-app-link {
+    float: left;
+}
+#appsTop .smsFormWrapper .send-app-link * {
+}
+#appsTop .smsFormWrapper .send-app-link input[type=text] {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-size: 16px;
+}
+#appsTop .smsFormWrapper .send-app-link .suggest-submit {
+    color: #fff;
+    font-size: 12px;
+    height: 43px;
+    left: -4px;
+    position: relative;
+    top: -2px;
+    width: 75px;
+}
+#appsTop .smsFormWrapper .message .success {
+    position: relative;
+    top: 9px;
+}
+
+@media only screen and (max-device-width: 1024px) and (min-device-width: 768px) {
+    #appsTop .smsFormWrapper .send-app-link input[type=text] {
+        -webkit-border-top-right-radius: 0px;
+        -webkit-border-bottom-right-radius: 0px;
+    }
+
+    #appsTop .smsFormWrapper .send-app-link .suggest-submit {
+        -webkit-border-top-left-radius: 0px;
+        -webkit-border-bottom-left-radius: 0px;
+        height: 30px;
+        top: -3px;
+    }
+}

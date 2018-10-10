@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<modification>  
+	<id>vQmod File ID</id>  
+	<version>1.0.0</version>
+	<vqmver required="true">1.0.8</vqmver> 
+	<author>Lennie</author> 
+	
+	<file name="catalog/view/theme/default/template/product/category.tpl">
+	<operation>  
+		<search position="after"><![CDATA[
+			<ul class="breadcrumb">
+		]]></search>  
+		<add><![CDATA[
+			123123123123
+		]]></add>  
+	</operation>  
+	</file>  
+
+</modification>  

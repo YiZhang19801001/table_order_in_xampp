@@ -1,0 +1,229 @@
+---------- Date: 2017-03-21 03:42:42 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=5adc7fabd64491c412545a9811329eb5
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+
+File Name    : admin/language/chinese/catalog/manufacturer.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['heading_title']      = '制造商/品牌';
+
+			// Text
+			$_['text_success']       = '成功: 已修改制造商/品牌！';
+			$_['text_list']          = '制造商/品牌列表';
+			$_['text_add']           = '添加制造商/品牌';
+			$_['text_edit']          = '编辑制造商/品牌';
+			$_['text_default']       = '默认';
+			$_['text_percent']       = '百分比';
+			$_['text_amount']        = '固定值';
+
+			// Column
+			$_['column_name']        = '制造商/品牌名称';
+			$_['column_sort_order']  = '排序';
+			$_['column_action']      = '操作';
+
+			// Entry
+			$_['entry_name']         = '制造商/品牌名称';
+			$_['entry_store']        = '商店';
+			$_['entry_keyword']      = 'SEO Keyword';
+			$_['entry_image']        = '图像';
+			$_['entry_sort_order']   = '排序';
+			$_['entry_type']         = '类型';
+
+			// Help
+			$_['help_keyword']       = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
+
+			// Error
+			$_['error_permission']   = '警告: 无权限修改制造商/品牌！';
+			$_['error_name']         = '制造商/品牌名称必须介于2-64字符！';
+			$_['error_keyword']      = '该 SEO keyword 已经存在了！';
+			$_['error_product']      = '警告: 不能删除此制造商/品牌，该制造商/品牌已经关联到 %s 个商品！';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-03-21 03:43:34 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=5adc7fabd64491c412545a9811329eb5
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+
+File Name    : admin/language/chinese/catalog/manufacturer.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['heading_title']      = '制造商/品牌';
+
+			// Text
+			$_['text_success']       = '成功: 已修改制造商/品牌！';
+			$_['text_list']          = '制造商/品牌列表';
+			$_['text_add']           = '添加制造商/品牌';
+			$_['text_edit']          = '编辑制造商/品牌';
+			$_['text_default']       = '默认';
+			$_['text_percent']       = '百分比';
+			$_['text_amount']        = '固定值';
+
+			// Column
+			$_['column_name']        = '制造商/品牌名称';
+			$_['column_sort_order']  = '排序';
+			$_['column_action']      = '操作';
+
+			// Entry
+			$_['entry_name']         = '制造商/品牌名称';
+			$_['entry_store']        = '商店';
+			$_['entry_keyword']      = 'SEO Keyword';
+			$_['entry_image']        = '图像';
+			$_['entry_sort_order']   = '排序';
+			$_['entry_type']         = '类型';
+
+			// Help
+			$_['help_keyword']       = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
+
+			// Error
+			$_['error_permission']   = '警告: 无权限修改制造商/品牌！';
+			$_['error_name']         = '制造商/品牌名称必须介于2-64字符！';
+			$_['error_keyword']      = '该 SEO keyword 已经存在了！';
+			$_['error_product']      = '警告: 不能删除此制造商/品牌，该制造商/品牌已经关联到 %s 个商品！';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-03-21 03:49:16 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=5adc7fabd64491c412545a9811329eb5
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+VQModObject::parseMods - Could not resolve path for [admin/language/chinese/catelog/manufacturer.php] (SKIPPED)
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-03-21 03:52:07 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=5adc7fabd64491c412545a9811329eb5
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+
+File Name    : admin/language/chinese/catalog/manufacturer.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['heading_title']      = '制造商/品牌';
+
+		// Text
+		$_['text_success']       = '成功: 已修改制造商/品牌！';
+		$_['text_list']          = '制造商/品牌列表';
+		$_['text_add']           = '添加制造商/品牌';
+		$_['text_edit']          = '编辑制造商/品牌';
+		$_['text_default']       = '默认';
+		$_['text_percent']       = '百分比';
+		$_['text_amount']        = '固定值';
+
+		// Column
+		$_['column_name']        = '制造商/品牌名称';
+		$_['column_sort_order']  = '排序';
+		$_['column_action']      = '操作';
+
+		// Entry
+		$_['entry_name']         = '制造商/品牌名称';
+		$_['entry_store']        = '商店';
+		$_['entry_keyword']      = 'SEO Keyword';
+		$_['entry_image']        = '图像';
+		$_['entry_sort_order']   = '排序';
+		$_['entry_type']         = '类型';
+
+		// Help
+		$_['help_keyword']       = '不要用空格，使用-链接关键字，确保该关键词为全站唯一。';
+
+		// Error
+		$_['error_permission']   = '警告: 无权限修改制造商/品牌！';
+		$_['error_name']         = '制造商/品牌名称必须介于2-64字符！';
+		$_['error_keyword']      = '该 SEO keyword 已经存在了！';
+		$_['error_product']      = '警告: 不能删除此制造商/品牌，该制造商/品牌已经关联到 %s 个商品！';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-03-21 03:55:31 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=5adc7fabd64491c412545a9811329eb5
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+
+File Name    : admin/language/chinese/catalog/manufacturer.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): // Heading
+		$_['heading_title']      = '制造商/品牌';
+
+		// Text
+		$_['text_success']       = '成功: 已修改制造商/品牌！';
+		$_['text_list']          = '制造商/品牌列表';
+		$_['text_add']           = '添加制造商/品牌';
+		$_['text_edit']          = '编辑制造商/品牌';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-03-21 03:55:53 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=5adc7fabd64491c412545a9811329eb5
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+
+File Name    : admin/language/chinese/catalog/manufacturer.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): $_['heading_title']      = '制造商/品牌';
+
+		$_['text_success']       = '成功: 已修改制造商/品牌！';
+		$_['text_list']          = '制造商/品牌列表';
+		$_['text_add']           = '添加制造商/品牌';
+		$_['text_edit']          = '编辑制造商/品牌';
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-03-21 04:01:06 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=5adc7fabd64491c412545a9811329eb5
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+
+File Name    : admin/language/chinese/common/menu.php(0)
+VQModObject::applyMod - EMPTY SEARCH CONTENT ERROR
+
+File Name    : admin/language/chinese/common/menu.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 
+
+----------------------------------------------------------------------
+
+
+---------- Date: 2017-03-21 07:35:13 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /admin/index.php?route=catalog/manufacturer&token=c3dde35c207f118fbc86ebc250125e98
+MOD DETAILS:
+   modFile   : E:\www\monkeyking\vqmod/xml/vqmod_admin_language_chinese.xml
+   id        : vQmod File ID
+   version   : 1.0.0
+   vqmver    : 1.0.8
+   author    : Sirius
+
+File Name    : admin/language/chinese/common/menu.php(0)
+VQModObject::applyMod - EMPTY SEARCH CONTENT ERROR
+
+File Name    : admin/language/chinese/common/menu.php(0)
+VQModObject::applyMod - SEARCH NOT FOUND (ABORTING MOD): 
+
+----------------------------------------------------------------------
+
+

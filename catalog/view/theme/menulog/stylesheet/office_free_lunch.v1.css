@@ -1,0 +1,203 @@
+#compOfficeFreeLunchSignup {
+    font-family:  "proxima_nova_light";
+    font-weight: normal;
+    text-align:center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#compOfficeFreeLunchSignup .message{
+    padding-left: 40px;
+    text-align: left;
+}
+#compOfficeFreeLunchSignup h1.leader {
+    font-family:  "proxima_nova_bold";
+    text-align: center;
+    color: #A1C93A;
+    font-weight: bold;
+    font-size: 43px;
+}
+#compOfficeFreeLunchSignupLeft p{
+    line-height: 1.25;
+    text-align: center;
+}
+#compOfficeFreeLunchSignupLeft {
+    font-size: 17px;
+    color: #434343;
+}
+#compOfficeFreeLunchSignupLeft .tag {
+    color: #A1C93A;
+    font-size: 26px;
+    padding-top: 40px;
+}
+#compOfficeFreeLunchSignupRight {
+    margin-top: 10px;
+    margin-left: 20px;    
+    background: #a1c93a;
+    background: linear-gradient(#a1c93a, #a9c93a);
+    min-height: 450px;
+}
+
+#compOfficeFreeLunchSignupRight img {
+    display: block
+}
+#compOfficeFreeLunchSignupForm {
+    margin-top: 25px;
+    width: 300px;
+}
+
+#compOfficeFreeLunchSorry {
+    width: 330px;
+}
+#compOfficeFreeLunchSorry h2 {
+    color: white;
+    padding-top:30px;
+}
+
+#compOfficeFreeLunchSignupForm input[type="text"], #compOfficeFreeLunchSignupForm select {
+    line-height: 30px;
+    height: 30px;
+    width: 205px;
+    padding: 3px 5px 3px 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: content-box;
+    border: 0 none;
+}
+
+#compOfficeFreeLunchSignupForm input[type="text"]::-webkit-input-placeholder,
+#compOfficeFreeLunchSignupForm input[type="text"]::-moz-input-placeholder,
+#compOfficeFreeLunchSignupForm input[type="text"]:-ms-input-placeholder {
+    color: #acacac;
+}
+
+#compOfficeFreeLunchSignupForm label{
+    width:120px;
+    float: left;
+    text-align:right;
+}
+#compOfficeFreeLunchSignupFormSubmit{
+    font-family: "proxima_nova_semibold";
+    background-color: #4f5151;
+    padding: 5px;
+    width: 228px;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+#compOfficeFreeLunchSignupTerms, a#compOfficeFreeLunchSignupFormTermsUnderBanner{
+    color: white;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+#compOfficeFreeLunchSignupTerms a{
+    font-family:  "proxima_nova";
+    text-decoration: none;
+    color: white;
+}
+#compOfficeFreeLunchSignupRight p{
+    font-size: 14px;
+    text-align:center;
+}
+#compOfficeFreeLunchThankyou {
+    max-width: 300px;
+    margin-top: 10px;
+    padding: 10px;    
+}
+#compOfficeFreeLunchThankyou h1{
+    color: white;
+}
+#compOfficeFreeLunchThankyou h2{
+    color: white;
+    font-size: 12pt;
+}
+#compOfficeFreeLunchThankyou p{
+    font-size: 18px;
+    line-height: 1.2;
+    text-align:center;
+}
+#facebookWidget {
+    margin-top: 30px;
+}
+a#compOfficeFreeLunchSignupFormTermsUnderBanner {
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+a#compOfficeFreeLunchSignupFormTermsUnderBanner {
+    display: none;
+    margin-top: 15px;
+}
+.compOfficeFreeLunchImgLink {
+    text-decoration: none;
+}
+#compOfficeFreeLunchDOHomeBanner {
+    margin-top: 20px;
+}
+#compOfficeFreeLunchDOVenueTopLinkContainer {
+    float: right;
+    padding-top:1px;
+    padding-right:15px;
+}
+#compOfficeFreeLunchDOVenueTopLinkContainer a {
+     color: #CB1C24;
+     font-size: 10pt;
+}
+.tAHomePage .infoBox {
+    padding: 0px;
+}
+.tAHomePage .infoBox h1 {
+    margin: 0;
+}
+.tAHomePage .infoBox ul {
+    margin-bottom: 9px;
+}
+.officeFreeLunchMessage {
+    text-align: center;
+    font-size: 2.5em;
+}
+.officeFreeLunchMessage a {
+    text-decoration: none;
+    color: #A1C93A;
+}
+
+.officeFreeLunchMessageHomeNotLogged,
+.officeFreeLunchMessageHomeLoggedIn 
+{
+    padding: 16px 0;
+    margin-bottom:0;
+}
+
+.officeFreeLunchMessageHomeNotLogged {
+    border-top: 1px solid #BBB;
+    margin-left: 25px;
+    width: 920px;
+}
+
+.officeFreeLunchMessageHomeLoggedIn {
+    margin-left: 20px;
+    margin-bottom: -8px;
+    border-top: 1px solid #BBB;
+    padding-bottom: 0;
+    width: 980px;
+}
+@media all and (max-width:640px) {
+    #compOfficeFreeLunchSignupLeft img {
+        width: 100%;
+    }
+    #compOfficeFreeLunchSignupRight {
+        margin: 0 auto;
+        width: 90%;
+    }
+    #compOfficeFreeLunchSignupForm {
+        width: auto;
+    }
+    #compOfficeFreeLunchSorry {
+        width: auto;
+    }
+    #compOfficeFreeLunchSignupForm input[type="text"], #compOfficeFreeLunchSignupForm select {
+        width: 80%;
+        padding: 6px 5px 6px 15px;
+    }
+}

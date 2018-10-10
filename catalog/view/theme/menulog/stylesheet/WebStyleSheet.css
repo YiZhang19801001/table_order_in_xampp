@@ -1,0 +1,1324 @@
+@font-face {
+    font-family: 'Menulog';
+    src: url('../fonts/Menulog.woff');
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('../fonts/Roboto-Regular-webfont.woff') format('woff');
+
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+html {
+    overflow: scroll;
+}
+
+body {
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    color: #797876;
+    font-family: 'Roboto Regular', Arial;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+a, a:hover {
+
+    color: #434343;
+    font-family: Arial;
+    font-weight: normal;
+    /*text-decoration:none;*/
+    text-decoration: underline;
+}
+
+    a:focus {
+        outline: none;
+    }
+
+p {
+    margin: 0 0 10px 0;
+}
+
+    p a, p a:hover {
+        text-decoration: underline;
+        color: #4788C7;
+    }
+
+img {
+    border: 0 none transparent;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ol {
+    padding: 0;
+    margin: 0 0 0 20px;
+}
+
+h1 {
+    font-family: 'aspirblack';
+    font-size: 65px;
+    color: #3F3E3B;
+}
+
+h2 {
+    font-family: 'Roboto Regular' , Arial;
+    font-size: 32px;
+    color: #3F3E3B;
+}
+
+h3 {
+    font-family: 'Roboto Regular' , Arial;
+    font-size: 24px;
+    color: #3F3E3B;
+}
+
+h4 {
+    font-family: 'Roboto Regular' , Arial;
+    font-size: 22px;
+    color: #3F3E3B;
+}
+
+h5 {
+    font-family: 'Roboto Regular' , Arial;
+    font-size: 16px;
+    color: #3F3E3B;
+}
+
+h1.highlight {
+    font-weight: bolder;
+    font-size: 65px;
+    margin-bottom: 15px;
+    font-family: 'aspirblack';
+}
+
+div.menulogText {
+    display: block;
+    padding-left: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+#chkSaveCCData {
+    height: auto;
+}
+
+.menulogListBox {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 4px;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+    .menulogListBox input {
+        height: auto;
+        float: left;
+        margin-top: 2px;
+        border: solid 0px white;
+        padding: 0px;
+    }
+
+    .menulogListBox label {
+        padding-left: 6px;
+        /*display: block;*/
+    }
+
+    .menulogListBox td {
+        padding-top: 10px;
+    }
+
+    .menulogListBox .Outer {
+        padding-top: 20px;
+        padding-bottom: 5px;
+    }
+
+/*MLPPAL-001 Raju 08-07-2013*/
+.MenulogPayWithPaypal {
+    background-image: url(/Images/button_green_submit_order_en_13.GIF);
+    float: right;
+    border: solid 0px #F2F2F2;
+    cursor: pointer;
+    width: 150px;
+    height: 41px;
+    background-color: transparent;
+}
+
+/** popover related **/
+
+/** popover type 1 /**/
+.popoverElement {
+    position: absolute;
+    display: block;
+}
+
+div.popoverType1 {
+    background-color: #EEEEEE;
+    border: 2px solid #808080;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    /**	background-image: url('/images/logos/small_popover.png');
+	background-position: right bottom;
+	background-repeat: no-repeat; /**/
+    color: #333333;
+}
+
+    div.popoverType1 div.padding {
+        padding: 15px 20px 25px 20px;
+    }
+
+    div.popoverType1 div.titleBlock {
+        padding: 5px;
+        margin: 0;
+        height: 20px;
+        background-color: #666666;
+    }
+
+    div.popoverType1 div.contentBlock {
+        padding: 10px 0 5px 0;
+        margin: 2px 0 0 0;
+    }
+
+    div.popoverType1 h2 {
+        display: block;
+        float: left;
+        margin: 0;
+        color: white;
+        font-size: 18px !important;
+        text-transform: none !important;
+    }
+
+    div.popoverType1 div.close {
+        width: 20px;
+        height: 20px;
+        display: block;
+        background-image: url('/images/icons/cancel.png');
+        background-repeat: no-repeat;
+        cursor: pointer;
+        float: right;
+        margin: 1px 2px 0 0;
+    }
+
+        div.popoverType1 div.close:hover {
+            background-position-y: -20px;
+        }
+
+/** popover type 2 /**/
+div.popoverTypeSimple2 {
+    background-color: #EEEEEE;
+    border: 2px solid #808080;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    /**	background-image: url('/images/logos/small_popover.png');
+	background-position: right bottom;
+	background-repeat: no-repeat; /**/
+    color: #333333;
+}
+
+    div.popoverTypeSimple2 div.padding {
+        padding: 15px 20px 10px 20px;
+    }
+
+    div.popoverTypeSimple2 div.titleBlock {
+        padding: 5px;
+        margin: 0;
+        height: 20px;
+        background-color: #666666;
+    }
+
+    div.popoverTypeSimple2 div.contentBlock {
+        padding: 0 0 5px 0;
+        margin: 2px 0 0 0;
+    }
+
+    div.popoverTypeSimple2 h2 {
+        display: block;
+        float: left;
+        margin: 0;
+        color: black;
+        font-size: 16px !important;
+        text-transform: none !important;
+    }
+
+    div.popoverTypeSimple2 div.close {
+        width: 20px;
+        height: 20px;
+        display: block;
+        background-image: url('/images/icons/cancel.png');
+        background-repeat: no-repeat;
+        cursor: pointer;
+        float: right;
+        margin: 1px 2px 0 0;
+    }
+
+        div.popoverTypeSimple2 div.close:hover {
+            background-position-y: -20px;
+        }
+
+/** popover type simple /**/
+.popoverElement {
+    position: absolute;
+    display: block;
+}
+
+div.popoverTypeSimple {
+    background-color: #FFFFFF;
+    border: 2px solid #D93939;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    /**	background-image: url('/images/logos/small_popover.png');
+	background-position: right bottom;
+	background-repeat: no-repeat; /**/
+    color: #333333;
+}
+
+    div.popoverTypeSimple div.padding {
+        padding: 5px 10px 5px 10px;
+    }
+
+    div.popoverTypeSimple div.titleBlock {
+        padding: 5px;
+        margin: 0;
+        height: 20px;
+        background-color: #666666;
+    }
+
+    div.popoverTypeSimple div.contentBlock {
+        margin: 2px 0 0 0;
+    }
+
+    div.popoverTypeSimple h2 {
+        display: block;
+        float: left;
+        margin: 0;
+        color: white;
+        font-size: 18px !important;
+        text-transform: none !important;
+    }
+
+    div.popoverTypeSimple div.close {
+        width: 20px;
+        height: 20px;
+        display: block;
+        background-image: url('/images/icons/cancel.png');
+        background-repeat: no-repeat;
+        cursor: pointer;
+        float: right;
+        margin: 1px 2px 0 0;
+    }
+
+        div.popoverTypeSimple div.close:hover {
+            background-position-y: -20px;
+        }
+/**/
+
+ol.termList {
+    padding: 0;
+    margin: 0 0 0 20px;
+}
+
+/** pagination **/
+
+div.paginationLeft {
+    text-align: left;
+    margin: 0;
+    padding: 7px;
+}
+
+div.paginationRight {
+    text-align: right;
+    margin: 0;
+    padding: 7px;
+}
+/**
+ul.pagination { text-align: center; margin: 0; padding: 10px; }
+ul.paginationLeft { text-align: left; }
+ul.paginationRight { text-align: right; }
+ul.pagination li { margin: 0px 3px; }
+ul.pagination a { margin: 0px; }
+ul.pagination a:hover { color: red; background-color: #F8F8F8; font-size: 10px; }
+ul.pagination li, ul.pagination a {
+	font-size: 10px;
+	text-decoration: none;
+	display: inline;
+	background-color: white;
+	border: 1px solid #CCCCCC;
+	padding: 3px 4px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+ul.pagination li.link {
+	padding: 0px;
+	border: 0px none transparent;
+}
+ul.pagination li.currentPage {
+	background-color: #E0E0E0;
+}
+/**/
+
+/** form related **/
+.successMessage {
+    font-weight: bold;
+    color: green;
+}
+
+.errorMessage {
+    font-weight: bold;
+    color: red;
+}
+
+form.formBlock {
+    border: 1px solid #CCCCCC;
+    margin: auto 0;
+    padding: 10px;
+}
+
+div.formBlock {
+    padding: 15px;
+    background-color: #F7F7F7;
+    margin: 0;
+}
+
+    div.formBlock input {
+        width: 200px;
+    }
+
+        div.formBlock input.long {
+            width: 400px;
+        }
+
+    div.formBlock p.first {
+        margin-top: 4px;
+        background-color: red;
+    }
+
+label {
+    cursor: pointer;
+}
+
+    label.fieldTitle {
+        font-family: "Lucida Grande",Geneva,Arial,Verdana,sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        float: left;
+        width: 150px;
+        padding: 3px 5px;
+        margin: 0 0 5px 0;
+        text-align: right;
+    }
+
+    label.medium1 {
+        width: 190px;
+    }
+
+    label.auto {
+        width: auto;
+    }
+
+div.field {
+    clear: left;
+    display: block;
+    height: expression('1%');
+    margin: 0 0 6px 0;
+    padding: 1px 0;
+}
+
+input, textarea {
+    border: 1px solid #ccd;
+    color: #333;
+    font-size: 22px;
+    font-family: "Lucida Grande",Geneva,Arial,Verdana,sans-serif;
+    height: 25px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+    input[type="password"], input[type="text"] {
+        background-color: #fff;
+    }
+
+.checkboxstyle input[type="checkbox"] {
+    height: 12px;
+    border: solid 0px white;
+    margin: 0px 6px 0px 0px;
+    padding: 0px;
+}
+
+select {
+    background-color: #fff;
+    border: 1px solid #ccd;
+    color: #333;
+    font-size: 12px;
+    font-family: "Lucida Grande",Geneva,Arial,Verdana,sans-serif;
+}
+
+textarea {
+    overflow: auto;
+    width: 350px;
+    height: 110px;
+}
+
+    textarea.small {
+        overflow: auto;
+        width: 350px;
+        height: 60px;
+    }
+
+    textarea.thin {
+        overflow: auto;
+        width: 300px;
+        height: 110px;
+    }
+
+input.checkbox, input.radio {
+    width: auto;
+    height: auto;
+    background-color: #808080;
+    border: 1px solid black;
+}
+
+input[readonly] {
+    color: #999999;
+}
+
+fieldset {
+    border: 0px none transparent;
+}
+
+    fieldset input {
+        background-color: white;
+    }
+
+        fieldset input.max {
+            width: 300px;
+        }
+
+        fieldset input.long {
+            width: 300px;
+        }
+
+        fieldset input.medium {
+            width: 200px;
+        }
+
+        fieldset input.small {
+            width: 50px;
+        }
+
+    fieldset div.submitBlock {
+        margin: 10px 0 0 0;
+        padding: 0;
+        float: right;
+    }
+
+    fieldset legend {
+        font-size: 12px;
+        color: #999;
+        margin: 0 0 0 0;
+        padding: 0 5px 10px 5px;
+        line-height: 150%;
+    }
+
+div.formMessage {
+    display: none;
+    font-weight: bold;
+    color: red;
+    margin: 0;
+    padding: 10px 0 4px 0;
+    text-align: center;
+}
+
+div.pleaseWaitBlock {
+    display: block;
+    height: 20px;
+    background-image: url('/images/ajax_loading.gif');
+    background-repeat: no-repeat;
+    margin: 2px 10px 0 0;
+    padding: 5px 10px 0 33px;
+}
+
+fieldset div.pleaseWaitBlock {
+    float: left;
+    margin: 2px 0px 0 0;
+}
+
+div.sectionTitle {
+    padding: 0;
+    margin: 5px;
+
+    font-family: 'Roboto Regular' , Arial;
+    font-size: 24px;
+    color: #3F3E3B;
+    line-height: 24px;
+}
+
+/*MLCCH-17 Raju 22-05-2013*/
+.smalladdresstext {
+    font-size: 10px;
+}
+
+button.otherContent {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0 none transparent;
+    outline: none;
+    font-size: 0.6em;
+}
+
+.button {
+    background-color: #DBDBDB;
+    border: 1px solid #999;
+    color: black;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    margin: 5px 0 1px 15px;
+    height: 21px;
+    padding: 0;
+    text-align: center;
+}
+
+    .button:hover {
+        color: red;
+        background-color: #E6E6E6;
+        border: 1px solid #999;
+    }
+
+a.button, div.button {
+    background-image: url('/images/buttons/button_background_white1.jpeg');
+    display: block;
+    line-height: 34px;
+    height: 34px;
+    float: left;
+    margin: 0;
+    border: 0px none transparent;
+    font-size: 0.6em;
+    text-decoration: none;
+}
+
+    a.button:hover, div.button:hover {
+        border: 0px none transparent;
+    }
+
+    a.button span, div.button span {
+        display: block;
+        background-image: url('/images/buttons/button_background_white1_rhs.jpeg');
+        background-position: right top;
+        background-repeat: no-repeat;
+        line-height: 34px;
+        height: 34px;
+        padding: 0 15px;
+    }
+
+a.buttonGreen, div.buttonGreen {
+    background-image: url('/images/buttons/button_background_green1.gif');
+    color: white;
+}
+
+    a.buttonGreen span, div.buttonGreen span {
+        background-image: url('/images/buttons/button_background_green1_rhs.gif');
+        color: white;
+    }
+
+a.buttonLeft, div.buttonLeft {
+    margin-left: 7px;
+    margin-bottom: 7px;
+}
+
+a.buttonRight, div.buttonRight {
+    margin-left: 7px;
+    margin-bottom: 7px;
+}
+
+a.nonButton span, div.nonButton span {
+    color: #C0C0C0;
+    text-decoration: none;
+    cursor: text;
+}
+
+input.button {
+    border: 0px none transparent;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+    input.button:hover {
+        border: 0px none transparent;
+    }
+
+.popoverLeftSide {
+    float: left;
+    width: 450px;
+}
+
+.popoverRightSide {
+    float: right;
+}
+
+.addCommentThumb {
+    margin: 5px;
+}
+
+img.captcha {
+    width: 175px;
+    height: 45px;
+}
+
+form input.addToCart {
+    display: block;
+    float: left;
+    border: 0px none transparent;
+    padding: 0px;
+}
+
+span.required {
+    font-weight: bold;
+    color: #D00707;
+    font-size: 15px;
+}
+
+ul.stepList {
+    display: block;
+    margin: 0 0 20px 0;
+    height: 22px;
+}
+
+    ul.stepList li {
+        display: block;
+        float: left;
+        padding: 0 20px;
+        height: 22px;
+        line-height: 22px;
+        margin: 0 5px;
+        background-color: transparent;
+        border: 1px solid #E0E0E0;
+        cursor: pointer;
+    }
+
+        ul.stepList li.current {
+            background-color: #FFF0F0;
+            cursor: inherit;
+        }
+
+        ul.stepList li.disabled {
+            background-color: #C0C0C0;
+            cursor: inherit;
+        }
+
+.normBig {
+    font-family: Tahoma,Verdana,Arial;
+    font-size: 10pt;
+    color: #424948;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: left;
+}
+
+.norm {
+    font-family: Tahoma,Verdana,Arial;
+    font-size: 11px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.normRed span {
+    font-family: Tahoma,Verdana,Arial;
+    font-size: 11px;
+    text-decoration: none;
+    font-weight: bold;
+    color: Red;
+}
+
+/** utility **/
+.clickable {
+    cursor: pointer;
+}
+
+.draggable {
+    cursor: move;
+}
+
+.dull {
+    opacity: 0.25;
+    filter: alpha (opacity=25);
+}
+
+.hover {
+    cursor: pointer;
+    background-color: #F2F2F2;
+}
+
+div.template {
+    display: none;
+}
+
+div.contentEnd {
+    clear: both;
+    overflow: hidden;
+    text-indent: -1000em;
+    height: 0;
+    margin: 0;
+}
+
+.developmentNoticeBlock {
+    background-color: red;
+    color: black;
+    padding: 2px;
+    text-align: center;
+    font-weight: bold;
+}
+
+    .developmentNoticeBlock em {
+        color: white;
+    }
+
+/** page structure **/
+/*div.outerHolder {max-width:548px;margin:0 auto; padding:0;border:1px solid #F2F2F2;background-color:#F2F2F2;border-radius:8px;padding-top:20px}*/
+div.outerHolder {
+    max-width: 548px;
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 80px;
+}
+
+div.FooterBorder {
+    max-width: 548px;
+    margin: 20px auto;
+    padding: 0;
+    border-top: 2px solid #F0F0F0;
+}
+
+div.container {
+    min-width: 534px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+div.nonHomeContentBody {
+    padding: 10px 0 0 0;
+}
+
+div.footer {
+    margin: 20px 0 0 0;
+}
+
+div.header {
+    width: 520px;
+    position: relative;
+    clear: both;
+    padding-left: 4px;
+}
+
+div.bannerLogo {
+    display: inline;
+    float: left;
+    line-height: 40px;
+    position: relative;
+    max-width: 240px;
+    padding: 4px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+div.bannerText {
+    display: inline;
+    float: left;
+    position: relative;
+    line-height: 50px;
+    padding: 4px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+div.bannerButton {
+    display: inline;
+    float: right;
+    position: relative;
+    line-height: 40px;
+    padding: 4px;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+div.DisplayTitle, div.DisplayTitleIF {
+    display: inline;
+    float: left;
+    position: relative;
+    width: 45%;
+    padding: 4px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+div.DisplayTitleFullWidth, div.DisplayTitleFullWidthBlock {
+    display: inline;
+    float: left;
+    position: relative;
+    width: 100%;
+    padding: 4px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.DisplayInfoText {
+    /*color:Red;*/
+}
+
+div.DisplayBlankTitle {
+    display: inline;
+    float: left;
+    position: relative;
+    width: 45%;
+    padding: 4px;
+    font-size: 11px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+div.DisplayText, div.DisplayTextIF {
+    display: inline;
+    float: left;
+    position: relative;
+    padding: 4px;
+    font-size: 12px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+div.DisplayTopText {
+    display: inline;
+    float: right;
+    position: relative;
+    padding: 4px;
+    font-size: 12px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+div.DisplayTitleBlue {
+    display: inline;
+    color: Blue;
+    float: left;
+    position: relative;
+    max-width: 50%;
+    padding: 4px;
+    font-size: 12px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+div.DisplayTextBlue {
+    display: inline;
+    color: Blue;
+    float: right;
+    position: relative;
+    max-width: 50%;
+    padding: 0;
+    font-size: 12px;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+div.DisplayTextHelpText {
+    width: 200px;
+}
+
+.CCImage {
+    /*height:20px;*/
+    border: solid 1px #ccd;
+    width: 25px;
+    height: 15px;
+}
+
+div.header a.logo {
+    display: block;
+    margin: 0 auto;
+    width: 118px;
+    height: 34px;
+    background-image: url('/images/logos/en/logo1.gif');
+    text-indent: -1000em;
+}
+
+    div.header a.logo h1 {
+        line-height: 1px;
+        margin: 0;
+    }
+
+div.headerWithRhsText a.logo {
+    display: block;
+    float: left;
+}
+
+div.headerWithRhsText div.rhsTextOneLine {
+    float: right;
+    padding: 14px 0 0 0;
+    line-height: 15px;
+    text-align: right;
+    font-size: 0.6em;
+    font-weight: bold;
+    max-width: 300px;
+}
+
+div.headerWithRhsText div.rhsTextTwoLines {
+    float: right;
+    padding: 4px 0 0 0;
+    line-height: 15px;
+    text-align: right;
+    font-size: 0.6em;
+    font-weight: bold;
+    max-width: 300px;
+}
+
+div.headerWithRhsText span.notBold {
+    font-weight: normal;
+}
+
+div.headerWithRhsText h1 {
+    display: inline;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+/**
+ul.restaurantInfo { margin: 7px 7px 0 7px; }
+ul.restaurantInfo li { display: block; float: left; line-height: 17px; padding: 0px !important; background-color: transparent !important; }
+ul.restaurantInfo li.left { width: 316px; height: 20px; }
+ul.restaurantInfo li.right { width: 120px; height: 20px; text-align: right; }
+
+ul.topNav { border: 1px solid black; border-width: 1px 0; height: 20px; margin: 5px 0 10px 0; }
+ul.topNav li { display: block; float: left; border: 1px solid #808080; border-width: 0 1px 0 0; }
+ul.topNav li a { display: block; background-color: white; width: 149px; line-height: 20px; text-align: center; font-weight: bold; }
+ul.topNav li.current a { background-color: #E0E0E0; }
+/**/
+.pagePadding {
+    margin: 0 7px;
+}
+
+.totalResultsMessage {
+    font-size: 0.7em;
+    margin-bottom: 3px;
+}
+
+/*
+#iFrameBody
+{
+	background-color:#F2F2F2;
+}
+*/
+
+.smallTextMenulogInfo { /*font-size: 10px;
+						 text-align:left;
+						 float:left;
+						 /*MLCCH-17 Raju 22-05-2013
+						width:70%;
+						 width:69%;
+						 padding-left:1%;*/
+    font-size: 10px;
+    text-align: center;
+}
+
+.smallTextCopyrightInfo {
+    font-size: 10px;
+    text-align: right;
+    float: right;
+    /*MLCCH-17 Raju 22-05-2013
+						width:30%;*/
+    width: 29%;
+    padding-right: 1%;
+}
+
+.normSuccess {
+    font-family: Tahoma,Verdana,Arial;
+    font-size: 11px;
+    color: #00B000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.normError {
+    font-family: Tahoma,Verdana,Arial;
+    font-size: 11px;
+    color: #FF0000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div.backButtonSection {
+    float: right;
+    margin-bottom: 5px;
+}
+
+div.paginationSection {
+    float: right;
+}
+
+.inputTextStandard, .inputTextStandardW {
+    /*
+	width: 180px;
+	height: 20px;
+	font-size:12px;
+	*/
+    border: solid 1px #e1e1e1;
+    color: #666;
+    font-family: verdana,tahoma,arial;
+    font-size: 12px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.inputTextStandard {
+    width: 230px;
+}
+
+.inputTextStandardW {
+    width: 250px;
+}
+
+.inputMultiLineText {
+    width: 200px;
+    height: 60px;
+    font-size: 12px;
+}
+
+#mainform {
+    /*border-left: 1px solid grey;
+    border-right: 1px solid grey;*/
+    height: 100%;
+    margin: 0 auto;
+    /* MLCCH-17 Raju 22-05-2013
+    width: 962px;*/
+    width: 1008px;
+}
+
+div.alignRightSmall, div.alignRightSmallW {
+    font: inherit;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: Gray;
+}
+
+div.alignRightSmall {
+    float: right;
+}
+
+div.alignLeftRightSmall, div.alignLeftRightSmallW {
+    font: inherit;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: Gray;
+}
+
+alignLeftRightSmall {
+    float: right;
+}
+
+div.Outer, div.OuterIF, div.OuterNP {
+    /*width:500px;*/
+    position: relative;
+    clear: both;
+    padding-left: 4px;
+}
+
+div.SmallOut {
+    /*width:180px;*/
+    position: relative;
+    clear: both;
+    padding: 4px 0px;
+}
+
+div.HeaderLogo {
+    /* MLCCH-17 Raju 22-05-2013
+	border-bottom:2px solid #98BF2F;*/
+    border-bottom: 2px solid #F0F0F0;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+div.FooterLogo {
+    /* MLCCH-17 Raju 22-05-2013
+	border-top:2px solid #98BF2F;margin-top:30px;*/
+    /*border-top:2px solid #F0F0F0;margin-top:30px;*/
+}
+
+#CreditCardTokenization1_UserMain1_btnBackToOrderWebsite,
+#CreditCardTokenization1_VMePayment1_btnBackToOrderWebsite,
+#CreditCardTokenization1_MasterPass1_btnBackToOrderWebsite,
+.MenuLogContinueWeb, .MenuLogBackToOrderWeb {
+    /*
+	height:32px;
+	border: solid 0px white;
+	cursor: pointer;
+	width:100px;
+	padding:0;
+	margin:0;
+	line-height:1px;
+	font-size:1px;
+	vertical-align: middle; vertical-align: text-bottom;
+	width:150px;
+	background-image: url(/Images/button_green_back_to_order_en_13.gif);
+	height:41px;
+*/
+    background-color: #FF5832;
+    border: 0 none;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 10px;
+    font-family: verdana,tahoma,arial;
+    font-size: 12px;
+    height: auto;
+    text-transform: uppercase;
+}
+
+.MenuLogContinueWeb:hover , .MenuLogBackToOrderWeb:hover {
+    background-color: #D13511;
+}
+
+
+
+div.darkGreyBox {
+    BORDER-RIGHT: darkgray thin solid;
+    BORDER-TOP: darkgray thin solid;
+    BORDER-LEFT: darkgray thin solid;
+    BORDER-BOTTOM: darkgray thin solid;
+    width: 520px;
+    font-size: 12px;
+    padding-left: 4px;
+}
+
+.menulogErrorText span {
+    display: block;
+    color: Red;
+    padding-left: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    vertical-align: top;
+    font-family: Arial;
+}
+
+.menulogErrorText {
+    padding-left: 47%;
+}
+
+.MenuLogContinueWeb {
+    float: right;
+}
+
+.MenuLogMasterPassWeb {
+    width: 140px;
+    height: 35px;
+    background-image: url(/Images/mcpp_wllt_btn_chk_147x034px.png);
+    float: right;
+    border: solid 0px white;
+    cursor: pointer;
+}
+
+.resettext {
+    padding-bottom: 10px;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+    color: #4f5151;
+    width: 55%;
+    display: inline-block;
+}
+
+#divreset {
+    margin-top: 10px;
+}
+
+.resetbutton {
+    width: 45%;
+    display: inline;
+    padding-left: 10px;
+    vertical-align: top;
+}
+
+#Cvc2 {
+    width: 50px;
+}
+
+.extraLeftPadding {
+    padding-left: 10px;
+}
+/** navs ** /
+div.nav1 { margin: 12px 0 0 0; background-image: url('/images/nav/nav1.gif'); width: 962px; height: 36px; padding-right: 20px; }
+div.nav1 ul { float: right; display: inline; }
+div.nav1 ul li { display: block; float: left; height: 36px; }
+div.nav1 ul li a { display: block; float: left; line-height: 36px; padding: 0 30px; color: white; text-decoration: none; font-size: 14px; font-weight: bold; background-image: url('/images/nav/nav1_divider.gif'); background-repeat: no-repeat; }
+div.nav1 ul li a:hover { color: white; text-decoration: none; }
+
+div.footerNav { padding: 10px 0 0 0; }
+div.footerNav ul { text-align: center; margin: 5px 0; }
+div.footerNav ul li { display: inline; }
+div.footerNav ul li a { padding: 5px; line-height: auto; }
+div.footerNav ul li a:hover { padding: 5px; color: white; text-decoration: none; }
+/**/
+
+/*  Rebranding CSS*/
+
+.headerWrapper {
+    width: 100%;
+    margin-top: 0;
+    background-color: #26bf22;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 75px;
+    display: block;
+}
+
+.content {
+    width: 534px;
+    margin: 0 auto;
+    height: 73px;
+}
+.menulogIcon {
+    font-family: 'Menulog';
+    font-size: 80px;
+    color: white;
+    top: 0;
+    padding-top: 20px;
+    float: left;
+}
+
+
+.bestPriceGuaranteed {
+    width: 200px;
+    height: 36px;
+
+    float: right;
+    margin-top: 20px;
+
+    background-image: url('../image/BestPrice.PNG');
+    background-repeat: no-repeat;
+    background-position: top;
+
+ }
