@@ -44,19 +44,19 @@
                 <h6>Payment Method</h6>
                 <div class="icon-group">
                     <div class="payment-choice">
-                        <img src="https://via.placeholder.com/40" alt="">
+                        <img src="/table/public/credit.png" alt="">
                         <p>
                             <input type="radio" value="credit" name="paymentMethod" v-model="paymentMethod"><span>Credit</span>
                         </p>
                     </div>
                     <div class="payment-choice">
-                        <img src="https://via.placeholder.com/40" alt="">
+                        <img src="/table/public/paypal.png" alt="">
                         <p>
                             <input type="radio" value="paypal" name="paymentMethod" v-model="paymentMethod"><span>Paypal</span>
                         </p>
                     </div>
                     <div class="payment-choice">
-                        <img src="https://via.placeholder.com/40" alt="">
+                        <img src="/table/public/cash.png" alt="">
                         <p>
                             <input type="radio" value="cash" name="paymentMethod" v-model="paymentMethod"><span>Cash</span>
                         </p>
@@ -78,7 +78,7 @@
                     <span>GST</span>
                     <span class="number">0.00</span>
                 </div>
-                <div>
+                <div class="bold">
                     <span>Total (incl. GST)</span>
                     <span class="number"> ${{totalPriceOfOrder}}</span>
                 </div>
@@ -215,6 +215,9 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        img {
+          width: 60px;
+        }
         input {
           vertical-align: middle;
         }
@@ -232,10 +235,14 @@ export default {
     display: table;
     width: 90%;
     margin: auto;
+    .bold {
+      font-weight: bold;
+    }
     div {
       display: table-row;
       span {
         display: table-cell;
+
         &.number {
           text-align: right;
         }
