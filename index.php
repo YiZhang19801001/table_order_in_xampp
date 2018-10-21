@@ -7,60 +7,80 @@ if (is_file('config.php')) {
     require_once('config.php');
 }
 
-// Install
+// Install ??:: what is this mean
 if (!defined('DIR_APPLICATION')) {
     header('Location: install/index.php');
     exit;
 }
 
 
-// VirtualQMOD
+// VirtualQMOD ??:: what is this mean ??::vqmod 全称 Virtual File Modification System，又称快速虚拟MOD，是一个虚拟覆盖系统的设计，以避免原有系统核心文件被修改。
 require_once('./vqmod/vqmod.php');
 VQMod::bootup();
 
-// VQMODDED Startup
+// VQMODDED Startup ??:: what is this mean
 require_once(VQMod::modCheck(DIR_SYSTEM . 'startup.php'));
 
 date_default_timezone_set('Etc/GMT-10');
 
-// Registry
+// Registry ::set, get, check key value pair. store all of those in $register->data;
 $registry = new Registry();
 
-// Loader
-$loader = new Loader($registry);
-$registry->set('load', $loader);
+// Loader ::searching loader
+$loader = new Loader($registry); 
+$registry->set('load', $loader); //did not do anything at this point
 
 // Config
-$config = new Config();
+$config = new Config(); //have 1 more function than registry. load file under folder config
 $registry->set('config', $config);
 
 // Database
-$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+$db = new DB(DB_DRIVER, DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE); //??:: missing port value isn't it?
 $registry->set('db', $db);
 
-// Store
-if (isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS'] == '1'))) {
-    $store_query = $db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`ssl`, 'www.', '') = '" . $db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
+// Store - 
+if (isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS'] == '1'))) 
+{
+
+    $store_query = $db->query(
+        "SELECT * 
+        FROM " . 
+        DB_PREFIX . "store WHERE REPLACE(`ssl`, 'www.', '') = '" .
+         $db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . 
+         rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'"
+        );
 } else {
-    $store_query = $db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`url`, 'www.', '') = '" . $db->escape('http://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
+    //this triggered when run on localhost
+    $store_query = $db->query(
+        "SELECT * FROM " . 
+        DB_PREFIX . 
+        "store WHERE REPLACE(`url`, 'www.', '') = '" . 
+        $db->escape('http://' . 
+        str_replace('www.', '', $_SERVER['HTTP_HOST']) . //http_host=>localhost
+        rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'"); //$php_self =>/index.php
 }
 
 if ($store_query->num_rows) {
     $config->set('config_store_id', $store_query->row['store_id']);
 } else {
-    $config->set('config_store_id', 0);
+    $config->set('config_store_id', 0); //only this line will run in this whole section, and $config->data only have 1 element which is config_store_id=>0
+
 }
 
 // Settings
-$query = $db->query("SELECT * FROM `" . DB_PREFIX . "setting` WHERE store_id = '0' OR store_id = '" . (int)$config->get('config_store_id') . "' ORDER BY store_id ASC");
+$query = $db->query("SELECT * FROM `" . DB_PREFIX . "setting` WHERE store_id = '0' OR store_id = '" . (int)$config->get('config_store_id') . "' ORDER BY store_id ASC"); //all records have the same 'store_id' which is '0'
 
 foreach ($query->rows as $result) {
     if (!$result['serialized']) {
+        
         $config->set($result['key'], $result['value']);
     } else {
+        
         $config->set($result['key'], unserialize($result['value']));
     }
 }
+
+
 
 if (!$store_query->num_rows) {
     $config->set('config_url', HTTP_SERVER);
@@ -167,7 +187,8 @@ $registry->set('request', $request);
 // Response
 $response = new Response();
 $response->addHeader('Content-Type: text/html; charset=utf-8');
-$response->setCompression($config->get('config_compression'));
+
+$response->setCompression($config->get('config_compression'));//$config->get('config_compression') return 0
 $registry->set('response', $response);
 
 // Cache
@@ -181,7 +202,7 @@ $registry->set('session', $session);
 // Language Detection
 $languages = array();
 
-$query = $db->query("SELECT * FROM `" . DB_PREFIX . "language` WHERE status = '1'");
+$query = $db->query("SELECT * FROM `" . DB_PREFIX . "language` WHERE status = '1'"); //only one record in this Demo
 
 foreach ($query->rows as $result) {
     $languages[$result['code']] = $result;
@@ -324,4 +345,4 @@ if (isset($request->get['route'])) {
 $controller->dispatch($action, new Action('error/not_found'));
 
 // Output
-$response->output();
+$response->output(); //at this point output shop/info

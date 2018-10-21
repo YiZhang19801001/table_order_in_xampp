@@ -8,7 +8,8 @@ class ControllerApiCart extends Controller {
 		if (!isset($this->session->data['api_id'])) {
 			$json['error']['warning'] = $this->language->get('error_permission');
 		} else {
-			if (isset($this->request->post['product'])) {
+			if (isset($this->request->post['product'])) 
+			{
 				$this->cart->clear();
 
 				foreach ($this->request->post['product'] as $product) {
@@ -247,4 +248,5 @@ class ControllerApiCart extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
 }

@@ -18,7 +18,7 @@ class ControllerShopInfo extends Controller
         $data['logout'] = $this->url->link('account/logout', '', 'SSL');
         $data['detail'] = $this->url->link('account/detail', '', 'SSL');
 
-        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/shop/info.tpl')) {
+        if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/shop/info.tpl')) { //<-Demo goes there
             $this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/shop/info.tpl', $data));
         } else {
             $this->response->setOutput($this->load->view('default/template/shop/info.tpl', $data));

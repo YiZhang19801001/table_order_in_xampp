@@ -7,12 +7,13 @@ class Request {
 	public $server = array();
 
 	public function __construct() {
-		$this->get = $this->clean($_GET);
-		$this->post = $this->clean($_POST);
-		$this->request = $this->clean($_REQUEST);
-		$this->cookie = $this->clean($_COOKIE);
-		$this->files = $this->clean($_FILES);
+		$this->get = $this->clean($_GET); //Array ( [route] => shop/info [location_id] => 4 )
+		$this->post = $this->clean($_POST);//Array ( )
+		$this->request = $this->clean($_REQUEST);//Array ( [route] => shop/info [location_id] => 4 )
+		$this->cookie = $this->clean($_COOKIE);//Array ( [language] => en [currency] => AUD [PHPSESSID] => 3jso9ofjg4nvget3p1rj1sdrc1 [__atuvc] => 1|42 )
+		$this->files = $this->clean($_FILES);//Array ( )
 		$this->server = $this->clean($_SERVER);
+		
 	}
 
 	public function clean($data) {
@@ -26,6 +27,7 @@ class Request {
 			$data = htmlspecialchars($data, ENT_COMPAT, 'UTF-8');
 		}
 
+		
 		return $data;
 	}
 }

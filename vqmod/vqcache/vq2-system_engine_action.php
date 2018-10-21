@@ -59,10 +59,14 @@ final class Action {
 
 			$class = $this->class;
 
-			$controller = new $class($registry);
+			$controller = new $class($registry); //??:: 为什么可以new class, class并不是一个类，只是一个参数。
 
 			if (is_callable(array($controller, $this->method))) {
+				//print_r($controller) is a huge object which can not really read.
+
+				//echo call_user_func(array($controller, $this->method), $this->args) give bunch of pics before header bar in browser, and url is not just localhost, not jump to shop/info
 				return call_user_func(array($controller, $this->method), $this->args);
+				
 			} else {
 				return false;
 			}
