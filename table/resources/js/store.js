@@ -8,7 +8,8 @@ export default {
         spinnerShow: false,
         orderId: 0,
         table_number: 0,
-        pathFrom: ""
+        pathFrom: "",
+        scrollPositionId: 0
     },
     getters: {
         categoryList: state => {
@@ -49,6 +50,9 @@ export default {
             return `/table/public/table/${state.table_number}/orderid/${
                 state.orderId
             }`;
+        },
+        scrollPositionId: state => {
+            return state.scrollPositionId;
         }
     },
     mutations: {
@@ -91,6 +95,9 @@ export default {
                 orderItem: payload,
                 orderId: state.orderId
             });
+        },
+        updateScrollPositionId(state, newId) {
+            state.scrollPositionId = newId;
         }
     },
 
@@ -134,6 +141,9 @@ export default {
         },
         replaceList(context, newList) {
             context.commit("updateOrderList", newList);
+        },
+        setScrollPositionId(context, newId) {
+            context.commit("updateScrollPositionId", newId);
         }
     }
 };

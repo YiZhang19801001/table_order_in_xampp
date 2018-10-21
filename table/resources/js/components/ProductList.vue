@@ -1,8 +1,8 @@
 <template>
-    <div class="productList" v-scroll-spy>
+    <div class="productList"  v-scroll-spy ref="listView">
 
       <!-- List:: show groups for products -->
-        <div v-for="product in productList" :key="product.categorys.category_id">
+        <div v-for="(product,index) in productList" :key="index" ref="cates">
             <!-- category title for separating different group of products -->
             <h4 :id="product.categorys.category_id">{{product.categorys.name}}</h4>
             <!-- List:: show products in certain group -->
@@ -13,7 +13,6 @@
 <transition
             name="productBackgroud"
             enter-active-class="animated fadeIn"
-
 >
                 <div v-if="item.product_id===selectProduct_id" class="product-background"></div>
 </transition>
@@ -75,6 +74,7 @@ import { mapGetters, mapActions, mapState, mapMutations } from "vuex";
 
 export default {
   name: "app-product-list",
+
   data() {
     return {
       //ToDo : is 'section' nessary for scroll-spy
@@ -82,18 +82,39 @@ export default {
       //flag for expand or not
       selectProduct_id: 0,
       //flag for popup choices pannel
-      wantOrder: false
+      wantOrder: false,
+      arr: null
     };
   },
   computed: {
-    ...mapGetters(["productList", "orderList"])
+    ...mapGetters(["productList", "orderList", "scrollPositionId"])
+  },
+  watch: {
+    section: function() {
+      console.log("worked");
+      let sum = 0;
+      for (let index = 0; index < scrollPositionId; index++) {
+        const element = this.$refs.cates[index];
+        sum = sum + element.scrollHeight;
+      }
+      window.scrollY = sum + 50;
+    }
   },
   mounted() {
     this.getProductList();
+    window.addEventListener("scroll", this.handleScroll);
   },
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+  watch: {},
   methods: {
     ...mapMutations(["updateProductList", "updateOrderList"]),
-    ...mapActions(["getProductList", "addNewItemToOrderList"]),
+    ...mapActions([
+      "getProductList",
+      "addNewItemToOrderList",
+      "setScrollPositionId"
+    ]),
 
     selectItem(id) {
       /**
@@ -128,6 +149,20 @@ export default {
 
       this.wantOrder = false;
       this.addNewItemToOrderList(newItem);
+    },
+    handleScroll() {
+      let sum = 0;
+      /** loop the elements check the height to find out which category section now is showing */
+      for (let index = 0; index < this.$refs.cates.length; index++) {
+        const element = this.$refs.cates[index];
+        sum = sum + element.scrollHeight;
+        //**ToDo: why here is - 50 I thoungh should be + 50 */
+        if (sum - 50 > window.scrollY) {
+          this.setScrollPositionId(index);
+          /**new step let category list change base on this scrollPostionId */
+          break;
+        }
+      }
     }
   },
   components: { ChoiceForm }
@@ -146,9 +181,10 @@ export default {
 }
 .productList {
   margin-top: 50px;
+  margin-bottom: 50px;
   width: 70%;
   box-shadow: 0px 2px 3px #00000038;
-  padding: 0px 5px;
+  padding: 0px 5px 10px 5px;
 
   //position: relative;
 

@@ -61934,7 +61934,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.listContainer[data-v-05702eb2] {\n  margin-top: 45px;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 80vh;\n  width: 30%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative;\n}\n.listContainer .categoryContainer[data-v-05702eb2] {\n    position: fixed;\n    width: 27%;\n}\n.listContainer .categoryContainer .categoryList[data-v-05702eb2] {\n      padding: 5px 10px;\n      color: white;\n      background-color: #eb4d4b;\n      border-bottom: 1px solid #80808026;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.listContainer .categoryContainer .customActive[data-v-05702eb2] {\n      color: #ff7979;\n      text-align: center;\n      background-color: #dff9fb;\n      -webkit-transform: scale(1.1);\n              transform: scale(1.1);\n      -webkit-box-shadow: -1px 2px 3px #00000038;\n              box-shadow: -1px 2px 3px #00000038;\n}\n", ""]);
+exports.push([module.i, "\n.listContainer[data-v-05702eb2] {\n  margin-top: 45px;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 80vh;\n  width: 30%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative;\n}\n.listContainer .categoryContainer[data-v-05702eb2] {\n    position: fixed;\n    width: 27%;\n    overflow: scroll;\n    height: 80vh;\n}\n.listContainer .categoryContainer .categoryList[data-v-05702eb2] {\n      padding: 5px 10px;\n      color: white;\n      background-color: #eb4d4b;\n      border-bottom: 1px solid #80808026;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.listContainer .categoryContainer .customActive[data-v-05702eb2] {\n      color: #ff7979;\n      text-align: center;\n      background-color: #dff9fb;\n      -webkit-transform: scale(1.1);\n              transform: scale(1.1);\n      -webkit-box-shadow: -1px 2px 3px #00000038;\n              box-shadow: -1px 2px 3px #00000038;\n}\n", ""]);
 
 // exports
 
@@ -61964,20 +61964,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "app-category-list",
-  data: function data() {
-    return {
-      selectId: 0
-    };
-  },
-
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["categoryList"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["categoryList", "scrollPositionId"])),
   mounted: function mounted() {
     this.getCategoryList();
   },
 
-  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["d" /* mapMutations */])(["updateCategoryList"]), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["getCategoryList"]), {
-    select: function select(id) {
-      this.selectId = id;
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["d" /* mapMutations */])(["updateCategoryList"]), Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["getCategoryList", "setScrollPositionId"]), {
+    select: function select(index) {
+      this.setScrollPositionId(index);
+      //var name = $(this).attr("data-row-id");
+      //var id = "#" + name;
+      //var top = $(id).first().offset().top -60;
     }
   })
 });
@@ -61990,34 +61987,38 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "listContainer" }, [
-    _c(
-      "div",
-      {
-        directives: [
-          { name: "scroll-spy-active", rawName: "v-scroll-spy-active" },
-          { name: "scroll-spy-link", rawName: "v-scroll-spy-link" }
-        ],
-        staticClass: "categoryContainer"
-      },
-      _vm._l(_vm.categoryList, function(category) {
-        return _c(
-          "div",
-          {
-            key: category.category_id,
-            staticClass: "categoryList",
-            class: { customActive: category.category_id === _vm.selectId },
-            on: {
-              click: function($event) {
-                _vm.select(category.category_id)
+  return _c(
+    "div",
+    {
+      directives: [
+        { name: "scroll-spy-active", rawName: "v-scroll-spy-active" },
+        { name: "scroll-spy-link", rawName: "v-scroll-spy-link" }
+      ],
+      staticClass: "listContainer"
+    },
+    [
+      _c(
+        "div",
+        { staticClass: "categoryContainer" },
+        _vm._l(_vm.categoryList, function(category, index) {
+          return _c(
+            "div",
+            {
+              key: index,
+              staticClass: "categoryList",
+              class: { customActive: index === _vm.scrollPositionId },
+              on: {
+                click: function($event) {
+                  _vm.select(index)
+                }
               }
-            }
-          },
-          [_c("a", [_vm._v(_vm._s(category.name))])]
-        )
-      })
-    )
-  ])
+            },
+            [_c("a", [_vm._v(_vm._s(category.name))])]
+          )
+        })
+      )
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -62115,7 +62116,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.cover[data-v-438ffe92] {\n  position: fixed;\n  height: 100vh;\n  background: #0000009c;\n  width: 100vw;\n  z-index: 600;\n  top: 0;\n  left: 0;\n}\n.productList[data-v-438ffe92] {\n  margin-top: 50px;\n  width: 70%;\n  -webkit-box-shadow: 0px 2px 3px #00000038;\n          box-shadow: 0px 2px 3px #00000038;\n  padding: 0px 5px;\n}\n.productList .product[data-v-438ffe92] {\n    color: #797876;\n    padding: 13px;\n    min-height: 80px;\n    margin: auto;\n    margin-bottom: 5px;\n    width: 80%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-shadow: 0px 1px 4px #c4c3c2;\n            box-shadow: 0px 1px 4px #c4c3c2;\n    border-radius: 8px;\n}\n.productList .product .product-background[data-v-438ffe92] {\n      width: 100%;\n      position: absolute;\n      height: 70%;\n      top: 0;\n      left: 0;\n      background: #ffd8d8;\n      border-top-right-radius: 8px;\n      border-top-left-radius: 8px;\n      z-index: -5;\n}\n.productList .product img[data-v-438ffe92] {\n      width: 50px;\n      height: 50px;\n      border-radius: 20%;\n      position: absolute;\n      z-index: -1;\n      left: -10%;\n      top: 13px;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n}\n.productList .product img.activeimg[data-v-438ffe92] {\n        border-radius: 8px;\n        width: 50%;\n        left: 25%;\n        top: 55%;\n        z-index: 10;\n        -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n                box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .text-container[data-v-438ffe92] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      width: 80%;\n      margin: 0 auto;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding-left: 5px;\n}\n.productList .product .text-container h5[data-v-438ffe92] {\n        color: black;\n        font-weight: bold;\n        font-size: 13px;\n        margin: 0;\n}\n.productList .product .text-container h5.activeH5[data-v-438ffe92] {\n          color: #7a7a7a;\n          font-size: 16px;\n}\n.productList .product .text-container p.price[data-v-438ffe92] {\n        color: #eb4d4b;\n        margin: 0;\n}\n.productList .product .button[data-v-438ffe92] {\n      border-radius: 50%;\n      width: 40px;\n      height: 40px;\n      background: white;\n      font-size: 20px;\n      border: none;\n      color: #f53b50;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n      position: absolute;\n      z-index: 100;\n      right: -20px;\n      outline: none;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      justify-items: center;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .button.active[data-v-438ffe92] {\n        bottom: 0px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .button.active.add-button[data-v-438ffe92] {\n          left: -20px;\n          -webkit-transition: all 0.5s;\n          transition: all 0.5s;\n}\n.productList .product .button.unactive[data-v-438ffe92] {\n        top: 20px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .choice-form[data-v-438ffe92] {\n      position: fixed;\n      z-index: 800;\n      width: 80%;\n      top: 30%;\n      left: 10%;\n      border-radius: 3px;\n      background-color: #c7eceef0;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .choice-form .choice-form-title[data-v-438ffe92] {\n        font-size: 16px;\n        font-weight: bold;\n        color: #1e1e1e;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        padding: 2px 10px;\n}\n.productList .product .choice-form .choice-group[data-v-438ffe92] {\n        -webkit-box-shadow: 0px 2px 2px #00000094;\n                box-shadow: 0px 2px 2px #00000094;\n        padding: 8px;\n        border-radius: 3px;\n        background-color: #ffffff91;\n        min-height: 100px;\n        width: 80%;\n        margin: auto;\n        margin-top: 20px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.productList .product .choice-form .choice-group h4[data-v-438ffe92] {\n          font-size: 14px;\n          text-align: center;\n          margin: 0;\n          text-shadow: 1px 1px 1px #c9c2c2;\n          font-weight: bold;\n}\n.productList .product .choice-form .choice-group ul[data-v-438ffe92] {\n          list-style-type: none;\n          padding: 0;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          margin: 0;\n          margin-bottom: 4px;\n}\n.productList .product .choice-form .choice-group ul li[data-v-438ffe92] {\n            color: black;\n            vertical-align: middle;\n            font-size: 11px;\n}\n.productList .product .choice-form .choice-group ul li input[data-v-438ffe92] {\n              -webkit-box-sizing: border-box;\n                      box-sizing: border-box;\n              padding: 0;\n              vertical-align: middle;\n}\n.productList .product .choice-form .choice-group ul li span[data-v-438ffe92] {\n              vertical-align: middle;\n}\n.productList .product .form_button_container[data-v-438ffe92] {\n      text-align: right;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n}\n.productList .product .form_button_container .addButton[data-v-438ffe92] {\n        color: red;\n        padding: 5px 10px;\n        margin: 12px;\n        background: none;\n        border: none;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        background: #ffbe76;\n        border: 1px solid #ffbe76;\n        -webkit-box-shadow: 0px 0px 4px #00000040;\n                box-shadow: 0px 0px 4px #00000040;\n}\n.productList .activeProduct[data-v-438ffe92] {\n    color: black;\n    height: 200px;\n}\n.productList .activeProduct h5[data-v-438ffe92] {\n      color: white;\n      font-size: 18px;\n}\n.productList .activeProduct h4[data-v-438ffe92] {\n      color: black;\n}\n.productList .activeProduct p[data-v-438ffe92] {\n      max-height: none;\n      float: none;\n}\n.productList h4[data-v-438ffe92] {\n    margin-left: 5px;\n    margin-top: 6px;\n    margin-bottom: 0px;\n    text-shadow: 1px 1px 1px #c9c2c2;\n    font-weight: bold;\n}\n.productList p.product-description[data-v-438ffe92] {\n    font-size: 8px;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    padding-top: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.cover[data-v-438ffe92] {\n  position: fixed;\n  height: 100vh;\n  background: #0000009c;\n  width: 100vw;\n  z-index: 600;\n  top: 0;\n  left: 0;\n}\n.productList[data-v-438ffe92] {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  width: 70%;\n  -webkit-box-shadow: 0px 2px 3px #00000038;\n          box-shadow: 0px 2px 3px #00000038;\n  padding: 0px 5px 10px 5px;\n}\n.productList .product[data-v-438ffe92] {\n    color: #797876;\n    padding: 13px;\n    min-height: 80px;\n    margin: auto;\n    margin-bottom: 5px;\n    width: 80%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-shadow: 0px 1px 4px #c4c3c2;\n            box-shadow: 0px 1px 4px #c4c3c2;\n    border-radius: 8px;\n}\n.productList .product .product-background[data-v-438ffe92] {\n      width: 100%;\n      position: absolute;\n      height: 70%;\n      top: 0;\n      left: 0;\n      background: #ffd8d8;\n      border-top-right-radius: 8px;\n      border-top-left-radius: 8px;\n      z-index: -5;\n}\n.productList .product img[data-v-438ffe92] {\n      width: 50px;\n      height: 50px;\n      border-radius: 20%;\n      position: absolute;\n      z-index: -1;\n      left: -10%;\n      top: 13px;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n}\n.productList .product img.activeimg[data-v-438ffe92] {\n        border-radius: 8px;\n        width: 50%;\n        left: 25%;\n        top: 55%;\n        z-index: 10;\n        -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n                box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .text-container[data-v-438ffe92] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      width: 80%;\n      margin: 0 auto;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding-left: 5px;\n}\n.productList .product .text-container h5[data-v-438ffe92] {\n        color: black;\n        font-weight: bold;\n        font-size: 13px;\n        margin: 0;\n}\n.productList .product .text-container h5.activeH5[data-v-438ffe92] {\n          color: #7a7a7a;\n          font-size: 16px;\n}\n.productList .product .text-container p.price[data-v-438ffe92] {\n        color: #eb4d4b;\n        margin: 0;\n}\n.productList .product .button[data-v-438ffe92] {\n      border-radius: 50%;\n      width: 40px;\n      height: 40px;\n      background: white;\n      font-size: 20px;\n      border: none;\n      color: #f53b50;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n      position: absolute;\n      z-index: 100;\n      right: -20px;\n      outline: none;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      justify-items: center;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .button.active[data-v-438ffe92] {\n        bottom: 0px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .button.active.add-button[data-v-438ffe92] {\n          left: -20px;\n          -webkit-transition: all 0.5s;\n          transition: all 0.5s;\n}\n.productList .product .button.unactive[data-v-438ffe92] {\n        top: 20px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .choice-form[data-v-438ffe92] {\n      position: fixed;\n      z-index: 800;\n      width: 80%;\n      top: 30%;\n      left: 10%;\n      border-radius: 3px;\n      background-color: #c7eceef0;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .choice-form .choice-form-title[data-v-438ffe92] {\n        font-size: 16px;\n        font-weight: bold;\n        color: #1e1e1e;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        padding: 2px 10px;\n}\n.productList .product .choice-form .choice-group[data-v-438ffe92] {\n        -webkit-box-shadow: 0px 2px 2px #00000094;\n                box-shadow: 0px 2px 2px #00000094;\n        padding: 8px;\n        border-radius: 3px;\n        background-color: #ffffff91;\n        min-height: 100px;\n        width: 80%;\n        margin: auto;\n        margin-top: 20px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.productList .product .choice-form .choice-group h4[data-v-438ffe92] {\n          font-size: 14px;\n          text-align: center;\n          margin: 0;\n          text-shadow: 1px 1px 1px #c9c2c2;\n          font-weight: bold;\n}\n.productList .product .choice-form .choice-group ul[data-v-438ffe92] {\n          list-style-type: none;\n          padding: 0;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          margin: 0;\n          margin-bottom: 4px;\n}\n.productList .product .choice-form .choice-group ul li[data-v-438ffe92] {\n            color: black;\n            vertical-align: middle;\n            font-size: 11px;\n}\n.productList .product .choice-form .choice-group ul li input[data-v-438ffe92] {\n              -webkit-box-sizing: border-box;\n                      box-sizing: border-box;\n              padding: 0;\n              vertical-align: middle;\n}\n.productList .product .choice-form .choice-group ul li span[data-v-438ffe92] {\n              vertical-align: middle;\n}\n.productList .product .form_button_container[data-v-438ffe92] {\n      text-align: right;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n}\n.productList .product .form_button_container .addButton[data-v-438ffe92] {\n        color: red;\n        padding: 5px 10px;\n        margin: 12px;\n        background: none;\n        border: none;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        background: #ffbe76;\n        border: 1px solid #ffbe76;\n        -webkit-box-shadow: 0px 0px 4px #00000040;\n                box-shadow: 0px 0px 4px #00000040;\n}\n.productList .activeProduct[data-v-438ffe92] {\n    color: black;\n    height: 200px;\n}\n.productList .activeProduct h5[data-v-438ffe92] {\n      color: white;\n      font-size: 18px;\n}\n.productList .activeProduct h4[data-v-438ffe92] {\n      color: black;\n}\n.productList .activeProduct p[data-v-438ffe92] {\n      max-height: none;\n      float: none;\n}\n.productList h4[data-v-438ffe92] {\n    margin-left: 5px;\n    margin-top: 6px;\n    margin-bottom: 0px;\n    text-shadow: 1px 1px 1px #c9c2c2;\n    font-weight: bold;\n}\n.productList p.product-description[data-v-438ffe92] {\n    font-size: 8px;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n    padding-top: 5px;\n}\n", ""]);
 
 // exports
 
@@ -62129,9 +62130,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
+var _name$data$computed$w;
+
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -62206,8 +62210,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = ({
+/* harmony default export */ __webpack_exports__["default"] = (_name$data$computed$w = {
   name: "app-product-list",
+
   data: function data() {
     return {
       //ToDo : is 'section' nessary for scroll-spy
@@ -62215,55 +62220,82 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       //flag for expand or not
       selectProduct_id: 0,
       //flag for popup choices pannel
-      wantOrder: false
+      wantOrder: false,
+      arr: null
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(["productList", "orderList"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(["productList", "orderList", "scrollPositionId"])),
+  watch: {
+    section: function section() {
+      console.log("worked");
+      var sum = 0;
+      for (var index = 0; index < scrollPositionId; index++) {
+        var element = this.$refs.cates[index];
+        sum = sum + element.scrollHeight;
+      }
+      window.scrollY = sum + 50;
+    }
+  },
   mounted: function mounted() {
     this.getProductList();
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+}, _defineProperty(_name$data$computed$w, "watch", {}), _defineProperty(_name$data$computed$w, "methods", _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["d" /* mapMutations */])(["updateProductList", "updateOrderList"]), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(["getProductList", "addNewItemToOrderList", "setScrollPositionId"]), {
+  selectItem: function selectItem(id) {
+    /**
+     * In Order To toggle the product detail in one button
+     * check the id if same with selectProduct_id => dismiss, else set selectProdcut_id = id
+     **/
+    this.wantOrder = false;
+    if (this.selectProduct_id === id) {
+      this.selectProduct_id = 0;
+    } else {
+      this.selectProduct_id = id;
+    }
   },
 
-  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["d" /* mapMutations */])(["updateProductList", "updateOrderList"]), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(["getProductList", "addNewItemToOrderList"]), {
-    selectItem: function selectItem(id) {
-      /**
-       * In Order To toggle the product detail in one button
-       * check the id if same with selectProduct_id => dismiss, else set selectProdcut_id = id
-       **/
-      this.wantOrder = false;
-      if (this.selectProduct_id === id) {
-        this.selectProduct_id = 0;
-      } else {
-        this.selectProduct_id = id;
+
+  /** use for choice pannel open or close*/
+  wandOrder: function wandOrder(item) {
+    this.wantOrder = true;
+  },
+  closeChoiceForm: function closeChoiceForm() {
+    this.wantOrder = false;
+  },
+
+  /**choice pannel end */
+
+  addToOrder: function addToOrder(newItem) {
+    /**
+     * add a new item into order
+     * 1. should check is there any duplicate item
+     * 2. if have, increate the quantity only
+     * 3. if not, this item is new to the order so create new obj and insert to the array
+     * 4. final result the array will be like this
+     * [{item:{},quantity:number}]*/
+
+    this.wantOrder = false;
+    this.addNewItemToOrderList(newItem);
+  },
+  handleScroll: function handleScroll() {
+    var sum = 0;
+    /** loop the elements check the height to find out which category section now is showing */
+    for (var index = 0; index < this.$refs.cates.length; index++) {
+      var element = this.$refs.cates[index];
+      sum = sum + element.scrollHeight;
+      //**ToDo: why here is - 50 I thoungh should be + 50 */
+      if (sum - 50 > window.scrollY) {
+        this.setScrollPositionId(index);
+        /**new step let category list change base on this scrollPostionId */
+        break;
       }
-    },
-
-
-    /** use for choice pannel open or close*/
-    wandOrder: function wandOrder(item) {
-      this.wantOrder = true;
-    },
-    closeChoiceForm: function closeChoiceForm() {
-      this.wantOrder = false;
-    },
-
-    /**choice pannel end */
-
-    addToOrder: function addToOrder(newItem) {
-      /**
-       * add a new item into order
-       * 1. should check is there any duplicate item
-       * 2. if have, increate the quantity only
-       * 3. if not, this item is new to the order so create new obj and insert to the array
-       * 4. final result the array will be like this
-       * [{item:{},quantity:number}]*/
-
-      this.wantOrder = false;
-      this.addNewItemToOrderList(newItem);
     }
-  }),
-  components: { ChoiceForm: __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue___default.a }
-});
+  }
+})), _defineProperty(_name$data$computed$w, "components", { ChoiceForm: __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue___default.a }), _name$data$computed$w);
 
 /***/ }),
 /* 71 */
@@ -62694,12 +62726,13 @@ var render = function() {
     "div",
     {
       directives: [{ name: "scroll-spy", rawName: "v-scroll-spy" }],
+      ref: "listView",
       staticClass: "productList"
     },
-    _vm._l(_vm.productList, function(product) {
+    _vm._l(_vm.productList, function(product, index) {
       return _c(
         "div",
-        { key: product.categorys.category_id },
+        { key: index, ref: "cates", refInFor: true },
         [
           _c("h4", { attrs: { id: product.categorys.category_id } }, [
             _vm._v(_vm._s(product.categorys.name))
@@ -64775,7 +64808,8 @@ TWEEN.Interpolation = {
         spinnerShow: false,
         orderId: 0,
         table_number: 0,
-        pathFrom: ""
+        pathFrom: "",
+        scrollPositionId: 0
     },
     getters: {
         categoryList: function categoryList(state) {
@@ -64814,6 +64848,9 @@ TWEEN.Interpolation = {
         },
         pathFrom: function pathFrom(state) {
             return "/table/public/table/" + state.table_number + "/orderid/" + state.orderId;
+        },
+        scrollPositionId: function scrollPositionId(state) {
+            return state.scrollPositionId;
         }
     },
     mutations: {
@@ -64856,6 +64893,9 @@ TWEEN.Interpolation = {
                 orderItem: payload,
                 orderId: state.orderId
             });
+        },
+        updateScrollPositionId: function updateScrollPositionId(state, newId) {
+            state.scrollPositionId = newId;
         }
     },
 
@@ -64898,6 +64938,9 @@ TWEEN.Interpolation = {
         },
         replaceList: function replaceList(context, newList) {
             context.commit("updateOrderList", newList);
+        },
+        setScrollPositionId: function setScrollPositionId(context, newId) {
+            context.commit("updateScrollPositionId", newId);
         }
     }
 });

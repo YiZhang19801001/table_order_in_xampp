@@ -1,9 +1,9 @@
 <template>
-    <div class="listContainer">
-        <div class="categoryContainer" v-scroll-spy-active v-scroll-spy-link>
-            <div v-for="category in categoryList" :key="category.category_id" class="categoryList"
-            :class="{customActive:category.category_id===selectId}"
-            @click="select(category.category_id)">
+    <div class="listContainer" v-scroll-spy-active v-scroll-spy-link>
+        <div class="categoryContainer">
+            <div v-for="(category,index) in categoryList" :key="index" class="categoryList"
+            :class="{customActive:index===scrollPositionId}"
+            @click="select(index)">
                <a>{{category.name}}</a>
             </div>
         </div>
@@ -14,22 +14,20 @@
 import { mapGetters, mapMutations, mapActions, mapState } from "vuex";
 export default {
   name: "app-category-list",
-  data() {
-    return {
-      selectId: 0
-    };
-  },
   computed: {
-    ...mapGetters(["categoryList"])
+    ...mapGetters(["categoryList", "scrollPositionId"])
   },
   mounted() {
     this.getCategoryList();
   },
   methods: {
     ...mapMutations(["updateCategoryList"]),
-    ...mapActions(["getCategoryList"]),
-    select(id) {
-      this.selectId = id;
+    ...mapActions(["getCategoryList", "setScrollPositionId"]),
+    select(index) {
+      this.setScrollPositionId(index);
+      //var name = $(this).attr("data-row-id");
+      //var id = "#" + name;
+      //var top = $(id).first().offset().top -60;
     }
   }
 };
@@ -47,6 +45,8 @@ export default {
   .categoryContainer {
     position: fixed;
     width: 27%;
+    overflow: scroll;
+    height: 80vh;
     .categoryList {
       padding: 5px 10px;
       color: white;
