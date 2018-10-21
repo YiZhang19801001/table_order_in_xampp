@@ -145,6 +145,8 @@ export default {
     list-style-type: none;
     padding: 0;
     padding-left: 10px;
+    max-height: 300px;
+    overflow: scroll;
     li {
       display: flex;
       flex-direction: row;

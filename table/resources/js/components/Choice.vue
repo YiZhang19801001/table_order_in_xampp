@@ -143,6 +143,8 @@ export default {
       width: 80%;
       top: 30%;
       left: 10%;
+      max-height: 400px;
+      overflow: scroll;
       border-radius: 3px;
       background-color: #c7eceef0;
       transition: all 0.5s;
@@ -176,6 +178,7 @@ export default {
           list-style-type: none;
           padding: 0;
           display: flex;
+          flex-wrap: wrap;
           justify-content: space-around;
           margin: 0;
           margin-bottom: 4px;
