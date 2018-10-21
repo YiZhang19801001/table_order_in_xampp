@@ -7,7 +7,8 @@ export default {
         totalPriceOfOrder: 0,
         spinnerShow: false,
         orderId: 0,
-        table_number: 0
+        table_number: 0,
+        pathFrom: ""
     },
     getters: {
         categoryList: state => {
@@ -43,6 +44,11 @@ export default {
         },
         table_number: state => {
             return state.table_number;
+        },
+        pathFrom: state => {
+            return `/table/public/table/${state.table_number}/orderid/${
+                state.orderId
+            }`;
         }
     },
     mutations: {
@@ -71,8 +77,8 @@ export default {
         RemoveItemFromOrderList(state, newItem) {
             state.orderList.splice(state.orderList.indexOf(newItem), 1);
         },
-        toggleSpinner(state) {
-            state.spinnerShow = !state.spinnerShow;
+        toggleSpinner(state, status) {
+            state.spinnerShow = status;
         },
         updateOrderId(state, payload) {
             state.orderId = payload;
@@ -95,21 +101,27 @@ export default {
             });
         },
         getProductList(context) {
-            context.commit("toggleSpinner");
+            context.commit("toggleSpinner", true);
             axios.get("/table/public/api/products").then(res => {
                 context.commit("updateProductList", res.data.products);
-                context.commit("toggleSpinner");
+                context.commit("toggleSpinner", false);
             });
         },
         addNewItemToOrderList(context, newItem) {
+            context.commit("toggleSpinner", true);
             context.commit("AddNewItemToOrderList", newItem);
+            context.commit("toggleSpinner", false);
         },
         increaseItemQuantityInOrderList(context, newItem) {
+            context.commit("toggleSpinner", true);
             context.commit("IncreaseItemQuantityInOrderList", newItem);
+            context.commit("toggleSpinner", false);
         },
 
         decreaseItemQuantityInOrderList(context, newItem) {
+            context.commit("toggleSpinner", true);
             context.commit("decreaseQuantity", newItem);
+            context.commit("toggleSpinner", false);
         },
         removeItemFromOrderList(context, newItem) {
             context.commit("RemoveItemFromOrderList", newItem);

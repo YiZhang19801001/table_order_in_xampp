@@ -2,7 +2,7 @@
     <div class="payment">
         <!-- order section -->
 <section>
-            <h6>Your Order: </h6>
+            <h6><router-link :to="`/table/public/table/${table_number}/orderid/${orderId}`"><i class="material-icons">arrow_back_ios</i></router-link><span>Your Order</span> </h6>
             <div>
                 <!-- list of order_items -->
                 <ul>
@@ -120,7 +120,18 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["orderId", "orderList", "totalPriceOfOrder", "table_number"])
+    ...mapGetters([
+      "orderId",
+      "orderList",
+      "totalPriceOfOrder",
+      "table_number",
+      "pathFrom"
+    ])
+  },
+  methods: {
+    back() {
+      this.$router.push(this.pathForm);
+    }
   }
 };
 </script>
@@ -143,6 +154,8 @@ export default {
     color: #9b9b9b;
     border-bottom: 1px solid #e9e6e6;
     font-size: 16px;
+    display: flex;
+    justify-content: space-between;
   }
   ul {
     list-style-type: none;
@@ -223,6 +236,7 @@ export default {
         }
         span {
           vertical-align: middle;
+          font-size: 14px;
         }
       }
       p {

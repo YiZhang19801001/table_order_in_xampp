@@ -61313,7 +61313,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n.payment[data-v-7bace86b] {\n  padding-bottom: 100px;\n  margin: 0;\n  width: 100%;\n  background-color: #e5e3e3;\n}\n.payment section[data-v-7bace86b] {\n    margin-bottom: 10px;\n    background-color: white;\n    padding-bottom: 10px;\n}\n.payment h6[data-v-7bace86b] {\n    padding: 10px;\n    font-weight: bold;\n    color: #9b9b9b;\n    border-bottom: 1px solid #e9e6e6;\n    font-size: 16px;\n}\n.payment ul[data-v-7bace86b] {\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n}\n.payment ul li[data-v-7bace86b] {\n      padding: 0;\n      margin: 0;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      margin-bottom: 10px;\n}\n.payment ul li .orderItem-img[data-v-7bace86b] {\n        width: 20%;\n}\n.payment ul li .orderItem-info-container[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        padding: 0px 10px;\n        width: 80%;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity[data-v-7bace86b] {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: justify;\n              -ms-flex-pack: justify;\n                  justify-content: space-between;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity .orderItem-name .orderItem-quantity[data-v-7bace86b] {\n            display: inline-block;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity .orderItem-name[data-v-7bace86b] {\n            width: 90%;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity p[data-v-7bace86b] {\n            margin: 0;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity h5[data-v-7bace86b] {\n            margin: 0;\n            font-weight: bold;\n            font-size: 16px;\n            letter-spacing: 3px;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price[data-v-7bace86b] {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: justify;\n              -ms-flex-pack: justify;\n                  justify-content: space-between;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price ul li[data-v-7bace86b] {\n            padding: 0;\n            margin: 0;\n            font-size: 10px;\n            color: #9b9b9b;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price .orderItem-price[data-v-7bace86b] {\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-orient: vertical;\n            -webkit-box-direction: normal;\n                -ms-flex-direction: column;\n                    flex-direction: column;\n            -webkit-box-pack: end;\n                -ms-flex-pack: end;\n                    justify-content: flex-end;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price p[data-v-7bace86b] {\n            margin: 0;\n            font-weight: bold;\n            color: #f83f3a;\n}\n.payment .payment-method[data-v-7bace86b] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n}\n.payment .payment-method .icon-group[data-v-7bace86b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n}\n.payment .payment-method .icon-group .payment-choice[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.payment .payment-method .icon-group .payment-choice img[data-v-7bace86b] {\n          width: 60px;\n}\n.payment .payment-method .icon-group .payment-choice input[data-v-7bace86b] {\n          vertical-align: middle;\n}\n.payment .payment-method .icon-group .payment-choice span[data-v-7bace86b] {\n          vertical-align: middle;\n}\n.payment .payment-method .icon-group p[data-v-7bace86b] {\n        margin: 0;\n        text-align: center;\n}\n.payment .payment-detail-container[data-v-7bace86b] {\n    display: table;\n    width: 90%;\n    margin: auto;\n}\n.payment .payment-detail-container .bold[data-v-7bace86b] {\n      font-weight: bold;\n}\n.payment .payment-detail-container div[data-v-7bace86b] {\n      display: table-row;\n}\n.payment .payment-detail-container div span[data-v-7bace86b] {\n        display: table-cell;\n}\n.payment .payment-detail-container div span.number[data-v-7bace86b] {\n          text-align: right;\n}\n.payment .footer[data-v-7bace86b] {\n    position: fixed;\n    bottom: 0;\n    width: 100%;\n    background-color: #ffbe76;\n    -webkit-box-shadow: 0px -2px 3px #00000038;\n            box-shadow: 0px -2px 3px #00000038;\n}\n.payment .footer .footer-content-container[data-v-7bace86b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding: 0px 10px;\n      margin: 5px 0px;\n}\n.payment .footer .footer-content-container .footer-title[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -webkit-box-pack: end;\n            -ms-flex-pack: end;\n                justify-content: flex-end;\n}\n.payment .footer .footer-content-container .footer-title h2[data-v-7bace86b] {\n          margin: 0;\n          font-size: 2rem;\n          font-weight: bold;\n          text-shadow: 0px 2px 2px #21252970;\n          letter-spacing: 3px;\n}\n.payment .footer .footer-content-container .footer-detail[data-v-7bace86b] {\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n        padding: 0 20px;\n}\n.payment .footer .footer-content-container .footer-detail .footer-detail-info[data-v-7bace86b] {\n          font-size: 10px;\n          color: #9b9b9b;\n}\n.payment .footer .footer-content-container .footer-detail .footer-detail-info span[data-v-7bace86b] {\n            background-color: #3490dc;\n            color: white;\n            padding: 2px 3px;\n            margin: 0px 1px;\n            font-weight: bold;\n            border-radius: 3px;\n}\n.payment .footer .footer-content-container .footer-detail .footer-detail-total[data-v-7bace86b] {\n          font-size: 20px;\n          text-align: right;\n}\n.payment .footer .footer-content-container .footer-button[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        width: 47px;\n        background-color: #ef8282;\n        text-align: center;\n        color: yellow;\n        -webkit-box-shadow: 0px 2px 3px #9b9b9b;\n                box-shadow: 0px 2px 3px #9b9b9b;\n}\n.payment .footer .footer-content-container .footer-button .animated.infinite.pulse[data-v-7bace86b] {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-orient: vertical;\n          -webkit-box-direction: normal;\n              -ms-flex-direction: column;\n                  flex-direction: column;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n}\n", ""]);
+exports.push([module.i, "\n.payment[data-v-7bace86b] {\n  padding-bottom: 100px;\n  margin: 0;\n  width: 100%;\n  background-color: #e5e3e3;\n}\n.payment section[data-v-7bace86b] {\n    margin-bottom: 10px;\n    background-color: white;\n    padding-bottom: 10px;\n}\n.payment h6[data-v-7bace86b] {\n    padding: 10px;\n    font-weight: bold;\n    color: #9b9b9b;\n    border-bottom: 1px solid #e9e6e6;\n    font-size: 16px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between;\n}\n.payment ul[data-v-7bace86b] {\n    list-style-type: none;\n    padding: 0;\n    margin: 0;\n}\n.payment ul li[data-v-7bace86b] {\n      padding: 0;\n      margin: 0;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      margin-bottom: 10px;\n}\n.payment ul li .orderItem-img[data-v-7bace86b] {\n        width: 20%;\n}\n.payment ul li .orderItem-info-container[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        padding: 0px 10px;\n        width: 80%;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity[data-v-7bace86b] {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: justify;\n              -ms-flex-pack: justify;\n                  justify-content: space-between;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity .orderItem-name .orderItem-quantity[data-v-7bace86b] {\n            display: inline-block;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity .orderItem-name[data-v-7bace86b] {\n            width: 90%;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity p[data-v-7bace86b] {\n            margin: 0;\n}\n.payment ul li .orderItem-info-container .orderItem-name-quantity h5[data-v-7bace86b] {\n            margin: 0;\n            font-weight: bold;\n            font-size: 16px;\n            letter-spacing: 3px;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price[data-v-7bace86b] {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-pack: justify;\n              -ms-flex-pack: justify;\n                  justify-content: space-between;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price ul li[data-v-7bace86b] {\n            padding: 0;\n            margin: 0;\n            font-size: 10px;\n            color: #9b9b9b;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price .orderItem-price[data-v-7bace86b] {\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -webkit-box-orient: vertical;\n            -webkit-box-direction: normal;\n                -ms-flex-direction: column;\n                    flex-direction: column;\n            -webkit-box-pack: end;\n                -ms-flex-pack: end;\n                    justify-content: flex-end;\n}\n.payment ul li .orderItem-info-container .orderItem-choice-price p[data-v-7bace86b] {\n            margin: 0;\n            font-weight: bold;\n            color: #f83f3a;\n}\n.payment .payment-method[data-v-7bace86b] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n}\n.payment .payment-method .icon-group[data-v-7bace86b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n}\n.payment .payment-method .icon-group .payment-choice[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.payment .payment-method .icon-group .payment-choice img[data-v-7bace86b] {\n          width: 60px;\n}\n.payment .payment-method .icon-group .payment-choice input[data-v-7bace86b] {\n          vertical-align: middle;\n}\n.payment .payment-method .icon-group .payment-choice span[data-v-7bace86b] {\n          vertical-align: middle;\n          font-size: 14px;\n}\n.payment .payment-method .icon-group p[data-v-7bace86b] {\n        margin: 0;\n        text-align: center;\n}\n.payment .payment-detail-container[data-v-7bace86b] {\n    display: table;\n    width: 90%;\n    margin: auto;\n}\n.payment .payment-detail-container .bold[data-v-7bace86b] {\n      font-weight: bold;\n}\n.payment .payment-detail-container div[data-v-7bace86b] {\n      display: table-row;\n}\n.payment .payment-detail-container div span[data-v-7bace86b] {\n        display: table-cell;\n}\n.payment .payment-detail-container div span.number[data-v-7bace86b] {\n          text-align: right;\n}\n.payment .footer[data-v-7bace86b] {\n    position: fixed;\n    bottom: 0;\n    width: 100%;\n    background-color: #ffbe76;\n    -webkit-box-shadow: 0px -2px 3px #00000038;\n            box-shadow: 0px -2px 3px #00000038;\n}\n.payment .footer .footer-content-container[data-v-7bace86b] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding: 0px 10px;\n      margin: 5px 0px;\n}\n.payment .footer .footer-content-container .footer-title[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -webkit-box-pack: end;\n            -ms-flex-pack: end;\n                justify-content: flex-end;\n}\n.payment .footer .footer-content-container .footer-title h2[data-v-7bace86b] {\n          margin: 0;\n          font-size: 2rem;\n          font-weight: bold;\n          text-shadow: 0px 2px 2px #21252970;\n          letter-spacing: 3px;\n}\n.payment .footer .footer-content-container .footer-detail[data-v-7bace86b] {\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n        padding: 0 20px;\n}\n.payment .footer .footer-content-container .footer-detail .footer-detail-info[data-v-7bace86b] {\n          font-size: 10px;\n          color: #9b9b9b;\n}\n.payment .footer .footer-content-container .footer-detail .footer-detail-info span[data-v-7bace86b] {\n            background-color: #3490dc;\n            color: white;\n            padding: 2px 3px;\n            margin: 0px 1px;\n            font-weight: bold;\n            border-radius: 3px;\n}\n.payment .footer .footer-content-container .footer-detail .footer-detail-total[data-v-7bace86b] {\n          font-size: 20px;\n          text-align: right;\n}\n.payment .footer .footer-content-container .footer-button[data-v-7bace86b] {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        width: 47px;\n        background-color: #ef8282;\n        text-align: center;\n        color: yellow;\n        -webkit-box-shadow: 0px 2px 3px #9b9b9b;\n                box-shadow: 0px 2px 3px #9b9b9b;\n}\n.payment .footer .footer-content-container .footer-button .animated.infinite.pulse[data-v-7bace86b] {\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-orient: vertical;\n          -webkit-box-direction: normal;\n              -ms-flex-direction: column;\n                  flex-direction: column;\n          -webkit-box-pack: center;\n              -ms-flex-pack: center;\n                  justify-content: center;\n}\n", ""]);
 
 // exports
 
@@ -61449,7 +61449,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderId", "orderList", "totalPriceOfOrder", "table_number"]))
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderId", "orderList", "totalPriceOfOrder", "table_number", "pathFrom"])),
+  methods: {
+    back: function back() {
+      this.$router.push(this.pathForm);
+    }
+  }
 });
 
 /***/ }),
@@ -61462,7 +61467,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "payment" }, [
     _c("section", [
-      _c("h6", [_vm._v("Your Order: ")]),
+      _c(
+        "h6",
+        [
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to:
+                  "/table/public/table/" +
+                  _vm.table_number +
+                  "/orderid/" +
+                  _vm.orderId
+              }
+            },
+            [
+              _c("i", { staticClass: "material-icons" }, [
+                _vm._v("arrow_back_ios")
+              ])
+            ]
+          ),
+          _c("span", [_vm._v("Your Order")])
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", [
         _c(
@@ -64746,7 +64774,8 @@ TWEEN.Interpolation = {
         totalPriceOfOrder: 0,
         spinnerShow: false,
         orderId: 0,
-        table_number: 0
+        table_number: 0,
+        pathFrom: ""
     },
     getters: {
         categoryList: function categoryList(state) {
@@ -64782,6 +64811,9 @@ TWEEN.Interpolation = {
         },
         table_number: function table_number(state) {
             return state.table_number;
+        },
+        pathFrom: function pathFrom(state) {
+            return "/table/public/table/" + state.table_number + "/orderid/" + state.orderId;
         }
     },
     mutations: {
@@ -64810,8 +64842,8 @@ TWEEN.Interpolation = {
         RemoveItemFromOrderList: function RemoveItemFromOrderList(state, newItem) {
             state.orderList.splice(state.orderList.indexOf(newItem), 1);
         },
-        toggleSpinner: function toggleSpinner(state) {
-            state.spinnerShow = !state.spinnerShow;
+        toggleSpinner: function toggleSpinner(state, status) {
+            state.spinnerShow = status;
         },
         updateOrderId: function updateOrderId(state, payload) {
             state.orderId = payload;
@@ -64834,20 +64866,26 @@ TWEEN.Interpolation = {
             });
         },
         getProductList: function getProductList(context) {
-            context.commit("toggleSpinner");
+            context.commit("toggleSpinner", true);
             axios.get("/table/public/api/products").then(function (res) {
                 context.commit("updateProductList", res.data.products);
-                context.commit("toggleSpinner");
+                context.commit("toggleSpinner", false);
             });
         },
         addNewItemToOrderList: function addNewItemToOrderList(context, newItem) {
+            context.commit("toggleSpinner", true);
             context.commit("AddNewItemToOrderList", newItem);
+            context.commit("toggleSpinner", false);
         },
         increaseItemQuantityInOrderList: function increaseItemQuantityInOrderList(context, newItem) {
+            context.commit("toggleSpinner", true);
             context.commit("IncreaseItemQuantityInOrderList", newItem);
+            context.commit("toggleSpinner", false);
         },
         decreaseItemQuantityInOrderList: function decreaseItemQuantityInOrderList(context, newItem) {
+            context.commit("toggleSpinner", true);
             context.commit("decreaseQuantity", newItem);
+            context.commit("toggleSpinner", false);
         },
         removeItemFromOrderList: function removeItemFromOrderList(context, newItem) {
             context.commit("RemoveItemFromOrderList", newItem);
