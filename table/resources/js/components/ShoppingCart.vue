@@ -48,7 +48,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["orderList", "totalPriceOfOrder", "totalQuantityOfOrder"])
+    ...mapGetters([
+      "orderList",
+      "totalPriceOfOrder",
+      "totalQuantityOfOrder",
+      "orderId",
+      "table_number"
+    ])
   },
   mounted() {},
   methods: {
@@ -70,6 +76,11 @@ export default {
     //ToDo:: save data in database.
     confirmOrder() {
       console.log(this.orderList);
+      this.$router.push(
+        `/table/public/table/${this.table_number}/orderid/${
+          this.orderId
+        }/payment`
+      );
     }
   }
 };

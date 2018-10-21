@@ -14,6 +14,11 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        // $this->browse(function ($browser) {
+        //     $browser->visit('/home')
+        //             -> assertSee('Latest Transactions');
+        // });
+
+        $this->get('/')->see('table');
     }
 }

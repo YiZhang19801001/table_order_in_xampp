@@ -1,57 +1,44 @@
 <template>
 <div>
-    <div v-if="spinnerShow" class="spinner-container">
-        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-   <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-</svg>
-    </div>
-    <Head class="header"></Head>
-    <div class="bodyContainer">
-        <CategoryList></CategoryList>
-        <ProductList></ProductList>
-        <ShoppingCart></ShoppingCart>
-    </div>
+      <div v-if="spinnerShow" class="spinner-container">
+          <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+              <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+          </svg>
+      </div>
+  <router-view></router-view>
 </div>
 </template>
 
 
 <script>
-import CategoryList from "./CategoryList";
-import ProductList from "./ProductList";
-import ShoppingCart from "./ShoppingCart";
-import Head from "./Head";
 import { mapGetters, mapActions, mapState, mapMutations } from "vuex";
 
 export default {
   name: "main-app",
-  components: { CategoryList, ProductList, Head, ShoppingCart },
+
   computed: {
     ...mapGetters(["spinnerShow", "orderList", "orderId"])
   },
   mounted() {
     this.setOrderId(this.$route.params.orderid);
     this.setTableNumber(this.$route.params.table);
-    console.log(this.orderId);
-    axios
-      .post("/table/public/api/initcart", { order_id: this.orderId })
-      .then(res => {
-        console.log(res.data);
-        this.replaceList(res.data);
-      });
+    this.updateOrderList();
     /**set channel to listen */
     Echo.channel("tableOrder").listen("newOrderItemAdded", e => {
       if (this.orderId === e.orderId) {
-        axios
-          .post("/table/public/api/initcart", { order_id: this.orderId })
-          .then(res => {
-            console.log(res.data);
-            this.replaceList(res.data);
-          });
+        this.updateOrderList();
       }
     }); /**first args is the event we gonna to listen to, second args is event itself */
   },
   methods: {
-    ...mapActions(["replaceList", "setOrderId", "setTableNumber"])
+    ...mapActions(["replaceList", "setOrderId", "setTableNumber"]),
+    updateOrderList() {
+      axios
+        .post("/table/public/api/initcart", { order_id: this.orderId })
+        .then(res => {
+          this.replaceList(res.data);
+        });
+    }
   }
 };
 </script>
@@ -121,21 +108,6 @@ $duration: 1s;
     stroke-dashoffset: $offset;
     transform: rotate(450deg);
   }
-}
-
-.header {
-  position: fixed;
-  width: 100%;
-  background-color: #f53b50;
-  color: white;
-  text-align: center;
-  padding: 6px;
-  box-shadow: 0px 5px 5px #00000038;
-  z-index: 200;
-}
-.bodyContainer {
-  display: flex;
-  flex-direction: row;
 }
 </style>
 
