@@ -107,7 +107,6 @@ export default {
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
   },
-  watch: {},
   methods: {
     ...mapMutations(["updateProductList", "updateOrderList"]),
     ...mapActions([

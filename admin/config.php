@@ -3,8 +3,8 @@
 #define('HTTP_SERVER', 'http://localhost/admin/');
 #define('HTTP_CATALOG', 'http://localhost/');
 
-define('HTTP_SERVER', 'http://localhost/admin/');
-define('HTTP_CATALOG', 'http://localhost/');
+define('HTTP_SERVER', 'http://192.168.1.221/admin/');
+define('HTTP_CATALOG', 'http://192.168.1.221/');
 
 // HTTPS
 define('HTTPS_SERVER', 'https://localhost/admin/');

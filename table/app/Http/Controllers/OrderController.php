@@ -14,6 +14,9 @@ use App\Product;
 use App\Product_add_type;
 use App\Product_ext;
 use App\Temp_order;
+use App\Order_history;
+use App\Order_total;
+use App\Order_ext;
 
 class OrderController extends Controller
 {
@@ -210,6 +213,188 @@ class OrderController extends Controller
         array_push($order,$new_orderList_ele);
     }
     return $order;
+    }
+
+    public function confirmOrder(Request $request){
+        /**request is an array of  */
+
+        //get new order
+        $new_order = $this->createOcOrderHelper($request);
+        $order_id = $new_order->id;
+
+        $value = $new_order->total;
+        //create record in oc_order_history
+        $this->createOcOrderHistoryHelper($order_id);
+
+        //create record in oc_order_total
+        $this->createOrderTotalHelper($order_id,$value);
+
+        //create record in oc_order_product
+        $this->createOrderProductHelper($request->orderList,$order_id);
+
+        return response()->json(["new_order"=>$new_order],200);
+
+    }
+
+    public function createOcOrderHelper($request){
+        /**create order in oc_order */
+        $new_order = new Order;
+        $new_order->invoice_no = 0;
+        $new_order->invoice_prefix = "INV-2013-00";
+        $new_order->store_id = $request->store_id;//4
+        $new_order->store_name=$request->store_name;//Monkey King Thai Restaurant
+        $new_order->store_url=$request->store_url;//http://192.168.1.220/
+        $new_order->customer_id=0;
+        $new_order->customer_group_id = 1;
+        $new_order->firstname = " ";
+        $new_order->lastname = " ";
+        $new_order->email = "tableorder@order2.com";
+        $new_order->telephone = " ";
+        $new_order->fax = " ";
+        $new_order->custom_field = " ";
+        $new_order->payment_firstname=" ";
+        $new_order->payment_lastname=" ";
+        $new_order->payment_company = " ";
+        $new_order->payment_address_1=" ";
+        $new_order->payment_address_2=" ";
+        $new_order->payment_city=" ";
+        $new_order->payment_postcode=" ";
+        $new_order->payment_country=" ";
+        $new_order->payment_country_id=0;
+        $new_order->payment_state = " ";
+        $new_order->payment_state_id=0;
+        $new_order->payment_suburb=" ";
+        $new_order->payment_suburb_id=0;
+        $new_order->payment_address_format=" ";
+        $new_order->payment_custom_field=" ";
+        $new_order->payment_code="cod";
+        $new_order->payment_method = "DineIn";
+        $new_order->shipping_firstname = " ";
+        $new_order->shipping_lastname = " ";
+        $new_order->shipping_email = "tableorder@order2.com";
+        $new_order->shipping_telephone = " ";
+        $new_order->shipping_company = " ";
+        $new_order->shipping_address_1 = " ";
+        $new_order->shipping_address_2 = " ";
+        $new_order->shipping_city = " ";
+        $new_order->shipping_postcode = " ";
+        $new_order->shipping_country = " ";
+        $new_order->shipping_country_id = 0;
+        $new_order->shipping_state = " ";
+        $new_order->shipping_state_id = 0;
+        $new_order->shipping_suburb = " ";
+        $new_order->shipping_suburb_id = 0;
+        $new_order->shipping_address_format = " ";
+        $new_order->shipping_custom_field = " ";
+        $new_order->shipping_method = "DineIn";
+        $new_order->shipping_orderTime = date("H:i");
+        $new_order->shipping_orderDate = date_create()->format("D, d M YY");
+        $new_order->shipping_orderWhen = "now";
+        $new_order->shipping_code = " ";
+        $new_order->comment = " ";
+        $new_order->total =$request->total;
+        $new_order->order_status_id=0;
+        $new_order->affiliate_id = 0;
+        $new_order->commission = 0.0000;
+        $new_order->marketing_id = 0;
+        $new_order->tracking = " ";
+        $new_order->language_id = 1;
+        $new_order->currency_id = 4;
+        $new_order->currency_code = "AUD";
+        $new_order->currency_value = 1.000000;
+        //Todo: fetch from request
+        $new_order->ip = "192.168.1.220";
+        $new_order->forwarded_ip = " ";
+        //Todo: fetch from request
+        $new_order->user_agent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
+        //Todo: fetch from accept_language
+        $new_order->accept_language = "en-GB,en-US;q=0.8,en;q=0.6";
+        $new_order->date_added = date_create()->format("y-m-d h:i:s");
+        $new_order->date_modified = date_create()->format("y-m-d h:i:s");
+
+        //save to database
+        $new_order->save();
+
+        //return id
+        return $new_order;
+    }
+
+    public function createOcOrderHistoryHelper($order_id){
+        $new_order_history = new Order_history;
+        $new_order_history->order_id = $order_id;
+        $new_order_history->notify = 0;
+        //Todo: read from new order??
+        $new_order_history->order_status_id = 1;
+        $new_order_history->comment = " ";
+        $new_order_history->date_added = date_create()->format("yyyy-mm-dd h:i:s");
+    }
+
+    public function createOrderTotalHelper($order_id,$value){
+        $new_order_total_1 = new Order_total;
+        $new_order_total_1->order_id = $order_id;
+        $new_order_total_1->code = "sub_total";
+        $new_order_total_1->title= "Sub-Total";
+        $new_order_total_1->value = $value;
+        $new_order_total_1->sort_order = 1;
+        $new_order_total_1->save();
+
+        $new_order_total_2 = new Order_total;
+        $new_order_total_2->order_id = $order_id;
+        $new_order_total_2->code = "shipping";
+        $new_order_total_2->title= "Dive-In";
+        $new_order_total_2->value = $value;
+        $new_order_total_2->sort_order = 3;
+        $new_order_total_2->save();
+
+        $new_order_total_3 = new Order_total;
+        $new_order_total_3->order_id = $order_id;
+        $new_order_total_3->code = "total";
+        $new_order_total_3->title= "Total";
+        $new_order_total_3->value = $value;
+        $new_order_total_3->sort_order = 9;
+        $new_order_total_3->save();
+    }
+
+    public function createOrderProductHelper($orderList, $order_id){
+        $arr_order_items = $orderList;
+
+        foreach ($arr_order_items as $order_product) {
+            $new_order_product = new Order_product;
+            $new_order_product->order_id = $order_id;
+            $new_order_product->product_id =$order_product["item"]["product_id"];
+            $new_order_product->model = 1;
+            $new_order_product->quantity = $order_product["quantity"];
+            $new_order_product->name = $order_product["item"]["name"];
+            $new_order_product->price = $order_product["item"]["price"];
+            $new_order_product->total = $order_product["quantity"] * (float)$order_product["item"]["price"];
+            $new_order_product->tax = 0;
+            $new_order_product->reward = 0;
+
+            $new_order_product->save();
+
+            /**picked choices */
+            foreach ($order_product["item"]["choices"] as $choice) {
+                $new_order_ext = new Order_ext;
+                /**find the product_ext_id
+                 * 1. get type id from oc_product_add_type name = $choice["type"]
+                 * 2.
+                 * 3. find product_ext_id by type=type_id && name = $choice["pickedChoice"] from oc_prodcut_ext
+                */
+
+                $type_id = Product_add_type::where('name',$choice["type"])->first();
+
+                $product_ext_id = Product_ext::where('type',$type_id->add_type_id)->where('name',$choice["pickedChoice"])->first();
+
+                $new_order_ext->product_ext_id = $product_ext_id->product_ext_id;
+
+                $new_order_ext->order_product_id = $new_order_product->id;
+                $new_order_ext->product_id = $order_product["item"]["product_id"];
+
+                $new_order_ext->save();
+            }
+
+
+        }
     }
 
 }

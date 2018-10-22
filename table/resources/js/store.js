@@ -9,9 +9,22 @@ export default {
         orderId: 0,
         table_number: 0,
         pathFrom: "",
-        scrollPositionId: 0
+        scrollPositionId: 0,
+        //ToDo: store_id, store_name, store_url should be generated automaticly.
+        store_id: 4,
+        store_name: "Monkey King Thai Restaurant",
+        store_url: "http://192.168.1.221/"
     },
     getters: {
+        store_id: state => {
+            return state.store_id;
+        },
+        store_name: state => {
+            return state.store_name;
+        },
+        store_url: state => {
+            return state.store_url;
+        },
         categoryList: state => {
             return state.categoryList;
         },

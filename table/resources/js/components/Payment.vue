@@ -98,7 +98,7 @@
                             <span> ${{totalPriceOfOrder}}</span>
                         </div>
                     </div>
-                    <div class="footer-button">
+                    <div @click="confirm" class="footer-button">
                         <div class="animated infinite pulse vertical-center">
                             <i class="material-icons">attach_money</i>
                         </div>
@@ -125,12 +125,26 @@ export default {
       "orderList",
       "totalPriceOfOrder",
       "table_number",
-      "pathFrom"
+      "pathFrom",
+      "store_id",
+      "totalPriceOfOrder",
+      "store_name",
+      "store_url"
     ])
   },
   methods: {
     back() {
       this.$router.push(this.pathForm);
+    },
+    confirm() {
+      axios.post("/table/public/api/confirm", {
+        orderList: this.orderList,
+        order_id: this.orderId,
+        store_id: this.store_id,
+        store_name: this.store_name,
+        store_url: this.store_url,
+        total: this.totalPriceOfOrder
+      });
     }
   }
 };

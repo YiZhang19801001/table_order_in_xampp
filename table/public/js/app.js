@@ -61449,10 +61449,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderId", "orderList", "totalPriceOfOrder", "table_number", "pathFrom"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderId", "orderList", "totalPriceOfOrder", "table_number", "pathFrom", "store_id", "totalPriceOfOrder", "store_name", "store_url"])),
   methods: {
     back: function back() {
       this.$router.push(this.pathForm);
+    },
+    confirm: function confirm() {
+      axios.post("/table/public/api/confirm", {
+        orderList: this.orderList,
+        order_id: this.orderId,
+        store_id: this.store_id,
+        store_name: this.store_name,
+        store_url: this.store_url,
+        total: this.totalPriceOfOrder
+      });
     }
   }
 });
@@ -61669,7 +61679,11 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(3)
+        _c(
+          "div",
+          { staticClass: "footer-button", on: { click: _vm.confirm } },
+          [_vm._m(3)]
+        )
       ])
     ])
   ])
@@ -61705,11 +61719,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-button" }, [
-      _c("div", { staticClass: "animated infinite pulse vertical-center" }, [
-        _c("i", { staticClass: "material-icons" }, [_vm._v("attach_money")])
-      ])
-    ])
+    return _c(
+      "div",
+      { staticClass: "animated infinite pulse vertical-center" },
+      [_c("i", { staticClass: "material-icons" }, [_vm._v("attach_money")])]
+    )
   }
 ]
 render._withStripped = true
@@ -62130,12 +62144,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(4);
-var _name$data$computed$w;
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -62210,7 +62220,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_name$data$computed$w = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   name: "app-product-list",
 
   data: function data() {
@@ -62243,59 +62253,62 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   destroyed: function destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
-  }
-}, _defineProperty(_name$data$computed$w, "watch", {}), _defineProperty(_name$data$computed$w, "methods", _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["d" /* mapMutations */])(["updateProductList", "updateOrderList"]), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(["getProductList", "addNewItemToOrderList", "setScrollPositionId"]), {
-  selectItem: function selectItem(id) {
-    /**
-     * In Order To toggle the product detail in one button
-     * check the id if same with selectProduct_id => dismiss, else set selectProdcut_id = id
-     **/
-    this.wantOrder = false;
-    if (this.selectProduct_id === id) {
-      this.selectProduct_id = 0;
-    } else {
-      this.selectProduct_id = id;
-    }
   },
 
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["d" /* mapMutations */])(["updateProductList", "updateOrderList"]), Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["b" /* mapActions */])(["getProductList", "addNewItemToOrderList", "setScrollPositionId"]), {
+    selectItem: function selectItem(id) {
+      /**
+       * In Order To toggle the product detail in one button
+       * check the id if same with selectProduct_id => dismiss, else set selectProdcut_id = id
+       **/
+      this.wantOrder = false;
+      if (this.selectProduct_id === id) {
+        this.selectProduct_id = 0;
+      } else {
+        this.selectProduct_id = id;
+      }
+    },
 
-  /** use for choice pannel open or close*/
-  wandOrder: function wandOrder(item) {
-    this.wantOrder = true;
-  },
-  closeChoiceForm: function closeChoiceForm() {
-    this.wantOrder = false;
-  },
 
-  /**choice pannel end */
+    /** use for choice pannel open or close*/
+    wandOrder: function wandOrder(item) {
+      this.wantOrder = true;
+    },
+    closeChoiceForm: function closeChoiceForm() {
+      this.wantOrder = false;
+    },
 
-  addToOrder: function addToOrder(newItem) {
-    /**
-     * add a new item into order
-     * 1. should check is there any duplicate item
-     * 2. if have, increate the quantity only
-     * 3. if not, this item is new to the order so create new obj and insert to the array
-     * 4. final result the array will be like this
-     * [{item:{},quantity:number}]*/
+    /**choice pannel end */
 
-    this.wantOrder = false;
-    this.addNewItemToOrderList(newItem);
-  },
-  handleScroll: function handleScroll() {
-    var sum = 0;
-    /** loop the elements check the height to find out which category section now is showing */
-    for (var index = 0; index < this.$refs.cates.length; index++) {
-      var element = this.$refs.cates[index];
-      sum = sum + element.scrollHeight;
-      //**ToDo: why here is - 50 I thoungh should be + 50 */
-      if (sum - 50 > window.scrollY) {
-        this.setScrollPositionId(index);
-        /**new step let category list change base on this scrollPostionId */
-        break;
+    addToOrder: function addToOrder(newItem) {
+      /**
+       * add a new item into order
+       * 1. should check is there any duplicate item
+       * 2. if have, increate the quantity only
+       * 3. if not, this item is new to the order so create new obj and insert to the array
+       * 4. final result the array will be like this
+       * [{item:{},quantity:number}]*/
+
+      this.wantOrder = false;
+      this.addNewItemToOrderList(newItem);
+    },
+    handleScroll: function handleScroll() {
+      var sum = 0;
+      /** loop the elements check the height to find out which category section now is showing */
+      for (var index = 0; index < this.$refs.cates.length; index++) {
+        var element = this.$refs.cates[index];
+        sum = sum + element.scrollHeight;
+        //**ToDo: why here is - 50 I thoungh should be + 50 */
+        if (sum - 50 > window.scrollY) {
+          this.setScrollPositionId(index);
+          /**new step let category list change base on this scrollPostionId */
+          break;
+        }
       }
     }
-  }
-})), _defineProperty(_name$data$computed$w, "components", { ChoiceForm: __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue___default.a }), _name$data$computed$w);
+  }),
+  components: { ChoiceForm: __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue___default.a }
+});
 
 /***/ }),
 /* 71 */
@@ -64809,9 +64822,22 @@ TWEEN.Interpolation = {
         orderId: 0,
         table_number: 0,
         pathFrom: "",
-        scrollPositionId: 0
+        scrollPositionId: 0,
+        //ToDo: store_id, store_name, store_url should be generated automaticly.
+        store_id: 4,
+        store_name: "Monkey King Thai Restaurant",
+        store_url: "http://192.168.1.221/"
     },
     getters: {
+        store_id: function store_id(state) {
+            return state.store_id;
+        },
+        store_name: function store_name(state) {
+            return state.store_name;
+        },
+        store_url: function store_url(state) {
+            return state.store_url;
+        },
         categoryList: function categoryList(state) {
             return state.categoryList;
         },

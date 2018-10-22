@@ -4,10 +4,10 @@
  * home 192.168.20.102
  */
 // HTTP
-define('HTTP_SERVER', 'http://192.168.1.216/');
+define('HTTP_SERVER', 'http://192.168.1.221/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://192.168.1.216/');
+define('HTTPS_SERVER', 'http://192.168.1.221/');
 
 // DIR
 define('DIR_APPLICATION', 'd:/xampp/htdocs/catalog/');
