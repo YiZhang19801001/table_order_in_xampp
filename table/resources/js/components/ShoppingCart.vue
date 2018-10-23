@@ -8,6 +8,9 @@
                 <span class="badge">{{totalQuantityOfOrder}}</span>
             </div>
             <div class="shoppingCart-header-text">Total: {{totalPriceOfOrder}}</div>
+            <!-- <div class="header-img-container">
+                <img src="http://www.aupos.com.au/wp-content/uploads/2017/03/logo.png" alt="">
+            </div> -->
         </div>
         <!-- toggle the list of order on clicking the header -->
         <ul>
@@ -76,56 +79,51 @@ export default {
 <style lang="scss" scoped>
 .shoppingCart {
   position: fixed;
-  background-color: white;
-  bottom: 0;
-  width: 100%;
+  bottom: 10px;
+  width: 70%;
+  left: 15%;
   z-index: 200;
-  box-shadow: 0px -5px 5px #00000038;
+  box-shadow: 0px 5px 5px #00000038;
   .shoppingCart-header {
     display: flex;
     position: relative;
     justify-content: center;
     height: 40px;
-    background-color: #eb4d4b;
+    // background-image: url("http://www.aupos.com.au/wp-content/uploads/2017/03/logo.png");
+    // background-repeat: no-repeat;
+    // background-size: contain;
+    background-color: rgba(226, 222, 222, 0.3);
     .shoppingIcon {
-      color: #eb4d4b;
       display: inline-block;
-      background: white;
       transform: scale(1.6);
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      box-shadow: 0px 2px 2px #00000078;
+      width: 26px;
+      height: 20px;
       z-index: 250;
       position: absolute;
-      top: 0;
+      top: 10px;
       left: 20px;
-      align-items: center;
-      padding-left: 3px;
-      top: -10px;
-      padding-top: 3px;
+      border-right: 1px solid rgba(52, 58, 64, 0.21);
     }
     .badge {
       display: inline-block;
-      padding: 0.25em 0.4em;
-      font-size: 75%;
-      font-weight: 700;
-      background-color: #7ed6df;
-      line-height: 1;
-      text-align: center;
-      white-space: nowrap;
-      vertical-align: baseline;
       border-radius: 50%;
-      color: #535c68;
+      color: #f8fafc;
+      text-shadow: 0px 0px 2px #933b38;
       position: absolute;
       top: -4px;
-      right: -2px;
+      left: 3px;
     }
     .shoppingCart-header-text {
       display: flex;
       align-items: center;
-      font-size: 16px;
+      font-weight: bold;
+      font-size: 18px;
       color: white;
+      text-shadow: 1px 1px 2px black;
+      letter-spacing: 1.2px;
+    }
+    img {
+      max-width: 60px;
     }
   }
   ul {
@@ -187,5 +185,10 @@ export default {
 }
 .expand {
   max-height: 40px;
+}
+i.material-icons {
+  color: white;
+  text-shadow: 0px 0px 1px black;
+  font-size: 20px;
 }
 </style>
