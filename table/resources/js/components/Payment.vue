@@ -1,46 +1,5 @@
 <template>
     <div class="payment">
-        <!-- QR Code Section -->
-        <section>
-            <qrcode-vue :value="QrValue" class="qrcode"></qrcode-vue>
-        </section>
-        <!-- order section -->
-<section>
-            <h6><router-link :to="`/table/public/table/${table_number}/orderid/${orderId}`"><i class="material-icons">arrow_back_ios</i></router-link><span>Your Order</span> </h6>
-            <div>
-                <!-- list of order_items -->
-                <ul>
-                    <li v-for="(orderItem,index) in orderList" :key="index">
-                            <div class="orderItem-img">
-                                <img src="https://via.placeholder.com/60" alt="">
-                            </div>
-                            <div class="orderItem-info-container">
-                                <div class="orderItem-name-quantity">
-                                    <div class="orderItem-name">
-                                        <h5>{{orderItem.item.name}}</h5>
-                                    </div>
-                                    <div class="orderItem-quantity">
-                                        <p> X {{orderItem.quantity}}</p>
-                                    </div>
-                                </div>
-                                <div class="orderItem-choice-price">
-                                    <ul class="choice-list">
-                                        <li v-for="(choice,index2) in orderItem.item.choices" :key="index2">
-                                            {{choice.type}} {{choice.pickedChoice}}
-                                        </li>
-                                    </ul>
-                                    <div class="orderItem-price">
-                                        <p>${{orderItem.item.price}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- list of choice for each order_item -->
-
-                    </li>
-                </ul>
-            </div>
-</section>
-        <!-- order section end -->
 
         <!-- payment method section -->
 <section>
@@ -89,6 +48,48 @@
             </div>
 </section>
         <!-- payment detail section end -->
+        <!-- order section -->
+<section>
+            <h6><router-link :to="`/table/public/table/${table_number}/orderid/${orderId}`"><i class="material-icons">arrow_back_ios</i></router-link><span>Your Order</span> </h6>
+            <div>
+                <!-- list of order_items -->
+                <ul>
+                    <li v-for="(orderItem,index) in orderList" :key="index">
+                            <div class="orderItem-img">
+                                <img src="https://via.placeholder.com/60" alt="">
+                            </div>
+                            <div class="orderItem-info-container">
+                                <div class="orderItem-name-quantity">
+                                    <div class="orderItem-name">
+                                        <h5>{{orderItem.item.name}}</h5>
+                                    </div>
+                                    <div class="orderItem-quantity">
+                                        <p> X {{orderItem.quantity}}</p>
+                                    </div>
+                                </div>
+                                <div class="orderItem-choice-price">
+                                    <ul class="choice-list">
+                                        <li v-for="(choice,index2) in orderItem.item.choices" :key="index2">
+                                            {{choice.type}} {{choice.pickedChoice}}
+                                        </li>
+                                    </ul>
+                                    <div class="orderItem-price">
+                                        <p>${{orderItem.item.price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- list of choice for each order_item -->
+
+                    </li>
+                </ul>
+            </div>
+</section>
+        <!-- order section end -->
+        <!-- QR Code Section -->
+        <section>
+            <qrcode-vue :value="QrValue" class="qrcode"></qrcode-vue>
+        </section>
+        <!-- QR Code Section End -->
         <!-- payment footer -->
 
             <div class="footer">

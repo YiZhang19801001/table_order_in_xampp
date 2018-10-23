@@ -61245,6 +61245,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -61301,89 +61302,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "payment" }, [
-    _c(
-      "section",
-      [
-        _c("qrcode-vue", {
-          staticClass: "qrcode",
-          attrs: { value: _vm.QrValue }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _c("section", [
-      _c(
-        "h6",
-        [
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to:
-                  "/table/public/table/" +
-                  _vm.table_number +
-                  "/orderid/" +
-                  _vm.orderId
-              }
-            },
-            [
-              _c("i", { staticClass: "material-icons" }, [
-                _vm._v("arrow_back_ios")
-              ])
-            ]
-          ),
-          _c("span", [_vm._v("Your Order")])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("div", [
-        _c(
-          "ul",
-          _vm._l(_vm.orderList, function(orderItem, index) {
-            return _c("li", { key: index }, [
-              _vm._m(0, true),
-              _vm._v(" "),
-              _c("div", { staticClass: "orderItem-info-container" }, [
-                _c("div", { staticClass: "orderItem-name-quantity" }, [
-                  _c("div", { staticClass: "orderItem-name" }, [
-                    _c("h5", [_vm._v(_vm._s(orderItem.item.name))])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "orderItem-quantity" }, [
-                    _c("p", [_vm._v(" X " + _vm._s(orderItem.quantity))])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "orderItem-choice-price" }, [
-                  _c(
-                    "ul",
-                    { staticClass: "choice-list" },
-                    _vm._l(orderItem.item.choices, function(choice, index2) {
-                      return _c("li", { key: index2 }, [
-                        _vm._v(
-                          "\n                                            " +
-                            _vm._s(choice.type) +
-                            " " +
-                            _vm._s(choice.pickedChoice) +
-                            "\n                                        "
-                        )
-                      ])
-                    })
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "orderItem-price" }, [
-                    _c("p", [_vm._v("$" + _vm._s(orderItem.item.price))])
-                  ])
-                ])
-              ])
-            ])
-          })
-        )
-      ])
-    ]),
-    _vm._v(" "),
     _c("section", [
       _c("div", { staticClass: "payment-method" }, [
         _c("h6", [_vm._v("Payment Method")]),
@@ -61487,7 +61405,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "bold" }, [
           _c("span", [_vm._v("Total (incl. GST)")]),
@@ -61498,6 +61416,89 @@ var render = function() {
         ])
       ])
     ]),
+    _vm._v(" "),
+    _c("section", [
+      _c(
+        "h6",
+        [
+          _c(
+            "router-link",
+            {
+              attrs: {
+                to:
+                  "/table/public/table/" +
+                  _vm.table_number +
+                  "/orderid/" +
+                  _vm.orderId
+              }
+            },
+            [
+              _c("i", { staticClass: "material-icons" }, [
+                _vm._v("arrow_back_ios")
+              ])
+            ]
+          ),
+          _c("span", [_vm._v("Your Order")])
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", [
+        _c(
+          "ul",
+          _vm._l(_vm.orderList, function(orderItem, index) {
+            return _c("li", { key: index }, [
+              _vm._m(1, true),
+              _vm._v(" "),
+              _c("div", { staticClass: "orderItem-info-container" }, [
+                _c("div", { staticClass: "orderItem-name-quantity" }, [
+                  _c("div", { staticClass: "orderItem-name" }, [
+                    _c("h5", [_vm._v(_vm._s(orderItem.item.name))])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "orderItem-quantity" }, [
+                    _c("p", [_vm._v(" X " + _vm._s(orderItem.quantity))])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "orderItem-choice-price" }, [
+                  _c(
+                    "ul",
+                    { staticClass: "choice-list" },
+                    _vm._l(orderItem.item.choices, function(choice, index2) {
+                      return _c("li", { key: index2 }, [
+                        _vm._v(
+                          "\n                                            " +
+                            _vm._s(choice.type) +
+                            " " +
+                            _vm._s(choice.pickedChoice) +
+                            "\n                                        "
+                        )
+                      ])
+                    })
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "orderItem-price" }, [
+                    _c("p", [_vm._v("$" + _vm._s(orderItem.item.price))])
+                  ])
+                ])
+              ])
+            ])
+          })
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "section",
+      [
+        _c("qrcode-vue", {
+          staticClass: "qrcode",
+          attrs: { value: _vm.QrValue }
+        })
+      ],
+      1
+    ),
     _vm._v(" "),
     _c("div", { staticClass: "footer" }, [
       _c("div", { staticClass: "footer-content-container" }, [
@@ -61529,18 +61530,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "orderItem-img" }, [
-      _c("img", { attrs: { src: "https://via.placeholder.com/60", alt: "" } })
+    return _c("div", [
+      _c("span", [_vm._v("GST")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "number" }, [_vm._v("0.00")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("span", [_vm._v("GST")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "number" }, [_vm._v("0.00")])
+    return _c("div", { staticClass: "orderItem-img" }, [
+      _c("img", { attrs: { src: "https://via.placeholder.com/60", alt: "" } })
     ])
   },
   function() {
