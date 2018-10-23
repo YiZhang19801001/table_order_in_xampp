@@ -7,7 +7,7 @@
                 <i class="material-icons">shopping_cart</i>
                 <span class="badge">{{totalQuantityOfOrder}}</span>
             </div>
-            <div class="shoppingCart-header-text">Total: {{totalPriceOfOrder}}</div>
+            <div class="shoppingCart-header-text">{{isEn?"Total":"总计"}} {{totalPriceOfOrder}}</div>
         </div>
         <!-- toggle the list of order on clicking the header -->
         <ul>
@@ -40,7 +40,8 @@ export default {
       "totalPriceOfOrder",
       "totalQuantityOfOrder",
       "orderId",
-      "table_number"
+      "table_number",
+      "isEN"
     ])
   },
   mounted() {},

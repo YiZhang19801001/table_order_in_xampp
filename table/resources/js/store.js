@@ -1,5 +1,6 @@
 export default {
     state: {
+        isEN: true,
         categoryList: [],
         productList: [],
         orderList: [],
@@ -19,6 +20,9 @@ export default {
         store_url: "http://192.168.1.221/"
     },
     getters: {
+        isEN: state => {
+            return state.isEN;
+        },
         site: state => {
             return state.site;
         },
@@ -85,6 +89,9 @@ export default {
         }
     },
     mutations: {
+        updateIsEN(state, payload) {
+            state.isEN = payload;
+        },
         updateCdt(state, payload) {
             state.cdt = payload;
         },
@@ -185,6 +192,9 @@ export default {
         },
         setV(context, newV) {
             context.commit("updateV", newV);
+        },
+        setIsEN(context, newStatus) {
+            context.commit("updateIsEN", newStatus);
         }
     }
 };
