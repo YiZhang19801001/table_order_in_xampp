@@ -1,5 +1,9 @@
 <template>
     <div class="payment">
+        <!-- QR Code Section -->
+        <section>
+            <qrcode-vue :value="QrValue" class="qrcode"></qrcode-vue>
+        </section>
         <!-- order section -->
 <section>
             <h6><router-link :to="`/table/public/table/${table_number}/orderid/${orderId}`"><i class="material-icons">arrow_back_ios</i></router-link><span>Your Order</span> </h6>
@@ -113,11 +117,27 @@
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import QrcodeVue from "qrcode.vue";
+
 export default {
   data() {
     return {
-      paymentMethod: "cash"
+      paymentMethod: "cash",
+      QrValue: "https://www.google.com"
     };
+  },
+  mounted() {
+    /**qrcode order command: barcode 1, qty1, sizeLevel 1;barcode2, qty2,sizeLevel2
+     * example: 106,2.5,0
+     */
+    let qr = "";
+    this.orderList.forEach(el => {
+      qr = qr + el.item.upc + ",";
+      qr = qr + el.quantity + ",";
+      qr = qr + "0" + ";";
+    });
+
+    this.QrValue = qr.substr(0, qr.length - 1);
   },
   computed: {
     ...mapGetters([
@@ -147,6 +167,9 @@ export default {
         paymentMethod: this.paymentMethod
       });
     }
+  },
+  components: {
+    QrcodeVue
   }
 };
 </script>
@@ -158,6 +181,11 @@ export default {
   margin: 0;
   width: 100%;
   background-color: #e5e3e3;
+  .qrcode {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px 0px 0px;
+  }
   section {
     margin-bottom: 10px;
     background-color: white;

@@ -40,6 +40,7 @@ class ProductController extends Controller
          * }
          */
 
+
         //fetch all categories, used for grouping products
         $categories = Category_description::all();
 
@@ -63,6 +64,8 @@ class ProductController extends Controller
                 $price = substr($price,0,$length);
                 //add to exsiting object
                 $new_product->price = $price;
+                //add product code to obj
+                $new_product->upc = Product::where('product_id',$id->product_id)->first()->upc;
                 //add choices for each item
                 //fetching all choice for each product
                 $choices = Product_ext::where('product_id',$id->product_id)->get();

@@ -135,7 +135,6 @@ class OrderController extends Controller
                 return response()->json(["message"=>"this QR Code is incorrect, please contact staff!"],400);
             }
         }
-
         /**end validation */
 
         $order = $this->fetchOrderListHelper($request->order_id);
@@ -254,8 +253,13 @@ public function fetchOrderListHelper($id){
         //cut after 2 digts decimal point
         $length = $posOfdecimal + 3;
         $price = substr($price,0,$length);
+
         //add to exsiting object
         $new_orderList_ele["item"]->price = $price;
+        //add upc
+        $upc = Product::where('product_id',$order_item["product_id"])->first()->upc;
+        $new_orderList_ele["item"]->upc = $upc;
+
         $new_orderList_ele["item"]->order_item_id = $order_item["id"];
 
         $pickedChoices = Temp_pickedChoice::where('order_item_id',$order_item["id"])->get();
