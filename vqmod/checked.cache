@@ -212,3 +212,13 @@ admin\model\catalog\download.php
 admin\model\design\layout.php
 admin\model\catalog\add_type.php
 admin\view\template\catalog\product_form.tpl
+admin\model\tool\upload.php
+admin\model\user\api.php
+catalog\controller\api\login.php
+catalog\language\english\api\login.php
+catalog\model\account\api.php
+admin\controller\payment\cod.php
+admin\model\extension\extension.php
+admin\view\template\sale\order_info.tpl
+admin\controller\extension\openbay.php
+admin\language\english\extension\openbay.php

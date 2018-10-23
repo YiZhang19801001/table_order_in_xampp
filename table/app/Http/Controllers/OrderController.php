@@ -17,6 +17,9 @@ use App\Temp_order;
 use App\Order_history;
 use App\Order_total;
 use App\Order_ext;
+use App\Table_link;
+use App\Temp_pickedOption;
+use App\Order_option;
 
 class OrderController extends Controller
 {
@@ -38,13 +41,14 @@ class OrderController extends Controller
          * else insert as new recorder in temp_order_items table
         */
         $alreadyHave = false;
+        $optionIsSame= false;
         /**to determin is the new_item already have or not, should chenck 2 things
          * 1. if their is a product_id match? not-> insert new, yes->fetch id
          * 2. find $id as $order_item_id in temp_pickChoice table. will get an arr_choices
          * 3. check arr_choices->(choice_type,piced_Choice) and $new_item->choices(choice_type,piced_Choice) is matched or not. no->insert new, yes->increate the quantity in temp_order_items table
          */
 
-         /** 1. may return an array which is same as new_item but may with different taste*/
+         /** 1. may return an array which is same product_id as new_item but may with different taste or options*/
         $arr_order_items = Temp_order_item::where('product_id',$new_item["product_id"])->where('order_id',$request->orderId)->get();
 
         /** if array is empty then insert straight away */
@@ -65,7 +69,17 @@ class OrderController extends Controller
                         break;
                     }
                 }
-                if ($alreadyHave) {
+                foreach ($new_item["options"] as $new_option) {
+                    $option_in_DB = Temp_pickedOption::where("order_item_id",$order_item["id"])->where("option_name",$new_option["option_name"])->first();
+                    if($option_in_DB["pickedOption"]==$new_option["pickedOption"]){
+                        $optionIsSame = true;
+                    }
+                    else{
+                        $optionIsSame=false;
+                        break;
+                    }
+                }
+                if ($alreadyHave && $optionIsSame) {
                     Temp_order_item::where('id',$order_item["id"])->increment('quantity');
 
                     /**record found stop the loop, otherwise duplicate record will add */
@@ -73,7 +87,7 @@ class OrderController extends Controller
                 }
 
             }
-            if(!$alreadyHave){
+            if(!$alreadyHave || !$optionIsSame){
                 $this->createOrderHelper($new_item,$request->orderId);
             }
 
@@ -87,6 +101,43 @@ class OrderController extends Controller
     /** read: this action only for the newcomer to fetch the up to date order list once */
     public function getCart(Request $request)
     {
+
+
+        /**validate users */
+
+        if($request->cdt==null||$request->v==null){
+            return response()->json(["message"=>"this QR Code is incorrect, please contact staff!"],400);
+        }
+
+        $cdt =  $request->cdt;
+        $v =$request->v;
+
+        $new_table_link = Table_link::where('validation',$v)->first();
+
+        //return $new_table_link;
+
+
+        if($new_table_link === null || $new_table_link->status!==0){
+            return response()->json(["message"=>"this QR Code is incorrect, please contact staff!"],400);
+
+        }
+
+        if($new_table_link!==null){
+
+            $time = strtotime($cdt);
+            $day = date('y-m-d',$time);
+
+            $time_in_db = strtotime($new_table_link->link_generate_time);
+            $day_in_db = date('y-m-d',$time_in_db);
+
+            //return array("day"=>$day,"day_in_DB"=>$day_in_db);
+            if($day != $day_in_db){
+                return response()->json(["message"=>"this QR Code is incorrect, please contact staff!"],400);
+            }
+        }
+
+        /**end validation */
+
         $order = $this->fetchOrderListHelper($request->order_id);
 
         return response()->json($order);
@@ -161,9 +212,22 @@ class OrderController extends Controller
 
             $new_pickedChoice->save();
         }
+
+        foreach($new_item["options"] as $option){
+            $new_pickedOption = new Temp_pickedOption;
+            $new_pickedOption->order_item_id = $new_order_item->id;
+            $new_pickedOption->product_option_value_id = $option["product_option_value_id"];
+            $new_pickedOption->option_name = $option["option_name"];
+            $new_pickedOption->pickedOption = $option["pickedOption"];
+            $new_pickedOption->price = $option["price"];
+            $new_pickedOption->product_id = $new_item["product_id"];
+            $new_pickedOption->option_id=$option["option_id"]["option_id"];
+
+            $new_pickedOption->save();
+        }
     }
 
-    public function fetchOrderListHelper($id){
+public function fetchOrderListHelper($id){
     /**1. from 'order_id' fetching or order_items
      * 2. from 'order_item' table get 'product_id', fron those id get details of products from product table
      */
@@ -210,10 +274,38 @@ class OrderController extends Controller
         }
 
         $new_orderList_ele["item"]["choices"] = $productChoiceList;
+
+        /**grab all information for options */
+        $pickedOptions = Temp_pickedOption::where('order_item_id',$order_item["id"])->get();
+
+        $productOptionList = [];
+        foreach ($pickedOptions as $pickOption) {
+            /**get optionValues */
+            /** option_id && product_id can found unique [product_option_value_id] [price] [option_value_id]
+             * [option_value_name] ->use [option_value_id] find this from [oc_option_value_description]
+             * [option_value_sort_order] ->use [option_value_id] find this from [oc_option_value]
+            */
+            $optionValues = array();
+
+            //Todo: may need list of options
+            // foreach ($variable as $key => $value) {
+            //     # code...
+            // }
+
+            array_push($productOptionList,array(
+            "option_id"=>$pickOption["option_id"],
+            "option_name"=>$pickOption["option_name"],
+            "pickedOption"=>$pickOption["pickedOption"],
+            "price"=>$pickOption["price"],
+            "product_option_value_id"=>$pickOption["product_option_value_id"],
+            "option_values"=>$optionValues
+        ));
+            }
+        $new_orderList_ele["item"]["options"] = $productOptionList;
         array_push($order,$new_orderList_ele);
-    }
+        }
     return $order;
-    }
+}
 
     public function confirmOrder(Request $request){
         /**request is an array of  */
@@ -288,12 +380,12 @@ class OrderController extends Controller
         $new_order->shipping_custom_field = " ";
         $new_order->shipping_method = "DineIn";
         $new_order->shipping_orderTime = date("H:i");
-        $new_order->shipping_orderDate = date_create()->format("D, d M YY");
+        $new_order->shipping_orderDate = date_create()->format("D, d M y");
         $new_order->shipping_orderWhen = "now";
         $new_order->shipping_code = " ";
         $new_order->comment = " ";
         $new_order->total =$request->total;
-        $new_order->order_status_id=0;
+        $new_order->order_status_id=1;
         $new_order->affiliate_id = 0;
         $new_order->commission = 0.0000;
         $new_order->marketing_id = 0;
@@ -326,7 +418,7 @@ class OrderController extends Controller
         //Todo: read from new order??
         $new_order_history->order_status_id = 1;
         $new_order_history->comment = " ";
-        $new_order_history->date_added = date_create()->format("yyyy-mm-dd h:i:s");
+        $new_order_history->date_added = date_create()->format("y-m-d h:i:s");
     }
 
     public function createOrderTotalHelper($order_id,$value){
@@ -391,6 +483,22 @@ class OrderController extends Controller
                 $new_order_ext->product_id = $order_product["item"]["product_id"];
 
                 $new_order_ext->save();
+            }
+            /**store picked options in DB*/
+            foreach($order_product["item"]["options"] as $option){
+                $new_order_option = new Order_option;
+                $new_order_option->order_id = $order_id;
+                $new_order_option->order_product_id = $new_order_product->id;
+                //need Fix;
+
+                $new_order_option->product_option_id= $option["option_id"];
+
+                $new_order_option->product_option_value_id = $option["product_option_value_id"];
+                $new_order_option->name = $option["option_name"];
+                $new_order_option->value = $option["pickedOption"];
+                $new_order_option->type = "radio";
+
+                $new_order_option->save();
             }
 
 

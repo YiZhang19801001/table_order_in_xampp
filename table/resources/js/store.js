@@ -10,12 +10,24 @@ export default {
         table_number: 0,
         pathFrom: "",
         scrollPositionId: 0,
+        cdt: "",
+        v: "",
+        site: 0,
         //ToDo: store_id, store_name, store_url should be generated automaticly.
         store_id: 4,
         store_name: "Monkey King Thai Restaurant",
         store_url: "http://192.168.1.221/"
     },
     getters: {
+        site: state => {
+            return state.site;
+        },
+        cdt: state => {
+            return state.cdt;
+        },
+        v: state => {
+            return state.v;
+        },
         store_id: state => {
             return state.store_id;
         },
@@ -46,7 +58,11 @@ export default {
             let sum = 0;
 
             state.orderList.forEach(el => {
-                sum = sum + el.item.price * el.quantity;
+                let option_sum = 0;
+                el.item.options.forEach(option => {
+                    option_sum += option.price;
+                });
+                sum += el.quantity * (parseFloat(el.item.price) + option_sum);
             });
             return sum.toFixed(2);
         },
@@ -69,6 +85,12 @@ export default {
         }
     },
     mutations: {
+        updateCdt(state, payload) {
+            state.cdt = payload;
+        },
+        updateV(state, payload) {
+            state.v = payload;
+        },
         updateCategoryList(state, payload) {
             state.categoryList = payload;
         },
@@ -157,6 +179,12 @@ export default {
         },
         setScrollPositionId(context, newId) {
             context.commit("updateScrollPositionId", newId);
+        },
+        setCdt(context, newCdt) {
+            context.commit("updateCdt", newCdt);
+        },
+        setV(context, newV) {
+            context.commit("updateV", newV);
         }
     }
 };

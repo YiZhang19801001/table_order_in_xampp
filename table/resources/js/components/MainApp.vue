@@ -17,11 +17,13 @@ export default {
   name: "main-app",
 
   computed: {
-    ...mapGetters(["spinnerShow", "orderList", "orderId"])
+    ...mapGetters(["spinnerShow", "orderList", "orderId", "cdt", "v", "site"])
   },
   mounted() {
     this.setOrderId(this.$route.params.orderid);
     this.setTableNumber(this.$route.params.table);
+    this.setCdt(this.$route.query.cdt);
+    this.setV(this.$route.query.v);
     this.updateOrderList();
     /**set channel to listen */
     Echo.channel("tableOrder").listen("newOrderItemAdded", e => {
@@ -31,10 +33,20 @@ export default {
     }); /**first args is the event we gonna to listen to, second args is event itself */
   },
   methods: {
-    ...mapActions(["replaceList", "setOrderId", "setTableNumber"]),
+    ...mapActions([
+      "replaceList",
+      "setOrderId",
+      "setTableNumber",
+      "setCdt",
+      "setV"
+    ]),
     updateOrderList() {
       axios
-        .post("/table/public/api/initcart", { order_id: this.orderId })
+        .post("/table/public/api/initcart", {
+          order_id: this.orderId,
+          cdt: this.cdt,
+          v: this.v
+        })
         .then(res => {
           this.replaceList(res.data);
         });

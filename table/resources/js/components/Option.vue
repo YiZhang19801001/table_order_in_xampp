@@ -1,74 +1,59 @@
 <template>
+<ul>
+    <li v-for="(option_value,index) in option.option_values" :key="index">
+        <input
+        type="radio"
+        :name="option.option_name"
+        :value="option_value.option_value_name"
+        v-model="pickedOption"
+        v-on:change="pickValue"
+        >
+        <span>{{option_value.option_value_name}}</span>
+        <span>{{option_value.price}}</span>
+    </li>
+</ul>
 
-
-            <form class="choice-form"  @submit.prevent="addToOrder()" ref="choices_form" key="animation-form">
-                <div class="choice-form-title">Make Your Choices<p @click="closeChoiceForm"><i class="material-icons">close</i></p></div>
-
-                <div v-for="(choice_type, index) in item.choices" class="choice-group" :key="index">
-                    <h4>{{choice_type.type}}</h4>
-                    <Choice :choice_type="choice_type" :index="index" @pickValue="addChoice"></Choice>
-
-                </div>
-                    <div v-for="(option, index2) in item.options" class="choice-group" :key="index2">
-                    <h4>{{option.option_name}}</h4>
-                    <Option :option="option" :index="index2" @pickValue="addOption"></Option>
-                </div>
-                <div class="form_button_container"><button class="addButton" type="submit"><i class="material-icons">add_shopping_cart</i> Add to Order List</button></div>
-            </form>
 
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
-import Choice from "./Choice.vue";
-import Option from "./Option.vue";
-
 export default {
-  name: "app-choice-form",
   props: {
-    item: {}
+    option: {},
+    index: 0
   },
   data() {
     return {
-      pickedChoices: [],
-      pickedOptions: []
+      pickedOption: this.option.option_values[0].option_value_name
     };
   },
-  methods: {
-    ...mapActions(["addNewItemToOrderList"]),
-    addToOrder() {
-      let newItem = JSON.parse(JSON.stringify(this.item));
-      newItem.choices.forEach((ele, index) => {
-        ele.pickedChoice = this.pickedChoices[index];
-      });
-      newItem.options.forEach((ele, index) => {
-        ele.pickedOption = this.pickedOptions[index].value;
-        ele.product_option_value_id = this.pickedOptions[
-          index
-        ].product_option_value_id;
-        ele.price = this.pickedOptions[index].price;
-      });
-      this.pickedChoices = [];
-      this.pickedOptions = [];
-      this.closeChoiceForm();
-      this.addNewItemToOrderList(newItem);
-    },
-    addChoice(value, index) {
-      this.pickedChoices[index] = value;
-    },
-    addOption(value, index) {
-      this.pickedOptions[index] = value;
-    },
-    closeChoiceForm() {
-      this.$emit("closeChoiceForm");
-    }
+  mounted() {
+    this.pickValue();
   },
-  components: {
-    Choice,
-    Option
+  methods: {
+    pickValue() {
+      let id = 0;
+      let choice_price = 0;
+      this.option.option_values.forEach(ele => {
+        if (ele.option_value_name === this.pickedOption) {
+          id = ele.product_option_value_id;
+          choice_price = ele.price;
+        }
+      });
+      this.$emit(
+        "pickValue",
+        {
+          value: this.pickedOption,
+          product_option_value_id: id,
+          price: choice_price
+        },
+        this.index
+      );
+    }
   }
 };
 </script>
+
 <style lang="scss" scoped>
 .cover {
   position: fixed;
@@ -175,6 +160,8 @@ export default {
       width: 80%;
       top: 30%;
       left: 10%;
+      max-height: 400px;
+      overflow: scroll;
       border-radius: 3px;
       background-color: #c7eceef0;
       transition: all 0.5s;
@@ -208,6 +195,7 @@ export default {
           list-style-type: none;
           padding: 0;
           display: flex;
+          flex-wrap: wrap;
           justify-content: space-around;
           margin: 0;
           margin-bottom: 4px;

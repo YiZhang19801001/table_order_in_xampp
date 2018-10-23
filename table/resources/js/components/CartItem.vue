@@ -1,38 +1,41 @@
 <template>
-    <!-- check orderlist is empty or not, to decide show or hide the shopping cart -->
-    <div v-if="orderList.length>0" class="shoppingCart" :class="{expand:!isExpand}">
-        <!-- header will always show when shopping cart is not empty -->
-        <div class="shoppingCart-header" @click="toggle">
-            <div class="shoppingIcon">
-                <i class="material-icons">shopping_cart</i>
-                <span class="badge">{{totalQuantityOfOrder}}</span>
+    <div>
+        <span class="shoppingCart-item-name">
+            <p class="orderItem-name">{{orderItem.item.name}}</p>
+            <ul>
+                <li class="orderItem-choice" v-for="(choice,index) in orderItem.item.choices" :key="index">
+                    {{choice.type}} : {{choice.pickedChoice}}
+                </li>
+                <li class="orderItem-choice" v-for="(option,index2) in orderItem.item.options" :key="index2">
+                    {{option.option_name}} : {{option.pickedOption}} {{option.price}}
+                </li>
+            </ul>
+        </span>
+        <div class="shoppingCart-button-group">
+            <div class="button-group-container">
+                    <span @click="decrease(orderItem,index)">-</span>
+                    <span>{{orderItem.quantity}}</span>
+                    <span @click="increase(orderItem)">+</span>
             </div>
-            <div class="shoppingCart-header-text">Total: {{totalPriceOfOrder}}</div>
         </div>
-        <!-- toggle the list of order on clicking the header -->
-        <ul>
-            <!-- just a list of order item :smile -->
-            <li v-for="(orderItem,index) in orderList" :key="index">
-                <CartItem :orderItem="orderItem"></CartItem>
-            </li>
-        </ul>
-        <!-- confirm order -->
-        <button class="shoppingCart-confirm-button" @click="confirmOrder">Confirm Order</button>
+        <span class="shoppingCart-item-price">
+            {{totalPrice}}
+
+        </span>
     </div>
 </template>
-
 <script>
 import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
-import CartItem from "./CartItem.vue";
+
 export default {
-  name: "app-shopping-cart",
+  name: "app-cart-item",
+  props: {
+    orderItem: {}
+  },
   data() {
     return {
-      isExpand: false
+      totalPrice: 0
     };
-  },
-  components: {
-    CartItem
   },
   computed: {
     ...mapGetters([
@@ -43,7 +46,17 @@ export default {
       "table_number"
     ])
   },
-  mounted() {},
+  mounted() {
+    let optionPrice = 0;
+    this.orderItem.item.options.forEach(option => {
+      optionPrice = optionPrice + parseFloat(option.price);
+    });
+
+    this.totalPrice = (
+      this.orderItem.quantity *
+      (parseFloat(this.orderItem.item.price) + optionPrice)
+    ).toFixed(2);
+  },
   methods: {
     ...mapActions([
       "increaseItemQuantityInOrderList",
@@ -54,20 +67,11 @@ export default {
     toggle() {
       this.isExpand = !this.isExpand;
     },
-    increase(orderItem) {
-      this.increaseItemQuantityInOrderList(orderItem);
+    increase() {
+      this.increaseItemQuantityInOrderList(this.orderItem);
     },
-    decrease(orderItem) {
-      this.decreaseItemQuantityInOrderList(orderItem);
-    },
-    //ToDo:: save data in database.
-    confirmOrder() {
-      console.log(this.orderList);
-      this.$router.push(
-        `/table/public/table/${this.table_number}/orderid/${
-          this.orderId
-        }/payment`
-      );
+    decrease() {
+      this.decreaseItemQuantityInOrderList(this.orderItem);
     }
   }
 };

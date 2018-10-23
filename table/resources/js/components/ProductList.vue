@@ -48,7 +48,7 @@
                     </i>
                 </button>
 
-                <!-- popup pannel for taste choices -->
+                <!-- popup pannel for taste choices & options-->
 
                 <div v-if="wantOrder==true && item.product_id===selectProduct_id" class="cover"></div>
 

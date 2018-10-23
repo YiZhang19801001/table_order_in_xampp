@@ -143,7 +143,8 @@ export default {
         store_id: this.store_id,
         store_name: this.store_name,
         store_url: this.store_url,
-        total: this.totalPriceOfOrder
+        total: this.totalPriceOfOrder,
+        paymentMethod: this.paymentMethod
       });
     }
   }
