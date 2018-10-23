@@ -17,7 +17,7 @@ export default {
   position: fixed;
   width: 100%;
   height: 30px;
-  background-color: rgba(226, 222, 222, 0.3);
+  background-color: rgba(147, 59, 56, 0.6);
   color: #f8fafc;
   //   padding: 6px;
   box-shadow: 0px 5px 5px #00000038;

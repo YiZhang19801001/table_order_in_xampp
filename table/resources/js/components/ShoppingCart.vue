@@ -92,7 +92,7 @@ export default {
     // background-image: url("http://www.aupos.com.au/wp-content/uploads/2017/03/logo.png");
     // background-repeat: no-repeat;
     // background-size: contain;
-    background-color: rgba(226, 222, 222, 0.3);
+    background-color: rgba(147, 59, 56, 0.6);
     .shoppingIcon {
       display: inline-block;
       transform: scale(1.6);
