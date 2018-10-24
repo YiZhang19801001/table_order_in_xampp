@@ -47,22 +47,22 @@ export default {
   //
   .categoryContainer {
     position: fixed;
-    width: 27%;
+    width: 30%;
     overflow: scroll;
-    height: 85%;
+    height: 90%;
 
     .categoryList {
       padding: 5px 10px;
-      color: white;
-      background-color: #eb4d4b;
+      font-weight: 700;
+      color: #000;
       border-bottom: 1px solid #80808026;
       transition: all 0.5s;
-      text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 0px;
     }
     .customActive {
       color: #f8fafc;
-      border-left: 6px solid #ffc24a;
-      background-color: #933b38;
+      border-left: 4px solid #ffc24a;
+      border-right: 4px solid #ffc24a;
+      background-color: #eb4d4b;
       box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);
       text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 0px;
     }

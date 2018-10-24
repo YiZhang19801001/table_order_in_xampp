@@ -10,12 +10,12 @@
             v-bind:class="{activeProduct:item.product_id===selectProduct_id}">
 
             <!-- static info show for each product -->
-<transition
-            name="productBackgroud"
-            enter-active-class="animated fadeIn"
->
+<transition>
                 <div v-if="item.product_id===selectProduct_id" class="product-background"></div>
+
+
 </transition>
+<div v-if="item.product_id===selectProduct_id" class="product-background-footer"></div>
 <transition>
                     <img
                     src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
@@ -23,10 +23,11 @@
                     v-bind:class="{activeimg:item.product_id===selectProduct_id}">
 
 </transition>
-                <div class="text-container">
+                <div class="text-container" :class="{activeTextContainer:item.product_id===selectProduct_id}">
+
                     <h5 v-bind:class="{activeH5:item.product_id===selectProduct_id}">{{item.name}}</h5>
-                    <p v-if="item.product_id===selectProduct_id" class="product-description">{{item.description}}</p>
-                    <p class="price">${{item.price}}</p>
+                    <div v-if="item.product_id===selectProduct_id" class="product-description">{{item.description}}</div>
+                    <div class="price" :class="{activePrice:item.product_id===selectProduct_id}"><p>${{item.price}}</p></div>
                 </div>
                 <!-- button to control folder or expand each product -->
                 <transition>
@@ -54,7 +55,7 @@
 
                 <transition
                     name="choiceForm"
-                    enter-active-class="animated rotateIn"
+                    enter-active-class="animated zoomInDown"
                     leave-active-class="animated zoomOutDown"
                 >
                     <template v-if="wantOrder==true && item.product_id===selectProduct_id">
@@ -91,7 +92,6 @@ export default {
   },
   watch: {
     section: function() {
-      console.log("worked");
       let sum = 0;
       for (let index = 0; index < scrollPositionId; index++) {
         const element = this.$refs.cates[index];
@@ -189,7 +189,7 @@ export default {
 
   .product {
     color: #797876;
-    padding: 13px;
+    padding: 5px 13px;
     min-height: 80px;
     margin: auto;
     margin-bottom: 5px;
@@ -201,13 +201,23 @@ export default {
     .product-background {
       width: 100%;
       position: absolute;
-      height: 70%;
+      height: 100%;
       top: 0;
       left: 0;
-      background: #ffd8d8;
+      background: #00000038;
       border-top-right-radius: 8px;
       border-top-left-radius: 8px;
-      z-index: -5;
+    }
+    .product-background-footer {
+      width: 100%;
+      position: absolute;
+      height: 30px;
+      bottom: 0;
+      left: 0;
+      background: #00000096;
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      z-index: 1;
     }
     img {
       width: 50px;
@@ -221,6 +231,7 @@ export default {
       box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);
 
       &.activeimg {
+        display: none;
         border-radius: 8px;
         width: 50%;
         left: 25%;
@@ -237,20 +248,31 @@ export default {
       flex-direction: column;
       justify-content: space-between;
       padding-left: 5px;
+      &.activeTextContainer {
+        width: 95%;
+        z-index: 3;
+      }
 
       h5 {
         color: black;
-        font-weight: bold;
-        font-size: 13px;
+        font-weight: 900;
+        font-size: 14px;
         margin: 0;
         &.activeH5 {
-          color: #7a7a7a;
-          font-size: 16px;
+          color: #fff;
+          font-size: 20px;
+          text-shadow: 2px 2px 6px #000;
         }
       }
-      p.price {
+      .price {
         color: #eb4d4b;
         margin: 0;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+        &.activePrice {
+          font-weight: 700;
+        }
       }
     }
     .button {
@@ -363,6 +385,8 @@ export default {
   .activeProduct {
     color: black;
     height: 200px;
+    background-image: url(https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-size: cover;
     h5 {
       color: white;
       font-size: 18px;
@@ -382,10 +406,20 @@ export default {
     text-shadow: 1px 1px 1px #c9c2c2;
     font-weight: bold;
   }
-  p.product-description {
-    font-size: 8px;
-    flex: 1;
-    padding-top: 5px;
+  .product-description {
+    font-size: 10px;
+    font-weight: 400;
+    padding: 3px 10px;
+    line-height: 1rem;
+    color: white;
+    overflow: scroll;
+    background-color: #6c757da3;
+    border-radius: 3px;
+    height: 80px;
+    /* box-shadow: inset 0px 0px 1px #fff; */
+  }
+  p {
+    margin: 0;
   }
 }
 </style>

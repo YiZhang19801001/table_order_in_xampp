@@ -1,24 +1,27 @@
 <template>
-    <!-- check orderlist is empty or not, to decide show or hide the shopping cart -->
-    <div v-if="orderList.length>0" class="shoppingCart" :class="{expand:!isExpand}">
-        <!-- header will always show when shopping cart is not empty -->
-        <div class="shoppingCart-header" @click="toggle">
-            <div class="shoppingIcon">
-                <i class="material-icons">shopping_cart</i>
-                <span class="badge">{{totalQuantityOfOrder}}</span>
+<transition>
+        <!-- check orderlist is empty or not, to decide show or hide the shopping cart -->
+        <div v-if="orderList.length>0" class="shoppingCart" :class="{expand:isExpand}">
+            <div class="cover" v-if="isExpand"></div>
+            <!-- header will always show when shopping cart is not empty -->
+            <div class="shoppingCart-header" :class="{expandHeader:isExpand}" @click="toggle">
+                <div class="shoppingIcon">
+                    <i class="material-icons">shopping_cart</i>
+                    <span class="badge">{{totalQuantityOfOrder}}</span>
+                </div>
+                <div class="shoppingCart-header-text">{{isEN?"Total":"总计"}} AUD ${{totalPriceOfOrder}}</div>
             </div>
-            <div class="shoppingCart-header-text">{{isEN?"Total":"总计"}} {{totalPriceOfOrder}}</div>
+            <!-- toggle the list of order on clicking the header -->
+            <ul v-if="isExpand">
+                <!-- just a list of order item :smile -->
+                <li v-for="(orderItem,index) in orderList" :key="index">
+                    <CartItem :orderItem="orderItem"></CartItem>
+                </li>
+            </ul>
+            <!-- confirm order -->
+            <button v-if="isExpand" class="shoppingCart-confirm-button" @click="confirmOrder">{{isEN?"Confirm Order":"确认下单"}}</button>
         </div>
-        <!-- toggle the list of order on clicking the header -->
-        <ul>
-            <!-- just a list of order item :smile -->
-            <li v-for="(orderItem,index) in orderList" :key="index">
-                <CartItem :orderItem="orderItem"></CartItem>
-            </li>
-        </ul>
-        <!-- confirm order -->
-        <button class="shoppingCart-confirm-button" @click="confirmOrder">{{isEN?"Confirm Order":"确认下单"}}</button>
-    </div>
+</transition>
 </template>
 
 <script>
@@ -75,6 +78,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #0000009c;
+  z-index: -1;
+}
 .shoppingCart {
   position: fixed;
   bottom: 10px;
@@ -82,6 +94,7 @@ export default {
   left: 15%;
   z-index: 200;
   box-shadow: 0px 5px 5px #00000038;
+
   .shoppingCart-header {
     display: flex;
     position: relative;
@@ -91,6 +104,13 @@ export default {
     // background-repeat: no-repeat;
     // background-size: contain;
     background-color: rgba(235, 77, 75, 0.8);
+    transition: all 0.3s;
+    &.expandHeader {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      background-color: rgb(235, 77, 75);
+      transition: all 0.3s;
+    }
     .shoppingIcon {
       display: inline-block;
       transform: scale(1.6);
@@ -99,8 +119,7 @@ export default {
       z-index: 250;
       position: absolute;
       top: 10px;
-      left: 20px;
-      border-right: 1px solid rgba(52, 58, 64, 0.21);
+      left: 14px;
     }
     .badge {
       display: inline-block;
@@ -114,7 +133,7 @@ export default {
     .shoppingCart-header-text {
       display: flex;
       align-items: center;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 18px;
       color: white;
       text-shadow: 1px 1px 2px black;
@@ -130,6 +149,11 @@ export default {
     padding-left: 10px;
     max-height: 300px;
     overflow: scroll;
+    background-color: white;
+    margin: 0;
+    padding-bottom: 50px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
     li {
       display: flex;
       flex-direction: row;
@@ -139,7 +163,6 @@ export default {
         flex: 4;
         .orderItem-name {
           margin: 0;
-          font-size: 16px;
         }
         .orderItem-choice {
           margin: 0;
@@ -173,16 +196,27 @@ export default {
   }
 
   .shoppingCart-confirm-button {
-    width: 100%;
+    width: 190px;
+    position: fixed;
+    height: 30px;
+    bottom: 3%;
+    left: calc(50% - 95px);
     border: none;
-    background-color: #f6e58d;
-    color: #f0932b;
-    font-weight: bold;
-    box-shadow: 0px -1px 3px #00000045;
+    background-color: #ffc24a;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 0.6px;
+    font-weight: 900;
+    text-shadow: 1px 1px 2px black;
+    box-shadow: 0px 5px 5px #00000038;
+    border-radius: 8px;
   }
 }
 .expand {
-  max-height: 40px;
+  width: 90%;
+  left: 5%;
+  bottom: 5%;
+  transition: all 0.3s;
 }
 i.material-icons {
   color: white;

@@ -178,22 +178,26 @@ export default {
       width: 80%;
       top: 30%;
       left: 10%;
-      border-radius: 3px;
-      background-color: #c7eceef0;
+      border-radius: 8px;
+      background-color: #fff;
       transition: all 0.5s;
       .choice-form-title {
         font-size: 16px;
         font-weight: bold;
-        color: #1e1e1e;
+        color: #ffffff;
+        text-shadow: 0px 1px 1px black;
         display: flex;
         justify-content: space-between;
         padding: 2px 10px;
+        background-color: rgb(235, 77, 75);
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
       }
       .choice-group {
         box-shadow: 0px 2px 2px #00000094;
         padding: 8px;
-        border-radius: 3px;
-        background-color: #ffffff91;
+        border-radius: 8px;
+        background-color: rgba(52, 58, 64, 0.25);
         min-height: 100px;
         width: 80%;
         margin: auto;
@@ -202,9 +206,10 @@ export default {
         flex-direction: column;
         justify-content: space-around;
         h4 {
-          font-size: 14px;
+          font-size: 16px;
+          color: #000;
           margin: 0;
-          font-weight: 600;
+          font-weight: 900;
           text-align: center;
         }
         ul {
@@ -225,6 +230,10 @@ export default {
             }
             span {
               vertical-align: middle;
+              font-size: 12px;
+              font-weight: 800;
+              color: white;
+              text-shadow: 0px 1px 1px black;
             }
           }
         }
@@ -234,17 +243,27 @@ export default {
       text-align: right;
       display: flex;
       justify-content: center;
+      position: relative;
+      height: 30px;
       .addButton {
-        color: red;
+        color: #fff;
         padding: 5px 10px;
-        margin: 12px;
-        background: none;
         border: none;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
         align-items: center;
-        background: #ffbe76;
-        border: 1px solid #ffbe76;
-        box-shadow: 0px 0px 4px #00000040;
+        background: #ffc24a;
+        box-shadow: 0px 5px 5px #00000038;
+        text-shadow: 1px 1px 2px black;
+        letter-spacing: 0.6px;
+        border-radius: 8px;
+        position: fixed;
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        left: 20%;
+        margin: 12px 0px;
       }
     }
   }
@@ -260,6 +279,7 @@ export default {
     p {
       max-height: none;
       float: none;
+      margin: 0;
     }
   }
   h4 {

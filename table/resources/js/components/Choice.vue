@@ -193,6 +193,7 @@ export default {
             }
             span {
               vertical-align: middle;
+              font-weight: 800;
             }
           }
         }
