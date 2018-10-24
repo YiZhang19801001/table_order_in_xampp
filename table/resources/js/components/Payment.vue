@@ -4,24 +4,24 @@
         <!-- payment method section -->
 <section>
             <div class="payment-method">
-                <h6>Payment Method</h6>
+                <h6>{{isEN?"Payment Method":"支付方式"}}</h6>
                 <div class="icon-group">
                     <div class="payment-choice">
                         <img src="/table/public/credit.png" alt="">
                         <p>
-                            <input type="radio" value="credit" name="paymentMethod" v-model="paymentMethod"><span>Credit</span>
+                            <input type="radio" value="credit" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"WeChat":"微信支付"}}</span>
                         </p>
                     </div>
                     <div class="payment-choice">
                         <img src="/table/public/paypal.png" alt="">
                         <p>
-                            <input type="radio" value="paypal" name="paymentMethod" v-model="paymentMethod"><span>Paypal</span>
+                            <input type="radio" value="paypal" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"Paypal":"海淘钱包"}}</span>
                         </p>
                     </div>
                     <div class="payment-choice">
                         <img src="/table/public/cash.png" alt="">
                         <p>
-                            <input type="radio" value="cash" name="paymentMethod" v-model="paymentMethod"><span>Cash</span>
+                            <input type="radio" value="cash" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"DiveIn":"店内支付"}}</span>
                         </p>
                     </div>
                 </div>
@@ -34,23 +34,27 @@
             <h6>Pament Detail</h6>
             <div class="payment-detail-container">
                 <div>
-                    <span>cost</span>
-                    <span class="number">{{totalPriceOfOrder}}</span>
+                    <span>{{isEN?"Price":"产品价格"}}</span>
+                    <span class="number">AUD ${{totalPriceOfOrder}}</span>
                 </div>
-                <div>
+                <div v-if="isEN">
                     <span>GST</span>
-                    <span class="number">0.00</span>
+                    <span class="number">AUD $0.00</span>
+                </div>
+                <div v-if="!isEN">
+                    <span>人民币</span>
+                    <span class="number">CNY ¥{{totalPriceOfOrder * 5}}</span>
                 </div>
                 <div class="bold">
-                    <span>Total (incl. GST)</span>
-                    <span class="number"> ${{totalPriceOfOrder}}</span>
+                    <span>{{isEN?"Total (incl. GST)":"总计"}}</span>
+                    <span class="number">AUD ${{totalPriceOfOrder}}</span>
                 </div>
             </div>
 </section>
         <!-- payment detail section end -->
         <!-- order section -->
 <section>
-            <h6><router-link :to="`/table/public/table/${table_number}/orderid/${orderId}`"><i class="material-icons">arrow_back_ios</i></router-link><span>Your Order</span> </h6>
+            <h6><router-link :to="`/table/public/table/${table_number}/orderid/${orderId}`"><i class="material-icons">arrow_back_ios</i></router-link><span>{{isEN?"Your Order":"已点菜品"}}</span> </h6>
             <div>
                 <!-- list of order_items -->
                 <ul>
@@ -74,7 +78,7 @@
                                         </li>
                                     </ul>
                                     <div class="orderItem-price">
-                                        <p>${{orderItem.item.price}}</p>
+                                        <p>AUD ${{orderItem.item.price}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -94,13 +98,13 @@
 
             <div class="footer">
                 <div class="footer-content-container">
-                    <div class="footer-title"><h2>Total:</h2></div>
+                    <div class="footer-title"><h2>{{isEN?"Total":"总计"}}</h2></div>
                     <div class="footer-detail">
                         <div class="footer-detail-info">
-                            <span>table: {{table_number}}</span><span>order: {{orderId}}</span><span>10% Disc.</span>
+                            <span>{{isEN?"table":"桌号"}} {{table_number}}</span><span>{{isEN?"order":"单号"}} {{orderId}}</span><span>10% Disc.</span>
                         </div>
                         <div class="footer-detail-total">
-                            <span> ${{totalPriceOfOrder}}</span>
+                            <span>AUD ${{totalPriceOfOrder}}</span>
                         </div>
                     </div>
                     <div @click="confirm" class="footer-button">
@@ -150,7 +154,8 @@ export default {
       "store_id",
       "totalPriceOfOrder",
       "store_name",
-      "store_url"
+      "store_url",
+      "isEN"
     ])
   },
   methods: {

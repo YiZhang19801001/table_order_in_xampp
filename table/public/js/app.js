@@ -61246,6 +61246,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -61271,7 +61275,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     this.QrValue = qr.substr(0, qr.length - 1);
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderId", "orderList", "totalPriceOfOrder", "table_number", "pathFrom", "store_id", "totalPriceOfOrder", "store_name", "store_url"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderId", "orderList", "totalPriceOfOrder", "table_number", "pathFrom", "store_id", "totalPriceOfOrder", "store_name", "store_url", "isEN"])),
   methods: {
     back: function back() {
       this.$router.push(this.pathForm);
@@ -62345,7 +62349,7 @@ var render = function() {
   return _c("div", { staticClass: "payment" }, [
     _c("section", [
       _c("div", { staticClass: "payment-method" }, [
-        _c("h6", [_vm._v("Payment Method")]),
+        _c("h6", [_vm._v(_vm._s(_vm.isEN ? "Payment Method" : "支付方式"))]),
         _vm._v(" "),
         _c("div", { staticClass: "icon-group" }, [
           _c("div", { staticClass: "payment-choice" }, [
@@ -62373,7 +62377,7 @@ var render = function() {
                   }
                 }
               }),
-              _c("span", [_vm._v("Credit")])
+              _c("span", [_vm._v(_vm._s(_vm.isEN ? "WeChat" : "微信支付"))])
             ])
           ]),
           _vm._v(" "),
@@ -62402,7 +62406,7 @@ var render = function() {
                   }
                 }
               }),
-              _c("span", [_vm._v("Paypal")])
+              _c("span", [_vm._v(_vm._s(_vm.isEN ? "Paypal" : "海淘钱包"))])
             ])
           ]),
           _vm._v(" "),
@@ -62427,7 +62431,7 @@ var render = function() {
                   }
                 }
               }),
-              _c("span", [_vm._v("Cash")])
+              _c("span", [_vm._v(_vm._s(_vm.isEN ? "DiveIn" : "店内支付"))])
             ])
           ])
         ])
@@ -62439,20 +62443,36 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "payment-detail-container" }, [
         _c("div", [
-          _c("span", [_vm._v("cost")]),
+          _c("span", [_vm._v(_vm._s(_vm.isEN ? "Price" : "产品价格"))]),
           _vm._v(" "),
           _c("span", { staticClass: "number" }, [
-            _vm._v(_vm._s(_vm.totalPriceOfOrder))
+            _vm._v("AUD $" + _vm._s(_vm.totalPriceOfOrder))
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _vm.isEN
+          ? _c("div", [
+              _c("span", [_vm._v("GST")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "number" }, [_vm._v("AUD $0.00")])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        !_vm.isEN
+          ? _c("div", [
+              _c("span", [_vm._v("人民币")]),
+              _vm._v(" "),
+              _c("span", { staticClass: "number" }, [
+                _vm._v("CNY ¥" + _vm._s(_vm.totalPriceOfOrder * 5))
+              ])
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "bold" }, [
-          _c("span", [_vm._v("Total (incl. GST)")]),
+          _c("span", [_vm._v(_vm._s(_vm.isEN ? "Total (incl. GST)" : "总计"))]),
           _vm._v(" "),
           _c("span", { staticClass: "number" }, [
-            _vm._v(" $" + _vm._s(_vm.totalPriceOfOrder))
+            _vm._v("AUD $" + _vm._s(_vm.totalPriceOfOrder))
           ])
         ])
       ])
@@ -62479,7 +62499,7 @@ var render = function() {
               ])
             ]
           ),
-          _c("span", [_vm._v("Your Order")])
+          _c("span", [_vm._v(_vm._s(_vm.isEN ? "Your Order" : "已点菜品"))])
         ],
         1
       ),
@@ -62489,7 +62509,7 @@ var render = function() {
           "ul",
           _vm._l(_vm.orderList, function(orderItem, index) {
             return _c("li", { key: index }, [
-              _vm._m(1, true),
+              _vm._m(0, true),
               _vm._v(" "),
               _c("div", { staticClass: "orderItem-info-container" }, [
                 _c("div", { staticClass: "orderItem-name-quantity" }, [
@@ -62520,7 +62540,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "orderItem-price" }, [
-                    _c("p", [_vm._v("$" + _vm._s(orderItem.item.price))])
+                    _c("p", [_vm._v("AUD $" + _vm._s(orderItem.item.price))])
                   ])
                 ])
               ])
@@ -62543,24 +62563,36 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "footer" }, [
       _c("div", { staticClass: "footer-content-container" }, [
-        _vm._m(2),
+        _c("div", { staticClass: "footer-title" }, [
+          _c("h2", [_vm._v(_vm._s(_vm.isEN ? "Total" : "总计"))])
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "footer-detail" }, [
           _c("div", { staticClass: "footer-detail-info" }, [
-            _c("span", [_vm._v("table: " + _vm._s(_vm.table_number))]),
-            _c("span", [_vm._v("order: " + _vm._s(_vm.orderId))]),
+            _c("span", [
+              _vm._v(
+                _vm._s(_vm.isEN ? "table" : "桌号") +
+                  " " +
+                  _vm._s(_vm.table_number)
+              )
+            ]),
+            _c("span", [
+              _vm._v(
+                _vm._s(_vm.isEN ? "order" : "单号") + " " + _vm._s(_vm.orderId)
+              )
+            ]),
             _c("span", [_vm._v("10% Disc.")])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "footer-detail-total" }, [
-            _c("span", [_vm._v(" $" + _vm._s(_vm.totalPriceOfOrder))])
+            _c("span", [_vm._v("AUD $" + _vm._s(_vm.totalPriceOfOrder))])
           ])
         ]),
         _vm._v(" "),
         _c(
           "div",
           { staticClass: "footer-button", on: { click: _vm.confirm } },
-          [_vm._m(3)]
+          [_vm._m(1)]
         )
       ])
     ])
@@ -62571,26 +62603,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("span", [_vm._v("GST")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "number" }, [_vm._v("0.00")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "orderItem-img" }, [
       _c("img", { attrs: { src: "https://via.placeholder.com/60", alt: "" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "footer-title" }, [
-      _c("h2", [_vm._v("Total:")])
     ])
   },
   function() {
@@ -62699,7 +62713,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.header[data-v-8a00ae1a] {\n  position: fixed;\n  width: 100%;\n  background-color: #f53b50;\n  color: white;\n  text-align: center;\n  padding: 6px;\n  -webkit-box-shadow: 0px 5px 5px #00000038;\n          box-shadow: 0px 5px 5px #00000038;\n  z-index: 200;\n}\n.bodyContainer[data-v-8a00ae1a] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n", ""]);
+exports.push([module.i, "\n.bodyContainer[data-v-8a00ae1a] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: row;\n          flex-direction: row;\n}\n", ""]);
 
 // exports
 
@@ -62826,7 +62840,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.listContainer[data-v-05702eb2] {\n  margin-top: 45px;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 80vh;\n  width: 30%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative;\n}\n.listContainer .categoryContainer[data-v-05702eb2] {\n    position: fixed;\n    width: 27%;\n    overflow: scroll;\n    height: 80vh;\n}\n.listContainer .categoryContainer .categoryList[data-v-05702eb2] {\n      padding: 5px 10px;\n      color: white;\n      background-color: #eb4d4b;\n      border-bottom: 1px solid #80808026;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.listContainer .categoryContainer .customActive[data-v-05702eb2] {\n      color: #ff7979;\n      text-align: center;\n      background-color: #dff9fb;\n      -webkit-transform: scale(1.1);\n              transform: scale(1.1);\n      -webkit-box-shadow: -1px 2px 3px #00000038;\n              box-shadow: -1px 2px 3px #00000038;\n}\n", ""]);
+exports.push([module.i, "\n.listContainer[data-v-05702eb2] {\n  margin-top: 45px;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 80vh;\n  width: 30%;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  position: relative;\n  font-weight: bold;\n  letter-spacing: 0.4px;\n}\n.listContainer .categoryContainer[data-v-05702eb2] {\n    position: fixed;\n    width: 27%;\n    overflow: scroll;\n    height: 85%;\n}\n.listContainer .categoryContainer .categoryList[data-v-05702eb2] {\n      padding: 5px 10px;\n      color: white;\n      background-color: #eb4d4b;\n      border-bottom: 1px solid #80808026;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n      text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 0px;\n}\n.listContainer .categoryContainer .customActive[data-v-05702eb2] {\n      color: #f8fafc;\n      border-left: 6px solid #ffc24a;\n      background-color: #933b38;\n      -webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);\n              box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.5);\n      text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 0px;\n}\n", ""]);
 
 // exports
 
@@ -63329,6 +63343,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     };
   },
 
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["isEN"])),
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["addNewItemToOrderList"]), {
     addToOrder: function addToOrder() {
       var _this = this;
@@ -63815,26 +63830,19 @@ var render = function() {
         )
       }),
       _vm._v(" "),
-      _vm._m(0)
+      _c("div", { staticClass: "form_button_container" }, [
+        _c("button", { staticClass: "addButton", attrs: { type: "submit" } }, [
+          _c("i", { staticClass: "material-icons" }, [
+            _vm._v("add_shopping_cart")
+          ]),
+          _vm._v(" " + _vm._s(_vm.isEN ? "Add Item to Order" : "加入菜单"))
+        ])
+      ])
     ],
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form_button_container" }, [
-      _c("button", { staticClass: "addButton", attrs: { type: "submit" } }, [
-        _c("i", { staticClass: "material-icons" }, [
-          _vm._v("add_shopping_cart")
-        ]),
-        _vm._v(" Add to Order List")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -64118,7 +64126,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.shoppingCart[data-v-c86466da] {\n  position: fixed;\n  background-color: white;\n  bottom: 0;\n  width: 100%;\n  z-index: 200;\n  -webkit-box-shadow: 0px -5px 5px #00000038;\n          box-shadow: 0px -5px 5px #00000038;\n}\n.shoppingCart .shoppingCart-header[data-v-c86466da] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: relative;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    height: 40px;\n    background-color: #eb4d4b;\n}\n.shoppingCart .shoppingCart-header .shoppingIcon[data-v-c86466da] {\n      color: #eb4d4b;\n      display: inline-block;\n      background: white;\n      -webkit-transform: scale(1.6);\n              transform: scale(1.6);\n      width: 30px;\n      height: 30px;\n      border-radius: 50%;\n      -webkit-box-shadow: 0px 2px 2px #00000078;\n              box-shadow: 0px 2px 2px #00000078;\n      z-index: 250;\n      position: absolute;\n      top: 0;\n      left: 20px;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      padding-left: 3px;\n      top: -10px;\n      padding-top: 3px;\n}\n.shoppingCart .shoppingCart-header .badge[data-v-c86466da] {\n      display: inline-block;\n      padding: 0.25em 0.4em;\n      font-size: 75%;\n      font-weight: 700;\n      background-color: #7ed6df;\n      line-height: 1;\n      text-align: center;\n      white-space: nowrap;\n      vertical-align: baseline;\n      border-radius: 50%;\n      color: #535c68;\n      position: absolute;\n      top: -4px;\n      right: -2px;\n}\n.shoppingCart .shoppingCart-header .shoppingCart-header-text[data-v-c86466da] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-size: 16px;\n      color: white;\n}\n.shoppingCart ul[data-v-c86466da] {\n    list-style-type: none;\n    padding: 0;\n    padding-left: 10px;\n    max-height: 300px;\n    overflow: scroll;\n}\n.shoppingCart ul li[data-v-c86466da] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: row;\n              flex-direction: row;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      margin-bottom: 5px;\n}\n.shoppingCart ul li .shoppingCart-item-name[data-v-c86466da] {\n        -webkit-box-flex: 4;\n            -ms-flex: 4;\n                flex: 4;\n}\n.shoppingCart ul li .shoppingCart-item-name .orderItem-name[data-v-c86466da] {\n          margin: 0;\n          font-size: 16px;\n}\n.shoppingCart ul li .shoppingCart-item-name .orderItem-choice[data-v-c86466da] {\n          margin: 0;\n          font-size: 10px;\n          color: #9d9a9a;\n}\n.shoppingCart ul li .shoppingCart-button-group[data-v-c86466da] {\n        -webkit-box-flex: 2;\n            -ms-flex: 2;\n                flex: 2;\n        text-align: center;\n}\n.shoppingCart ul li .shoppingCart-button-group .button-group-container[data-v-c86466da] {\n          border: 1px solid #dff9fb;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: start;\n              -ms-flex-align: start;\n                  align-items: flex-start;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          justify-items: center;\n}\n.shoppingCart ul li .shoppingCart-button-group .button-group-container span[data-v-c86466da] {\n            font-size: 16px;\n            font-weight: bold;\n            display: inline-block;\n            text-align: center;\n}\n.shoppingCart ul li .shoppingCart-item-price[data-v-c86466da] {\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n        text-align: right;\n        padding-right: 10px;\n}\n.shoppingCart .shoppingCart-confirm-button[data-v-c86466da] {\n    width: 100%;\n    border: none;\n    background-color: #f6e58d;\n    color: #f0932b;\n    font-weight: bold;\n    -webkit-box-shadow: 0px -1px 3px #00000045;\n            box-shadow: 0px -1px 3px #00000045;\n}\n.expand[data-v-c86466da] {\n  max-height: 40px;\n}\n", ""]);
+exports.push([module.i, "\n.shoppingCart[data-v-c86466da] {\n  position: fixed;\n  bottom: 10px;\n  width: 70%;\n  left: 15%;\n  z-index: 200;\n  -webkit-box-shadow: 0px 5px 5px #00000038;\n          box-shadow: 0px 5px 5px #00000038;\n}\n.shoppingCart .shoppingCart-header[data-v-c86466da] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: relative;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    height: 40px;\n    background-color: rgba(235, 77, 75, 0.8);\n}\n.shoppingCart .shoppingCart-header .shoppingIcon[data-v-c86466da] {\n      display: inline-block;\n      -webkit-transform: scale(1.6);\n              transform: scale(1.6);\n      width: 26px;\n      height: 20px;\n      z-index: 250;\n      position: absolute;\n      top: 10px;\n      left: 20px;\n      border-right: 1px solid rgba(52, 58, 64, 0.21);\n}\n.shoppingCart .shoppingCart-header .badge[data-v-c86466da] {\n      display: inline-block;\n      border-radius: 50%;\n      color: #f8fafc;\n      text-shadow: 1px 1px 2px black;\n      position: absolute;\n      top: -4px;\n      left: 3px;\n}\n.shoppingCart .shoppingCart-header .shoppingCart-header-text[data-v-c86466da] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      font-weight: bold;\n      font-size: 18px;\n      color: white;\n      text-shadow: 1px 1px 2px black;\n      letter-spacing: 1.2px;\n}\n.shoppingCart .shoppingCart-header img[data-v-c86466da] {\n      max-width: 60px;\n}\n.shoppingCart ul[data-v-c86466da] {\n    list-style-type: none;\n    padding: 0;\n    padding-left: 10px;\n    max-height: 300px;\n    overflow: scroll;\n}\n.shoppingCart ul li[data-v-c86466da] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: row;\n              flex-direction: row;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      margin-bottom: 5px;\n}\n.shoppingCart ul li .shoppingCart-item-name[data-v-c86466da] {\n        -webkit-box-flex: 4;\n            -ms-flex: 4;\n                flex: 4;\n}\n.shoppingCart ul li .shoppingCart-item-name .orderItem-name[data-v-c86466da] {\n          margin: 0;\n          font-size: 16px;\n}\n.shoppingCart ul li .shoppingCart-item-name .orderItem-choice[data-v-c86466da] {\n          margin: 0;\n          font-size: 10px;\n          color: #9d9a9a;\n}\n.shoppingCart ul li .shoppingCart-button-group[data-v-c86466da] {\n        -webkit-box-flex: 2;\n            -ms-flex: 2;\n                flex: 2;\n        text-align: center;\n}\n.shoppingCart ul li .shoppingCart-button-group .button-group-container[data-v-c86466da] {\n          border: 1px solid #dff9fb;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -webkit-box-align: start;\n              -ms-flex-align: start;\n                  align-items: flex-start;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          justify-items: center;\n}\n.shoppingCart ul li .shoppingCart-button-group .button-group-container span[data-v-c86466da] {\n            font-size: 16px;\n            font-weight: bold;\n            display: inline-block;\n            text-align: center;\n}\n.shoppingCart ul li .shoppingCart-item-price[data-v-c86466da] {\n        -webkit-box-flex: 1;\n            -ms-flex: 1;\n                flex: 1;\n        text-align: right;\n        padding-right: 10px;\n}\n.shoppingCart .shoppingCart-confirm-button[data-v-c86466da] {\n    width: 100%;\n    border: none;\n    background-color: #f6e58d;\n    color: #f0932b;\n    font-weight: bold;\n    -webkit-box-shadow: 0px -1px 3px #00000045;\n            box-shadow: 0px -1px 3px #00000045;\n}\n.expand[data-v-c86466da] {\n  max-height: 40px;\n}\ni.material-icons[data-v-c86466da] {\n  color: white;\n  text-shadow: 0px 0px 1px black;\n  font-size: 20px;\n}\n", ""]);
 
 // exports
 
@@ -64479,7 +64487,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "shoppingCart-header-text" }, [
                 _vm._v(
-                  _vm._s(_vm.isEn ? "Total" : "总计") +
+                  _vm._s(_vm.isEN ? "Total" : "总计") +
                     " " +
                     _vm._s(_vm.totalPriceOfOrder)
                 )
@@ -64505,7 +64513,7 @@ var render = function() {
               staticClass: "shoppingCart-confirm-button",
               on: { click: _vm.confirmOrder }
             },
-            [_vm._v("Confirm Order")]
+            [_vm._v(_vm._s(_vm.isEN ? "Confirm Order" : "确认下单"))]
           )
         ]
       )
@@ -64526,17 +64534,21 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(94)
+}
 var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(96)
 /* template */
-var __vue_template__ = __webpack_require__(117)
+var __vue_template__ = __webpack_require__(97)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-611e54cb"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -64569,8 +64581,46 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 94 */,
-/* 95 */,
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(95);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("ae38be96", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-611e54cb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Head.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-611e54cb\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Head.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.header[data-v-611e54cb] {\n  position: fixed;\n  width: 100%;\n  height: 30px;\n  background-color: rgba(235, 77, 75, 0.8);\n  color: #f8fafc;\n  -webkit-box-shadow: 0px 5px 5px #00000038;\n          box-shadow: 0px 5px 5px #00000038;\n  z-index: 200;\n}\nh2[data-v-611e54cb] {\n  position: absolute;\n  top: 10px;\n  left: 38%;\n  text-align: center;\n  font-weight: bold;\n  text-shadow: 2px 2px 6px #000;\n}\n\n/*language switch button :yin_yang:*/\n.languageSwitchButtonGroup[data-v-611e54cb] {\n  text-align: right;\n  padding-right: 20px;\n  margin-top: 4px;\n}\n.languageSwitchButtonGroup .button-wrapper[data-v-611e54cb] {\n    -webkit-box-shadow: 0px 0px 2px black;\n            box-shadow: 0px 0px 2px black;\n}\n.languageSwitchButtonGroup .languageButton[data-v-611e54cb] {\n    padding: 3px;\n}\n.languageSwitchButtonGroup .languageButton.languageButtonInactive[data-v-611e54cb] {\n      background-color: #933b38;\n      padding: 0px 5px;\n      -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5);\n              box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5);\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
 /* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -64582,14 +64632,60 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["table_number", "isEN"]))
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["table_number", "isEN"])),
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["setIsEN"]), {
+    setToCN: function setToCN() {
+      this.setIsEN(false);
+      console.log(this.isEN);
+    },
+    setToEN: function setToEN() {
+      this.setIsEN(true);
+      console.log(this.isEN);
+    }
+  })
 });
 
 /***/ }),
-/* 97 */,
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "header" }, [
+    _c("div", { staticClass: "languageSwitchButtonGroup" }),
+    _vm._v(" "),
+    _c("h2", [
+      _vm._v(
+        _vm._s(_vm.isEN ? "Table" : "桌号") + " " + _vm._s(_vm.table_number)
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-611e54cb", module.exports)
+  }
+}
+
+/***/ }),
 /* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -64600,7 +64696,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("Head", { staticClass: "header" }),
+      _c("Head"),
       _vm._v(" "),
       _c(
         "div",
@@ -64740,6 +64836,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -64772,6 +64869,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         cdt: this.cdt,
         v: this.v
       }).then(function (res) {
+        // 🎰
         _this2.replaceList(res.data);
       });
     }
@@ -66507,31 +66605,6 @@ TWEEN.Interpolation = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("h2", [
-    _vm._v(_vm._s(_vm.isEN ? "Table" : "桌号") + " " + _vm._s(_vm.table_number))
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-611e54cb", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

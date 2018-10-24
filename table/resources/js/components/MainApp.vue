@@ -5,6 +5,7 @@
               <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
           </svg>
       </div>
+
   <router-view></router-view>
 </div>
 </template>
@@ -48,6 +49,7 @@ export default {
           v: this.v
         })
         .then(res => {
+          // 🎰
           this.replaceList(res.data);
         });
     }

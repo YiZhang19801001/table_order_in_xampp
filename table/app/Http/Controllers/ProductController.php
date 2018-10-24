@@ -41,6 +41,8 @@ class ProductController extends Controller
          */
 
 
+
+
         //fetch all categories, used for grouping products
         $categories = Category_description::all();
 

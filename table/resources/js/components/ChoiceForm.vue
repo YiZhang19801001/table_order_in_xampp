@@ -13,7 +13,7 @@
                     <h4>{{option.option_name}}</h4>
                     <Option :option="option" :index="index2" @pickValue="addOption"></Option>
                 </div>
-                <div class="form_button_container"><button class="addButton" type="submit"><i class="material-icons">add_shopping_cart</i> Add to Order List</button></div>
+                <div class="form_button_container"><button class="addButton" type="submit"><i class="material-icons">add_shopping_cart</i> {{isEN?"Add Item to Order":"加入菜单"}}</button></div>
             </form>
 
 </template>
@@ -33,6 +33,9 @@ export default {
       pickedChoices: [],
       pickedOptions: []
     };
+  },
+  computed: {
+    ...mapGetters(["isEN"])
   },
   methods: {
     ...mapActions(["addNewItemToOrderList"]),
