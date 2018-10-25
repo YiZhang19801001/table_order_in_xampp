@@ -10,11 +10,13 @@
             v-bind:class="{activeProduct:item.product_id===selectProduct_id}">
 
             <!-- static info show for each product -->
-<transition>
+            <!-- product cover -->
+<!-- <transition>
                 <div v-if="item.product_id===selectProduct_id" class="product-background"></div>
 
 
-</transition>
+</transition> -->
+    <!-- product footer cover  -->
 <div v-if="item.product_id===selectProduct_id" class="product-background-footer"></div>
 <transition>
                     <img
@@ -214,7 +216,7 @@ export default {
       height: 30px;
       bottom: 0;
       left: 0;
-      background: #00000096;
+      background: #ffffffc9;
       border-bottom-right-radius: 8px;
       border-bottom-left-radius: 8px;
       z-index: 1;
@@ -408,14 +410,14 @@ export default {
   }
   .product-description {
     font-size: 10px;
-    font-weight: 400;
+    font-weight: 800;
     padding: 3px 10px;
     line-height: 1rem;
-    color: white;
+    color: black;
     overflow: scroll;
-    background-color: #6c757da3;
+    background-color: #ffffffcc;
     border-radius: 3px;
-    height: 80px;
+    max-height: 80px;
     /* box-shadow: inset 0px 0px 1px #fff; */
   }
   p {

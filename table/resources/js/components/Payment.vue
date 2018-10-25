@@ -4,10 +4,10 @@
         <!-- payment method section -->
 <section>
             <div class="payment-method">
-                <h6>{{isEN?"Payment Method":"支付方式"}}</h6>
+                <h6><router-link :to="pathFrom"><i class="material-icons">arrow_back_ios</i></router-link>{{isEN?"Payment Method":"支付方式"}}</h6>
                 <div class="icon-group">
                     <div class="payment-choice">
-                        <img src="/table/public/credit.png" alt="">
+                        <img src="/table/public/wechat.png" alt="">
                         <p>
                             <input type="radio" value="credit" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"WeChat":"微信支付"}}</span>
                         </p>
@@ -19,7 +19,7 @@
                         </p>
                     </div>
                     <div class="payment-choice">
-                        <img src="/table/public/cash.png" alt="">
+                        <img src="/table/public/cash1.png" alt="">
                         <p>
                             <input type="radio" value="cash" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"DiveIn":"店内支付"}}</span>
                         </p>
@@ -37,10 +37,10 @@
                     <span>{{isEN?"Price":"产品价格"}}</span>
                     <span class="number">AUD ${{totalPriceOfOrder}}</span>
                 </div>
-                <div v-if="isEN">
+                <!-- <div v-if="isEN">
                     <span>GST</span>
                     <span class="number">AUD $0.00</span>
-                </div>
+                </div> -->
                 <div v-if="!isEN">
                     <span>人民币</span>
                     <span class="number">CNY ¥{{totalPriceOfOrder * 5}}</span>
@@ -54,13 +54,13 @@
         <!-- payment detail section end -->
         <!-- order section -->
 <section>
-            <h6><router-link :to="`/table/public/table/${table_number}/orderid/${orderId}`"><i class="material-icons">arrow_back_ios</i></router-link><span>{{isEN?"Your Order":"已点菜品"}}</span> </h6>
+            <h6><span>{{isEN?"Your Order":"已点菜品"}}</span> </h6>
             <div>
                 <!-- list of order_items -->
                 <ul>
                     <li v-for="(orderItem,index) in orderList" :key="index">
                             <div class="orderItem-img">
-                                <img src="https://via.placeholder.com/60" alt="">
+                                <img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
                             </div>
                             <div class="orderItem-info-container">
                                 <div class="orderItem-name-quantity">
@@ -98,11 +98,13 @@
 
             <div class="footer">
                 <div class="footer-content-container">
-                    <div class="footer-title"><h2>{{isEN?"Total":"总计"}}</h2></div>
-                    <div class="footer-detail">
+                    <div class="footer-title">
+                        <h2>{{isEN?"Total":"总计"}}</h2>
                         <div class="footer-detail-info">
-                            <span>{{isEN?"table":"桌号"}} {{table_number}}</span><span>{{isEN?"order":"单号"}} {{orderId}}</span><span>10% Disc.</span>
+                            <span>{{isEN?"table":"桌号"}} {{table_number}}</span><span>{{isEN?"order":"单号"}} {{orderId}}</span>
                         </div>
+                    </div>
+                    <div class="footer-detail">
                         <div class="footer-detail-total">
                             <span>AUD ${{totalPriceOfOrder}}</span>
                         </div>
@@ -160,7 +162,8 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push(this.pathForm);
+      console.log(this.pathFrom);
+      this.$router.push(this.pathFrom);
     },
     confirm() {
       axios.post("/table/public/api/confirm", {
@@ -217,6 +220,12 @@ export default {
       margin-bottom: 10px;
       .orderItem-img {
         width: 20%;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 60px;
+          height: 60px;
+        }
       }
       .orderItem-info-container {
         display: flex;
@@ -279,6 +288,7 @@ export default {
         justify-content: space-around;
         img {
           width: 60px;
+          height: 37.95px;
         }
         input {
           vertical-align: middle;
@@ -316,7 +326,7 @@ export default {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #ffbe76;
+    background-color: #ffc24a;
     box-shadow: 0px -2px 3px #00000038;
     .footer-content-container {
       display: flex;
@@ -326,33 +336,36 @@ export default {
       .footer-title {
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: center;
         h2 {
           margin: 0;
-          font-size: 2rem;
-          font-weight: bold;
-          text-shadow: 0px 2px 2px #21252970;
+          font-size: 1.3rem;
+          font-weight: 900;
           letter-spacing: 3px;
+        }
+        span {
+          text-shadow: 1px 1px 1px black;
+          color: white;
+          padding: 2px 3px 2px 0px;
+          margin: 0px 1px;
+          font-weight: bold;
+          border-radius: 3px;
         }
       }
       .footer-detail {
         flex: 1;
         padding: 0 20px;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
         .footer-detail-info {
           font-size: 10px;
           color: #9b9b9b;
-          span {
-            background-color: #3490dc;
-            color: white;
-            padding: 2px 3px;
-            margin: 0px 1px;
-            font-weight: bold;
-            border-radius: 3px;
-          }
         }
         .footer-detail-total {
           font-size: 20px;
           text-align: right;
+          font-weight: 700;
         }
       }
       .footer-button {
@@ -360,10 +373,11 @@ export default {
         justify-content: center;
         flex-direction: column;
         width: 47px;
-        background-color: #ef8282;
+        background-color: #eb4d4b;
         text-align: center;
-        color: yellow;
+        color: #ffc24a;
         box-shadow: 0px 2px 3px #9b9b9b;
+        border-radius: 8px;
 
         .animated.infinite.pulse {
           display: flex;

@@ -82,7 +82,7 @@ export default {
         pathFrom: state => {
             return `/table/public/table/${state.table_number}/orderid/${
                 state.orderId
-            }`;
+            }?cdt=${state.cdt}&v=${state.v}`;
         },
         scrollPositionId: state => {
             return state.scrollPositionId;

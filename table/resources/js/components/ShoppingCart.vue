@@ -10,6 +10,7 @@
                     <span class="badge">{{totalQuantityOfOrder}}</span>
                 </div>
                 <div class="shoppingCart-header-text">{{isEN?"Total":"总计"}} AUD ${{totalPriceOfOrder}}</div>
+                <div v-if="isExpand" @click="toggle" class="close-btn-wrap"><i @click="toggle" class="material-icons">close</i></div>
             </div>
             <!-- toggle the list of order on clicking the header -->
             <ul v-if="isExpand">
@@ -44,7 +45,9 @@ export default {
       "totalQuantityOfOrder",
       "orderId",
       "table_number",
-      "isEN"
+      "isEN",
+      "cdt",
+      "v"
     ])
   },
   mounted() {},
@@ -70,7 +73,7 @@ export default {
       this.$router.push(
         `/table/public/table/${this.table_number}/orderid/${
           this.orderId
-        }/payment`
+        }/payment?cdt=${this.cdt}&v=${this.v}`
       );
     }
   }
@@ -86,6 +89,11 @@ export default {
   width: 100vw;
   background-color: #0000009c;
   z-index: -1;
+}
+.close-btn-wrap {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 .shoppingCart {
   position: fixed;

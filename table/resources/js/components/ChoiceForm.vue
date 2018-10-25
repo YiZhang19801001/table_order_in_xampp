@@ -2,18 +2,43 @@
 
 
             <form class="choice-form"  @submit.prevent="addToOrder()" ref="choices_form" key="animation-form">
+                <!-- header -->
                 <div class="choice-form-title">Make Your Choices<p @click="closeChoiceForm"><i class="material-icons">close</i></p></div>
+                <!-- header end -->
 
+                <!-- choice & option summary -->
+                <div v-if="pickedChoices.length > 0 || pickedOptions.length >0" class="summary">
+                    <div v-for="(choice_type,index) in item.choices" class="choice-summary" :key="index">
+                        <span class="summary-title">{{choice_type.type}} : </span>
+                        <span>{{this.pickedChoices[index]}}</span>
+                    </div>
+                    <div v-for="(option,index2) in item.options" class="choice-summary" :key="index2">
+                        <span class="summary-title">{{option.option_name}} : </span> <span class="summary-value">{{this.pickedOptions[index2]}}</span>
+                    </div>
+                </div>
+                <!-- choice & option summary end-->
+
+                <!-- product_ext -->
                 <div v-for="(choice_type, index) in item.choices" class="choice-group" :key="index">
                     <h4>{{choice_type.type}}</h4>
                     <Choice :choice_type="choice_type" :index="index" @pickValue="addChoice"></Choice>
-
                 </div>
-                    <div v-for="(option, index2) in item.options" class="choice-group" :key="index2">
+                <!-- product_ext end -->
+
+                <!-- option  -->
+                <div v-for="(option, index2) in item.options" class="choice-group" :key="index2">
                     <h4>{{option.option_name}}</h4>
                     <Option :option="option" :index="index2" @pickValue="addOption"></Option>
                 </div>
-                <div class="form_button_container"><button class="addButton" type="submit"><i class="material-icons">add_shopping_cart</i> {{isEN?"Add Item to Order":"加入菜单"}}</button></div>
+                <!-- option end -->
+
+                <!-- confirm button -->
+                <div class="form_button_container">
+                    <button class="addButton" type="submit">
+                        <i class="material-icons">add_shopping_cart</i> {{isEN?"Add Item to Order":"加入菜单"}}
+                    </button>
+                </div>
+                <!-- confirm button end -->
             </form>
 
 </template>
@@ -37,6 +62,7 @@ export default {
   computed: {
     ...mapGetters(["isEN"])
   },
+  mounted() {},
   methods: {
     ...mapActions(["addNewItemToOrderList"]),
     addToOrder() {
@@ -136,6 +162,7 @@ export default {
         font-weight: bold;
         font-size: 13px;
         margin: 0;
+        margin-bottom: 8px;
         &.activeH5 {
           color: white;
           font-size: 16px;
@@ -197,7 +224,7 @@ export default {
         box-shadow: 0px 2px 2px #00000094;
         padding: 8px;
         border-radius: 8px;
-        background-color: rgba(52, 58, 64, 0.25);
+        background-color: rgba(190, 191, 192, 0.25);
         min-height: 100px;
         width: 80%;
         margin: auto;
@@ -211,6 +238,7 @@ export default {
           margin: 0;
           font-weight: 900;
           text-align: center;
+          margin-bottom: 8px;
         }
         ul {
           list-style-type: none;
