@@ -63012,7 +63012,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.cover[data-v-438ffe92] {\n  position: fixed;\n  height: 100vh;\n  background: #0000009c;\n  width: 100vw;\n  z-index: 600;\n  top: 0;\n  left: 0;\n}\n.productList[data-v-438ffe92] {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  width: 70%;\n  -webkit-box-shadow: 0px 2px 3px #00000038;\n          box-shadow: 0px 2px 3px #00000038;\n  padding: 0px 5px 10px 5px;\n}\n.productList .product[data-v-438ffe92] {\n    color: #797876;\n    padding: 5px 13px;\n    min-height: 80px;\n    margin: auto;\n    margin-bottom: 5px;\n    width: 80%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-shadow: 0px 1px 4px #c4c3c2;\n            box-shadow: 0px 1px 4px #c4c3c2;\n    border-radius: 8px;\n}\n.productList .product .product-background[data-v-438ffe92] {\n      width: 100%;\n      position: absolute;\n      height: 100%;\n      top: 0;\n      left: 0;\n      background: #00000038;\n      border-top-right-radius: 8px;\n      border-top-left-radius: 8px;\n}\n.productList .product .product-background-footer[data-v-438ffe92] {\n      width: 100%;\n      position: absolute;\n      height: 30px;\n      bottom: 0;\n      left: 0;\n      background: #ffffffc9;\n      border-bottom-right-radius: 8px;\n      border-bottom-left-radius: 8px;\n      z-index: 1;\n}\n.productList .product img[data-v-438ffe92] {\n      width: 50px;\n      height: 50px;\n      border-radius: 20%;\n      position: absolute;\n      z-index: -1;\n      left: -10%;\n      top: 13px;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n}\n.productList .product img.activeimg[data-v-438ffe92] {\n        display: none;\n        border-radius: 8px;\n        width: 50%;\n        left: 25%;\n        top: 55%;\n        z-index: 10;\n        -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n                box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .text-container[data-v-438ffe92] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      width: 80%;\n      margin: 0 auto;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding-left: 5px;\n}\n.productList .product .text-container.activeTextContainer[data-v-438ffe92] {\n        width: 95%;\n        z-index: 3;\n}\n.productList .product .text-container h5[data-v-438ffe92] {\n        color: black;\n        font-weight: 900;\n        font-size: 14px;\n        margin: 0;\n}\n.productList .product .text-container h5.activeH5[data-v-438ffe92] {\n          color: #fff;\n          font-size: 20px;\n          text-shadow: 2px 2px 6px #000;\n}\n.productList .product .text-container .price[data-v-438ffe92] {\n        color: #eb4d4b;\n        margin: 0;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: end;\n            -ms-flex-pack: end;\n                justify-content: flex-end;\n        padding-right: 10px;\n}\n.productList .product .text-container .price.activePrice[data-v-438ffe92] {\n          font-weight: 700;\n}\n.productList .product .button[data-v-438ffe92] {\n      border-radius: 50%;\n      width: 40px;\n      height: 40px;\n      background: white;\n      font-size: 20px;\n      border: none;\n      color: #f53b50;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n      position: absolute;\n      z-index: 100;\n      right: -20px;\n      outline: none;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      justify-items: center;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .button.active[data-v-438ffe92] {\n        bottom: 0px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .button.active.add-button[data-v-438ffe92] {\n          left: -20px;\n          -webkit-transition: all 0.5s;\n          transition: all 0.5s;\n}\n.productList .product .button.unactive[data-v-438ffe92] {\n        top: 20px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .choice-form[data-v-438ffe92] {\n      position: fixed;\n      z-index: 800;\n      width: 80%;\n      top: 30%;\n      left: 10%;\n      border-radius: 3px;\n      background-color: #c7eceef0;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .choice-form .choice-form-title[data-v-438ffe92] {\n        font-size: 16px;\n        font-weight: bold;\n        color: #1e1e1e;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        padding: 2px 10px;\n}\n.productList .product .choice-form .choice-group[data-v-438ffe92] {\n        -webkit-box-shadow: 0px 2px 2px #00000094;\n                box-shadow: 0px 2px 2px #00000094;\n        padding: 8px;\n        border-radius: 3px;\n        background-color: #ffffff91;\n        min-height: 100px;\n        width: 80%;\n        margin: auto;\n        margin-top: 20px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.productList .product .choice-form .choice-group h4[data-v-438ffe92] {\n          font-size: 14px;\n          text-align: center;\n          margin: 0;\n          text-shadow: 1px 1px 1px #c9c2c2;\n          font-weight: bold;\n}\n.productList .product .choice-form .choice-group ul[data-v-438ffe92] {\n          list-style-type: none;\n          padding: 0;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          margin: 0;\n          margin-bottom: 4px;\n}\n.productList .product .choice-form .choice-group ul li[data-v-438ffe92] {\n            color: black;\n            vertical-align: middle;\n            font-size: 11px;\n}\n.productList .product .choice-form .choice-group ul li input[data-v-438ffe92] {\n              -webkit-box-sizing: border-box;\n                      box-sizing: border-box;\n              padding: 0;\n              vertical-align: middle;\n}\n.productList .product .choice-form .choice-group ul li span[data-v-438ffe92] {\n              vertical-align: middle;\n}\n.productList .product .form_button_container[data-v-438ffe92] {\n      text-align: right;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n}\n.productList .product .form_button_container .addButton[data-v-438ffe92] {\n        color: red;\n        padding: 5px 10px;\n        margin: 12px;\n        background: none;\n        border: none;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        background: #ffbe76;\n        border: 1px solid #ffbe76;\n        -webkit-box-shadow: 0px 0px 4px #00000040;\n                box-shadow: 0px 0px 4px #00000040;\n}\n.productList .activeProduct[data-v-438ffe92] {\n    color: black;\n    height: 200px;\n    background-image: url(https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);\n    background-size: cover;\n}\n.productList .activeProduct h5[data-v-438ffe92] {\n      color: white;\n      font-size: 18px;\n}\n.productList .activeProduct h4[data-v-438ffe92] {\n      color: black;\n}\n.productList .activeProduct p[data-v-438ffe92] {\n      max-height: none;\n      float: none;\n}\n.productList h4[data-v-438ffe92] {\n    margin-left: 5px;\n    margin-top: 6px;\n    margin-bottom: 0px;\n    text-shadow: 1px 1px 1px #c9c2c2;\n    font-weight: bold;\n}\n.productList .product-description[data-v-438ffe92] {\n    font-size: 10px;\n    font-weight: 800;\n    padding: 3px 10px;\n    line-height: 1rem;\n    color: black;\n    overflow: scroll;\n    background-color: #ffffffcc;\n    border-radius: 3px;\n    max-height: 80px;\n    /* box-shadow: inset 0px 0px 1px #fff; */\n}\n.productList p[data-v-438ffe92] {\n    margin: 0;\n}\n", ""]);
+exports.push([module.i, "\n.cover[data-v-438ffe92] {\n  position: fixed;\n  height: 100vh;\n  background: #0000009c;\n  width: 100vw;\n  z-index: 600;\n  top: 0;\n  left: 0;\n}\nspan.orderQty[data-v-438ffe92] {\n  position: absolute;\n  background-color: #eb4d4b;\n  color: white;\n  border-radius: 50%;\n  width: 20px;\n  text-align: center;\n  height: 20px;\n  font-weight: 800;\n  line-height: 18px;\n  text-shadow: 1px 1px 1px black;\n  -webkit-box-shadow: inset 0px 0px 1px white;\n          box-shadow: inset 0px 0px 1px white;\n  z-index: 2;\n}\nspan.orderQty.activeOrderQty[data-v-438ffe92] {\n    bottom: 0;\n    left: -10px;\n    width: 40px;\n    height: 40px;\n    line-height: 38px;\n    font-size: 24px;\n}\nspan.orderQty.unactiveOrderQty[data-v-438ffe92] {\n    right: -15px;\n    top: -8px;\n}\n.productList[data-v-438ffe92] {\n  margin-top: 50px;\n  margin-bottom: 50px;\n  width: 70%;\n  -webkit-box-shadow: 0px 2px 3px #00000038;\n          box-shadow: 0px 2px 3px #00000038;\n  padding: 0px 5px 10px 5px;\n}\n.productList .product[data-v-438ffe92] {\n    color: #797876;\n    padding: 5px 13px;\n    min-height: 80px;\n    margin: auto;\n    margin-bottom: 5px;\n    width: 80%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-shadow: 0px 1px 4px #c4c3c2;\n            box-shadow: 0px 1px 4px #c4c3c2;\n    border-radius: 8px;\n}\n.productList .product .product-background[data-v-438ffe92] {\n      width: 100%;\n      position: absolute;\n      height: 100%;\n      top: 0;\n      left: 0;\n      background: #00000038;\n      border-top-right-radius: 8px;\n      border-top-left-radius: 8px;\n}\n.productList .product .product-background-footer[data-v-438ffe92] {\n      width: 100%;\n      position: absolute;\n      height: 30px;\n      bottom: 0;\n      left: 0;\n      background: #ffffffc9;\n      border-bottom-right-radius: 8px;\n      border-bottom-left-radius: 8px;\n      z-index: 1;\n}\n.productList .product img[data-v-438ffe92] {\n      width: 50px;\n      height: 50px;\n      border-radius: 20%;\n      position: absolute;\n      z-index: -1;\n      left: -10%;\n      top: 13px;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n}\n.productList .product img.activeimg[data-v-438ffe92] {\n        display: none;\n        border-radius: 8px;\n        width: 50%;\n        left: 25%;\n        top: 55%;\n        z-index: 10;\n        -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n                box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .text-container[data-v-438ffe92] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      width: 80%;\n      margin: 0 auto;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding-left: 5px;\n}\n.productList .product .text-container.activeTextContainer[data-v-438ffe92] {\n        width: 95%;\n        z-index: 3;\n}\n.productList .product .text-container h5[data-v-438ffe92] {\n        color: black;\n        font-weight: 900;\n        font-size: 14px;\n        margin: 0;\n}\n.productList .product .text-container h5.activeH5[data-v-438ffe92] {\n          color: #fff;\n          font-size: 20px;\n          text-shadow: 2px 2px 6px #000;\n}\n.productList .product .text-container .price[data-v-438ffe92] {\n        color: #eb4d4b;\n        margin: 0;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: end;\n            -ms-flex-pack: end;\n                justify-content: flex-end;\n        padding-right: 10px;\n}\n.productList .product .text-container .price.activePrice[data-v-438ffe92] {\n          font-weight: 700;\n}\n.productList .product .button[data-v-438ffe92] {\n      border-radius: 50%;\n      width: 40px;\n      height: 40px;\n      background: white;\n      font-size: 20px;\n      border: none;\n      color: #f53b50;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n      position: absolute;\n      z-index: 100;\n      right: -20px;\n      outline: none;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      justify-items: center;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .button.active[data-v-438ffe92] {\n        bottom: 0px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .button.active.close-button[data-v-438ffe92] {\n          top: 0;\n          -webkit-transition: all 0.5s;\n          transition: all 0.5s;\n}\n.productList .product .button.unactive[data-v-438ffe92] {\n        top: 20px;\n        -webkit-transition: all 0.5s;\n        transition: all 0.5s;\n}\n.productList .product .choice-form[data-v-438ffe92] {\n      position: fixed;\n      z-index: 800;\n      width: 80%;\n      top: 30%;\n      left: 10%;\n      border-radius: 3px;\n      background-color: #c7eceef0;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .choice-form .choice-form-title[data-v-438ffe92] {\n        font-size: 16px;\n        font-weight: bold;\n        color: #1e1e1e;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        padding: 2px 10px;\n}\n.productList .product .choice-form .choice-group[data-v-438ffe92] {\n        -webkit-box-shadow: 0px 2px 2px #00000094;\n                box-shadow: 0px 2px 2px #00000094;\n        padding: 8px;\n        border-radius: 3px;\n        background-color: #ffffff91;\n        min-height: 100px;\n        width: 80%;\n        margin: auto;\n        margin-top: 20px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.productList .product .choice-form .choice-group h4[data-v-438ffe92] {\n          font-size: 14px;\n          text-align: center;\n          margin: 0;\n          text-shadow: 1px 1px 1px #c9c2c2;\n          font-weight: bold;\n}\n.productList .product .choice-form .choice-group ul[data-v-438ffe92] {\n          list-style-type: none;\n          padding: 0;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          margin: 0;\n          margin-bottom: 4px;\n}\n.productList .product .choice-form .choice-group ul li[data-v-438ffe92] {\n            color: black;\n            vertical-align: middle;\n            font-size: 11px;\n}\n.productList .product .choice-form .choice-group ul li input[data-v-438ffe92] {\n              -webkit-box-sizing: border-box;\n                      box-sizing: border-box;\n              padding: 0;\n              vertical-align: middle;\n}\n.productList .product .choice-form .choice-group ul li span[data-v-438ffe92] {\n              vertical-align: middle;\n}\n.productList .product .form_button_container[data-v-438ffe92] {\n      text-align: right;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n}\n.productList .product .form_button_container .addButton[data-v-438ffe92] {\n        color: red;\n        padding: 5px 10px;\n        margin: 12px;\n        background: none;\n        border: none;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        background: #ffbe76;\n        border: 1px solid #ffbe76;\n        -webkit-box-shadow: 0px 0px 4px #00000040;\n                box-shadow: 0px 0px 4px #00000040;\n}\n.productList .activeProduct[data-v-438ffe92] {\n    color: black;\n    height: 200px;\n    background-image: url(https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);\n    background-size: cover;\n}\n.productList .activeProduct h5[data-v-438ffe92] {\n      color: white;\n      font-size: 18px;\n}\n.productList .activeProduct h4[data-v-438ffe92] {\n      color: black;\n}\n.productList .activeProduct p[data-v-438ffe92] {\n      max-height: none;\n      float: none;\n}\n.productList h4[data-v-438ffe92] {\n    margin-left: 5px;\n    margin-top: 6px;\n    margin-bottom: 0px;\n    text-shadow: 1px 1px 1px #c9c2c2;\n    font-weight: bold;\n}\n.productList .product-description[data-v-438ffe92] {\n    font-size: 10px;\n    font-weight: 800;\n    padding: 3px 10px;\n    line-height: 1rem;\n    color: black;\n    overflow: scroll;\n    background-color: #ffffffcc;\n    border-radius: 3px;\n    max-height: 80px;\n    /* box-shadow: inset 0px 0px 1px #fff; */\n}\n.productList p[data-v-438ffe92] {\n    margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -63101,6 +63101,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
@@ -63110,13 +63112,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
   data: function data() {
     return {
-      //ToDo : is 'section' nessary for scroll-spy
-      section: 0,
       //flag for expand or not
       selectProduct_id: 0,
       //flag for popup choices pannel
-      wantOrder: false,
-      arr: null
+      wantOrder: false
     };
   },
 
@@ -63152,14 +63151,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         this.selectProduct_id = id;
       }
     },
+    closeItem: function closeItem() {
+      this.selectProduct_id = 0;
+    },
 
 
     /** use for choice pannel open or close*/
-    wandOrder: function wandOrder(item) {
+    wandOrder: function wandOrder(id) {
+      this.selectProduct_id = id;
       this.wantOrder = true;
     },
     closeChoiceForm: function closeChoiceForm() {
       this.wantOrder = false;
+      this.selectProduct_id = 0;
     },
 
     /**choice pannel end */
@@ -63175,6 +63179,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
       this.wantOrder = false;
       this.addNewItemToOrderList(newItem);
+      this.selectProduct_id = 0;
     },
     handleScroll: function handleScroll() {
       var sum = 0;
@@ -63189,6 +63194,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
           break;
         }
       }
+    },
+    getOrderQty: function getOrderQty(id) {
+      var qty = 0;
+      this.orderList.forEach(function (el) {
+        if (el.item.product_id === id) {
+          qty += el.quantity;
+        }
+      });
+      return qty;
     }
   }),
   components: { ChoiceForm: __WEBPACK_IMPORTED_MODULE_0__ChoiceForm_vue___default.a }
@@ -63360,10 +63374,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["isEN"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["isEN", "formClass"])),
   mounted: function mounted() {},
 
-  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["addNewItemToOrderList"]), {
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["addNewItemToOrderList", "setFormClass"]), {
     addToOrder: function addToOrder() {
       var _this = this;
 
@@ -63378,8 +63392,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       });
       this.pickedChoices = [];
       this.pickedOptions = [];
-      this.closeChoiceForm();
-      this.addNewItemToOrderList(newItem);
+
+      document.getElementById("choiceForm").className = "choice-form animated zoomOutDown";
+
+      this.delay(800).then(function (res) {
+        _this.closeChoiceForm();
+        _this.addNewItemToOrderList(newItem);
+      });
     },
     addChoice: function addChoice(value, index) {
       this.pickedChoices[index] = value;
@@ -63387,8 +63406,24 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     addOption: function addOption(value, index) {
       this.pickedOptions[index] = value;
     },
+    closeForm: function closeForm() {
+      var _this2 = this;
+
+      document.getElementById("choiceForm").className = "choice-form animated zoomOut";
+
+      this.delay(300).then(function (res) {
+        _this2.closeChoiceForm();
+      });
+    },
     closeChoiceForm: function closeChoiceForm() {
       this.$emit("closeChoiceForm");
+    },
+    delay: function delay(time) {
+      return new Promise(function (resolve) {
+        setTimeout(function () {
+          resolve("resolved");
+        }, time);
+      });
     }
   }),
   components: {
@@ -63483,7 +63518,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\nul[data-v-cb295968] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\nul li[data-v-cb295968] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n}\n.container[data-v-cb295968] {\n  margin: 0;\n}\n.container input[data-v-cb295968] {\n  position: absolute;\n  opacity: 0;\n}\n.checkmark-wrap[data-v-cb295968] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 44px;\n  width: 44px;\n  z-index: 1;\n  background-color: #2196f3;\n  border-radius: 50%;\n}\n.checkmark[data-v-cb295968] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 40px;\n  width: 40px;\n  background-size: cover;\n  z-index: 2;\n  border-radius: 50%;\n  margin-top: 2px;\n  margin-left: 2px;\n}\n\n/* When the checkbox is checked, add a blue background */\n.container input:checked ~ .checkmark-wrap[data-v-cb295968] {\n  background-color: red;\n}\n.choice-name[data-v-cb295968] {\n  text-align: center;\n  font-weight: 600;\n}\n", ""]);
+exports.push([module.i, "\nul[data-v-cb295968] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\nul li[data-v-cb295968] {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: vertical;\n    -webkit-box-direction: normal;\n        -ms-flex-direction: column;\n            flex-direction: column;\n    -webkit-box-flex: 1;\n        -ms-flex: 1;\n            flex: 1;\n}\n.container[data-v-cb295968] {\n  margin: 0;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  padding: 0;\n}\n.container input[data-v-cb295968] {\n  position: absolute;\n  opacity: 0;\n}\n.checkmark-wrap[data-v-cb295968] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 44px;\n  width: 44px;\n  z-index: 1;\n  background-color: #2196f3;\n  border-radius: 50%;\n}\n.checkmark[data-v-cb295968] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  height: 40px;\n  width: 40px;\n  background-size: cover;\n  z-index: 2;\n  border-radius: 50%;\n  margin-top: 2px;\n  margin-left: 2px;\n}\n\n/* When the checkbox is checked, add a blue background */\n.container input:checked ~ .checkmark-wrap[data-v-cb295968] {\n  background-color: #eb4d4b;\n}\n.choice-name[data-v-cb295968] {\n  text-align: center;\n  font-weight: 600;\n}\n", ""]);
 
 // exports
 
@@ -63823,8 +63858,8 @@ var render = function() {
     "form",
     {
       key: "animation-form",
-      ref: "choices_form",
-      staticClass: "choice-form",
+      staticClass: "choice-form animated zoomInDown",
+      attrs: { id: "choiceForm" },
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -63835,7 +63870,7 @@ var render = function() {
     [
       _c("div", { staticClass: "choice-form-title" }, [
         _vm._v("Make Your Choices"),
-        _c("p", { on: { click: _vm.closeChoiceForm } }, [
+        _c("p", { on: { click: _vm.closeForm } }, [
           _c("i", { staticClass: "material-icons" }, [_vm._v("close")])
         ])
       ]),
@@ -63972,6 +64007,26 @@ var render = function() {
                 }
               },
               [
+                _vm.getOrderQty(item.product_id) !== 0
+                  ? _c(
+                      "span",
+                      {
+                        staticClass: "orderQty",
+                        class: [
+                          {
+                            activeOrderQty:
+                              item.product_id === _vm.selectProduct_id
+                          },
+                          {
+                            unactiveOrderQty:
+                              item.product_id !== _vm.selectProduct_id
+                          }
+                        ]
+                      },
+                      [_vm._v(_vm._s(_vm.getOrderQty(item.product_id)))]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
                 item.product_id === _vm.selectProduct_id
                   ? _c("div", { staticClass: "product-background-footer" })
                   : _vm._e(),
@@ -63996,6 +64051,11 @@ var render = function() {
                     class: {
                       activeTextContainer:
                         item.product_id === _vm.selectProduct_id
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.selectItem(item.product_id)
+                      }
                     }
                   },
                   [
@@ -64039,20 +64099,14 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          _vm.selectItem(item.product_id)
+                          _vm.wandOrder(item.product_id)
                         }
                       }
                     },
                     [
                       _c("i", { staticClass: "material-icons" }, [
                         _vm._v(
-                          "\n                        " +
-                            _vm._s(
-                              item.product_id === _vm.selectProduct_id
-                                ? "keyboard_arrow_up"
-                                : "keyboard_arrow_down"
-                            ) +
-                            "\n                    "
+                          "\n                       add\n                    "
                         )
                       ])
                     ]
@@ -64063,17 +64117,17 @@ var render = function() {
                   ? _c(
                       "button",
                       {
-                        staticClass: "button active add-button",
+                        staticClass: "button active close-button",
                         on: {
                           click: function($event) {
-                            _vm.wandOrder(item.product_id)
+                            _vm.selectItem(item.product_id)
                           }
                         }
                       },
                       [
                         _c("i", { staticClass: "material-icons" }, [
                           _vm._v(
-                            "\n                        add\n                    "
+                            "\n                        close\n                    "
                           )
                         ])
                       ]
@@ -64085,34 +64139,21 @@ var render = function() {
                   ? _c("div", { staticClass: "cover" })
                   : _vm._e(),
                 _vm._v(" "),
-                _c(
-                  "transition",
-                  {
-                    attrs: {
-                      name: "choiceForm",
-                      "enter-active-class": "animated zoomInDown",
-                      "leave-active-class": "animated zoomOutDown"
-                    }
-                  },
-                  [
-                    _vm.wantOrder == true &&
-                    item.product_id === _vm.selectProduct_id
-                      ? [
-                          _c("ChoiceForm", {
-                            key: "mykey",
-                            attrs: { item: item },
-                            on: {
-                              addToOrder: _vm.addToOrder,
-                              closeChoiceForm: _vm.closeChoiceForm
-                            }
-                          })
-                        ]
-                      : _vm._e()
-                  ],
-                  2
-                )
+                _vm.wantOrder == true &&
+                item.product_id === _vm.selectProduct_id
+                  ? [
+                      _c("ChoiceForm", {
+                        key: "mykey",
+                        attrs: { item: item },
+                        on: {
+                          addToOrder: _vm.addToOrder,
+                          closeChoiceForm: _vm.closeChoiceForm
+                        }
+                      })
+                    ]
+                  : _vm._e()
               ],
-              1
+              2
             )
           })
         ],
@@ -64513,7 +64554,7 @@ var render = function() {
           {
             on: {
               click: function($event) {
-                _vm.decrease(_vm.orderItem, _vm.index)
+                _vm.decrease()
               }
             }
           },
@@ -64527,7 +64568,7 @@ var render = function() {
           {
             on: {
               click: function($event) {
-                _vm.increase(_vm.orderItem)
+                _vm.increase()
               }
             }
           },
@@ -66546,9 +66587,13 @@ TWEEN.Interpolation = {
         //ToDo: store_id, store_name, store_url should be generated automaticly.
         store_id: 4,
         store_name: "Monkey King Thai Restaurant",
-        store_url: "http://192.168.1.221/"
+        store_url: "http://192.168.1.221/",
+        formClass: "zoomInDown"
     },
     getters: {
+        formClass: function formClass(state) {
+            return state.formClass;
+        },
         isEN: function isEN(state) {
             return state.isEN;
         },
@@ -66616,6 +66661,9 @@ TWEEN.Interpolation = {
         }
     },
     mutations: {
+        updateFormClass: function updateFormClass(state, payload) {
+            state.formClass = payload;
+        },
         updateIsEN: function updateIsEN(state, payload) {
             state.isEN = payload;
         },
@@ -66721,6 +66769,9 @@ TWEEN.Interpolation = {
         },
         setIsEN: function setIsEN(context, newStatus) {
             context.commit("updateIsEN", newStatus);
+        },
+        setFormClass: function setFormClass(context, newClass) {
+            context.commit("updateFormClass", newClass);
         }
     }
 });

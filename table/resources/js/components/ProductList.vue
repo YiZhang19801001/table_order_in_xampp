@@ -8,7 +8,13 @@
             <!-- List:: show products in certain group -->
             <div v-for="item in product.products" :key="item.product_id" class="product"
             v-bind:class="{activeProduct:item.product_id===selectProduct_id}">
-
+            <span
+            class="orderQty"
+            :class="[
+            {activeOrderQty:item.product_id===selectProduct_id},
+            {unactiveOrderQty:item.product_id!==selectProduct_id}
+            ]"
+            v-if="getOrderQty(item.product_id)!==0">{{getOrderQty(item.product_id)}}</span>
             <!-- static info show for each product -->
             <!-- product cover -->
 <!-- <transition>
@@ -25,7 +31,7 @@
                     v-bind:class="{activeimg:item.product_id===selectProduct_id}">
 
 </transition>
-                <div class="text-container" :class="{activeTextContainer:item.product_id===selectProduct_id}">
+                <div class="text-container"   @click="selectItem(item.product_id)" :class="{activeTextContainer:item.product_id===selectProduct_id}">
 
                     <h5 v-bind:class="{activeH5:item.product_id===selectProduct_id}">{{item.name}}</h5>
                     <div v-if="item.product_id===selectProduct_id" class="product-description">{{item.description}}</div>
@@ -35,19 +41,19 @@
                 <transition>
                 <button class="button"
                 v-bind:class="{active:item.product_id===selectProduct_id,unactive:item.product_id!==selectProduct_id}"
-                @click="selectItem(item.product_id)">
+                @click="wandOrder(item.product_id)">
                     <i class="material-icons">
-                        {{item.product_id===selectProduct_id?"keyboard_arrow_up":"keyboard_arrow_down"}}
+                       add
                     </i>
                 </button></transition>
                 <!-- button to add new product to cart -->
 
-                <button class="button active add-button"
-                @click="wandOrder(item.product_id)"
+                <button class="button active close-button"
+                @click="selectItem(item.product_id)"
                 v-if="item.product_id===selectProduct_id"
                 >
                     <i class="material-icons">
-                        add
+                        close
                     </i>
                 </button>
 
@@ -55,16 +61,12 @@
 
                 <div v-if="wantOrder==true && item.product_id===selectProduct_id" class="cover"></div>
 
-                <transition
-                    name="choiceForm"
-                    enter-active-class="animated zoomInDown"
-                    leave-active-class="animated zoomOutDown"
-                >
+
                     <template v-if="wantOrder==true && item.product_id===selectProduct_id">
 
                         <ChoiceForm key="mykey" v-bind:item="item" @addToOrder="addToOrder" @closeChoiceForm="closeChoiceForm" ></ChoiceForm>
                     </template>
-            </transition>
+
             </div>
         </div>
     </div>
@@ -80,13 +82,10 @@ export default {
 
   data() {
     return {
-      //ToDo : is 'section' nessary for scroll-spy
-      section: 0,
       //flag for expand or not
       selectProduct_id: 0,
       //flag for popup choices pannel
-      wantOrder: false,
-      arr: null
+      wantOrder: false
     };
   },
   computed: {
@@ -116,7 +115,6 @@ export default {
       "addNewItemToOrderList",
       "setScrollPositionId"
     ]),
-
     selectItem(id) {
       /**
        * In Order To toggle the product detail in one button
@@ -129,13 +127,18 @@ export default {
         this.selectProduct_id = id;
       }
     },
+    closeItem() {
+      this.selectProduct_id = 0;
+    },
 
     /** use for choice pannel open or close*/
-    wandOrder(item) {
+    wandOrder(id) {
+      this.selectProduct_id = id;
       this.wantOrder = true;
     },
     closeChoiceForm() {
       this.wantOrder = false;
+      this.selectProduct_id = 0;
     },
     /**choice pannel end */
 
@@ -150,6 +153,7 @@ export default {
 
       this.wantOrder = false;
       this.addNewItemToOrderList(newItem);
+      this.selectProduct_id = 0;
     },
     handleScroll() {
       let sum = 0;
@@ -164,6 +168,15 @@ export default {
           break;
         }
       }
+    },
+    getOrderQty(id) {
+      let qty = 0;
+      this.orderList.forEach(el => {
+        if (el.item.product_id === id) {
+          qty += el.quantity;
+        }
+      });
+      return qty;
     }
   },
   components: { ChoiceForm }
@@ -179,6 +192,32 @@ export default {
   z-index: 600;
   top: 0;
   left: 0;
+}
+span.orderQty {
+  position: absolute;
+  background-color: #eb4d4b;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  text-align: center;
+  height: 20px;
+  font-weight: 800;
+  line-height: 18px;
+  text-shadow: 1px 1px 1px black;
+  box-shadow: inset 0px 0px 1px white;
+  z-index: 2;
+  &.activeOrderQty {
+    bottom: 0;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    font-size: 24px;
+  }
+  &.unactiveOrderQty {
+    right: -15px;
+    top: -8px;
+  }
 }
 .productList {
   margin-top: 50px;
@@ -297,8 +336,8 @@ export default {
       &.active {
         bottom: 0px;
         transition: all 0.5s;
-        &.add-button {
-          left: -20px;
+        &.close-button {
+          top: 0;
           transition: all 0.5s;
         }
       }

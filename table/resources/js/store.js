@@ -17,9 +17,13 @@ export default {
         //ToDo: store_id, store_name, store_url should be generated automaticly.
         store_id: 4,
         store_name: "Monkey King Thai Restaurant",
-        store_url: "http://192.168.1.221/"
+        store_url: "http://192.168.1.221/",
+        formClass: "zoomInDown"
     },
     getters: {
+        formClass: state => {
+            return state.formClass;
+        },
         isEN: state => {
             return state.isEN;
         },
@@ -89,6 +93,9 @@ export default {
         }
     },
     mutations: {
+        updateFormClass(state, payload) {
+            state.formClass = payload;
+        },
         updateIsEN(state, payload) {
             state.isEN = payload;
         },
@@ -195,6 +202,9 @@ export default {
         },
         setIsEN(context, newStatus) {
             context.commit("updateIsEN", newStatus);
+        },
+        setFormClass(context, newClass) {
+            context.commit("updateFormClass", newClass);
         }
     }
 };

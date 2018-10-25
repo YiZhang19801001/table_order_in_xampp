@@ -57,6 +57,9 @@ ul {
 }
 .container {
   margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 0;
 }
 .container input {
   position: absolute;
@@ -89,7 +92,7 @@ ul {
 }
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark-wrap {
-  background-color: red;
+  background-color: #eb4d4b;
 }
 .choice-name {
   text-align: center;

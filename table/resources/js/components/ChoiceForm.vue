@@ -1,9 +1,9 @@
 <template>
 
 
-            <form class="choice-form"  @submit.prevent="addToOrder()" ref="choices_form" key="animation-form">
+            <form class="choice-form animated zoomInDown" id="choiceForm"  @submit.prevent="addToOrder()" key="animation-form">
                 <!-- header -->
-                <div class="choice-form-title">Make Your Choices<p @click="closeChoiceForm"><i class="material-icons">close</i></p></div>
+                <div class="choice-form-title">Make Your Choices<p @click="closeForm"><i class="material-icons">close</i></p></div>
                 <!-- header end -->
 
                 <!-- choice & option summary -->
@@ -60,11 +60,11 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["isEN"])
+    ...mapGetters(["isEN", "formClass"])
   },
   mounted() {},
   methods: {
-    ...mapActions(["addNewItemToOrderList"]),
+    ...mapActions(["addNewItemToOrderList", "setFormClass"]),
     addToOrder() {
       let newItem = JSON.parse(JSON.stringify(this.item));
       newItem.choices.forEach((ele, index) => {
@@ -79,8 +79,14 @@ export default {
       });
       this.pickedChoices = [];
       this.pickedOptions = [];
-      this.closeChoiceForm();
-      this.addNewItemToOrderList(newItem);
+
+      document.getElementById("choiceForm").className =
+        "choice-form animated zoomOutDown";
+
+      this.delay(800).then(res => {
+        this.closeChoiceForm();
+        this.addNewItemToOrderList(newItem);
+      });
     },
     addChoice(value, index) {
       this.pickedChoices[index] = value;
@@ -88,8 +94,23 @@ export default {
     addOption(value, index) {
       this.pickedOptions[index] = value;
     },
+    closeForm() {
+      document.getElementById("choiceForm").className =
+        "choice-form animated zoomOut";
+
+      this.delay(300).then(res => {
+        this.closeChoiceForm();
+      });
+    },
     closeChoiceForm() {
       this.$emit("closeChoiceForm");
+    },
+    delay(time) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve("resolved");
+        }, time);
+      });
     }
   },
   components: {

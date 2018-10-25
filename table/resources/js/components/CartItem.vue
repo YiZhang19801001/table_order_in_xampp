@@ -15,9 +15,9 @@
         </span>
         <div class="shoppingCart-button-group">
             <div class="button-group-container">
-                    <span @click="decrease(orderItem,index)">-</span>
+                    <span @click="decrease()">-</span>
                     <span>{{orderItem.quantity}}</span>
-                    <span @click="increase(orderItem)">+</span>
+                    <span @click="increase()">+</span>
             </div>
         </div>
         <span class="shoppingCart-item-price">
