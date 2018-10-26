@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
+        "paypal/rest-api-sdk-php": "^1.13",
         "pusher/pusher-php-server": "^3.2",
         "reliese/laravel": "^0.0.13"
     },

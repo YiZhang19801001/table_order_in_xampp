@@ -48,11 +48,11 @@ export default {
 <style lang="scss" scoped>
 ul {
   display: flex;
+  flex-wrap: wrap;
   li {
     display: flex;
     flex-direction: column;
-
-    flex: 1;
+    min-width: 33%;
   }
 }
 .container {
