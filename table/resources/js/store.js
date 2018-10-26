@@ -17,9 +17,14 @@ export default {
         //ToDo: store_id, store_name, store_url should be generated automaticly.
         store_id: 4,
         store_name: "Monkey King Thai Restaurant",
-        store_url: "http://192.168.1.221/"
+        store_url: "http://192.168.1.221/",
+        /**init config data */
+        app_conf: {}
     },
     getters: {
+        app_conf: state => {
+            return state.app_conf;
+        },
         isEN: state => {
             return state.isEN;
         },
@@ -89,6 +94,9 @@ export default {
         }
     },
     mutations: {
+        updateApp_conf(state, payload) {
+            state.app_conf = payload;
+        },
         updateIsEN(state, payload) {
             state.isEN = payload;
         },
@@ -144,6 +152,11 @@ export default {
     },
 
     actions: {
+        setAppConfig(context) {
+            axios.get("/table/public/api/init").then(res => {
+                context.commit("updateApp_conf", res.data.app_conf);
+            });
+        },
         getCategoryList(context) {
             axios.get("/table/public/api/categories").then(res => {
                 context.commit("updateCategoryList", res.data.categories);

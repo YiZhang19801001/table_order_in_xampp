@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
+// get app configuration data
+Route::get('init','InitController@index');
+
 //list the categories
 Route::get('categories','categoryController@index');
 Route::get('products','ProductController@index');

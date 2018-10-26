@@ -3,7 +3,7 @@
 
             <form class="choice-form"  @submit.prevent="addToOrder()" ref="choices_form" key="animation-form">
                 <!-- header -->
-                <div class="choice-form-title">Make Your Choices<p @click="closeChoiceForm"><i class="material-icons">close</i></p></div>
+                <div class="choice-form-title">{{app_conf.choice_form_title}}<p @click="closeChoiceForm"><i class="material-icons">close</i></p></div>
                 <!-- header end -->
 
                 <!-- choice & option summary -->
@@ -35,7 +35,7 @@
                 <!-- confirm button -->
                 <div class="form_button_container">
                     <button class="addButton" type="submit">
-                        <i class="material-icons">add_shopping_cart</i> {{isEN?"Add Item to Order":"加入菜单"}}
+                        <i class="material-icons">add_shopping_cart</i> {{app_conf.choice_form_button}}
                     </button>
                 </div>
                 <!-- confirm button end -->
@@ -60,7 +60,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["isEN"])
+    ...mapGetters(["app_conf"])
   },
   mounted() {},
   methods: {

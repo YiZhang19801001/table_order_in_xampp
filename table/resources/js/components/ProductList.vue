@@ -132,7 +132,12 @@ export default {
 
     /** use for choice pannel open or close*/
     wandOrder(item) {
-      this.wantOrder = true;
+      if (this.app_conf.show_option) {
+        this.wantOrder = true;
+      } else {
+        let newItem = JSON.parse(JSON.stringify(this.item));
+        this.addNewItemToOrderList(newItem);
+      }
     },
     closeChoiceForm() {
       this.wantOrder = false;

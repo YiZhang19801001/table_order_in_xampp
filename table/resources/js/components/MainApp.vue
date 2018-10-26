@@ -25,6 +25,7 @@ export default {
     this.setTableNumber(this.$route.params.table);
     this.setCdt(this.$route.query.cdt);
     this.setV(this.$route.query.v);
+    this.setAppConfig();
     this.updateOrderList();
     /**set channel to listen */
     Echo.channel("tableOrder").listen("newOrderItemAdded", e => {
@@ -39,7 +40,8 @@ export default {
       "setOrderId",
       "setTableNumber",
       "setCdt",
-      "setV"
+      "setV",
+      "setAppConfig"
     ]),
     updateOrderList() {
       axios
