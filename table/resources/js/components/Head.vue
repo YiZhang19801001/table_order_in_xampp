@@ -6,7 +6,7 @@
             <span @click="setToEN" class="languageButton" :class="{languageButtonInactive:isEN}">EN</span>
 </span> -->
     </div>
-    <h2>{{isEN?"Table":"桌号"}} {{table_number}}</h2>
+    <h2>{{app_conf.app_header_title}} {{table_number}}</h2>
 </div>
 </template>
 
@@ -14,17 +14,15 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["table_number", "isEN"])
+    ...mapGetters(["table_number", "app_conf"])
   },
   methods: {
     ...mapActions(["setIsEN"]),
     setToCN() {
       this.setIsEN(false);
-      console.log(this.isEN);
     },
     setToEN() {
       this.setIsEN(true);
-      console.log(this.isEN);
     }
   }
 };

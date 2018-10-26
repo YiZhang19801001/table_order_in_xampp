@@ -9,7 +9,7 @@
                 <li class="orderItem-choice" v-for="(option,index2) in orderItem.item.options" :key="index2">
                     <span>{{option.option_name}}</span>
                     <span>{{option.pickedOption}}</span>
-                    <span>AUD ${{option.price}}</span>
+                    <span>{{app_conf.currency}} ${{option.price}}</span>
                 </li>
             </ul>
         </span>
@@ -45,7 +45,8 @@ export default {
       "totalPriceOfOrder",
       "totalQuantityOfOrder",
       "orderId",
-      "table_number"
+      "table_number",
+      "app_conf"
     ])
   },
   mounted() {

@@ -4,24 +4,24 @@
         <!-- payment method section -->
 <section>
             <div class="payment-method">
-                <h6><router-link :to="pathFrom"><i class="material-icons">arrow_back_ios</i></router-link>{{isEN?"Payment Method":"支付方式"}}</h6>
+                <h6><router-link :to="pathFrom"><i class="material-icons">arrow_back_ios</i></router-link>{{app_conf.payment_method_title}}</h6>
                 <div class="icon-group">
                     <div class="payment-choice">
                         <img src="/table/public/wechat.png" alt="">
                         <p>
-                            <input type="radio" value="credit" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"WeChat":"微信支付"}}</span>
+                            <input type="radio" value="credit" name="paymentMethod" v-model="paymentMethod"><span>{{app_conf.weChat}}</span>
                         </p>
                     </div>
                     <div class="payment-choice">
                         <img src="/table/public/paypal.png" alt="">
                         <p>
-                            <input type="radio" value="paypal" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"Paypal":"海淘钱包"}}</span>
+                            <input type="radio" value="paypal" name="paymentMethod" v-model="paymentMethod"><span>{{app_conf.paypal}}</span>
                         </p>
                     </div>
                     <div class="payment-choice">
                         <img src="/table/public/cash1.png" alt="">
                         <p>
-                            <input type="radio" value="cash" name="paymentMethod" v-model="paymentMethod"><span>{{isEN?"DiveIn":"店内支付"}}</span>
+                            <input type="radio" value="cash" name="paymentMethod" v-model="paymentMethod"><span>{{app_conf.DiveIn}}</span>
                         </p>
                     </div>
                 </div>
@@ -31,30 +31,30 @@
 
         <!-- payment detail section -->
 <section>
-            <h6>Pament Detail</h6>
+            <h6>{{app_conf.payment_detail_title}}</h6>
             <div class="payment-detail-container">
                 <div>
-                    <span>{{isEN?"Price":"产品价格"}}</span>
-                    <span class="number">AUD ${{totalPriceOfOrder}}</span>
+                    <span>{{app_conf.price}}</span>
+                    <span class="number">{{app_conf.currency}} ${{totalPriceOfOrder}}</span>
                 </div>
                 <!-- <div v-if="isEN">
                     <span>GST</span>
                     <span class="number">AUD $0.00</span>
                 </div> -->
-                <div v-if="!isEN">
+                <!-- <div v-if="!isEN">
                     <span>人民币</span>
                     <span class="number">CNY ¥{{totalPriceOfOrder * 5}}</span>
-                </div>
+                </div> -->
                 <div class="bold">
-                    <span>{{isEN?"Total (incl. GST)":"总计"}}</span>
-                    <span class="number">AUD ${{totalPriceOfOrder}}</span>
+                    <span>{{app_conf.total}}</span>
+                    <span class="number">{{app_conf.currency}} ${{totalPriceOfOrder}}</span>
                 </div>
             </div>
 </section>
         <!-- payment detail section end -->
         <!-- order section -->
 <section>
-            <h6><span>{{isEN?"Your Order":"已点菜品"}}</span> </h6>
+            <h6><span>{{app_conf.your_order_title}}</span> </h6>
             <div>
                 <!-- list of order_items -->
                 <ul>
@@ -78,7 +78,7 @@
                                         </li>
                                     </ul>
                                     <div class="orderItem-price">
-                                        <p>AUD ${{orderItem.item.price}}</p>
+                                        <p>{{app_conf.currency}} ${{orderItem.item.price}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -99,14 +99,14 @@
             <div class="footer">
                 <div class="footer-content-container">
                     <div class="footer-title">
-                        <h2>{{isEN?"Total":"总计"}}</h2>
+                        <h2>{{app_conf.total}}</h2>
                         <div class="footer-detail-info">
-                            <span>{{isEN?"table":"桌号"}} {{table_number}}</span><span>{{isEN?"order":"单号"}} {{orderId}}</span>
+                            <span>{{app_conf.app_header_title}} {{table_number}}</span><span>{{app_conf.order}} {{orderId}}</span>
                         </div>
                     </div>
                     <div class="footer-detail">
                         <div class="footer-detail-total">
-                            <span>AUD ${{totalPriceOfOrder}}</span>
+                            <span>{{app_conf.currency}} ${{totalPriceOfOrder}}</span>
                         </div>
                     </div>
                     <div @click="confirm" class="footer-button">
@@ -157,7 +157,7 @@ export default {
       "totalPriceOfOrder",
       "store_name",
       "store_url",
-      "isEN"
+      "app_conf"
     ])
   },
   methods: {
@@ -218,6 +218,7 @@ export default {
       margin: 0;
       display: flex;
       margin-bottom: 10px;
+      max-width: 160px;
       .orderItem-img {
         width: 20%;
         display: flex;

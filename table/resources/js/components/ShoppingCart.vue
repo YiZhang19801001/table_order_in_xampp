@@ -9,7 +9,7 @@
                     <i class="material-icons">shopping_cart</i>
                     <span class="badge">{{totalQuantityOfOrder}}</span>
                 </div>
-                <div class="shoppingCart-header-text">{{isEN?"Total":"总计"}} AUD ${{totalPriceOfOrder}}</div>
+                <div class="shoppingCart-header-text">{{app_conf.total}} {{app_conf.currency}} ${{totalPriceOfOrder}}</div>
                 <div v-if="isExpand" @click="toggle" class="close-btn-wrap"><i @click="toggle" class="material-icons">close</i></div>
             </div>
             <!-- toggle the list of order on clicking the header -->
@@ -20,7 +20,7 @@
                 </li>
             </ul>
             <!-- confirm order -->
-            <button v-if="isExpand" class="shoppingCart-confirm-button" @click="confirmOrder">{{isEN?"Confirm Order":"确认下单"}}</button>
+            <button v-if="isExpand" class="shoppingCart-confirm-button" @click="confirmOrder">{{app_conf.confirm_order}}</button>
         </div>
 </transition>
 </template>
@@ -47,7 +47,8 @@ export default {
       "table_number",
       "isEN",
       "cdt",
-      "v"
+      "v",
+      "app_conf"
     ])
   },
   mounted() {},
