@@ -23,7 +23,7 @@ class InitController extends Controller
                 break;
         }
 
-        $app_conf["show_option"] = env("MIX_SHOW_OPTIONS");
+        $app_conf["show_option"] = env("MIX_SHOW_OPTIONS",true);
 
         return response()->json([
             "app_conf" => $app_conf

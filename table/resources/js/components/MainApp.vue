@@ -72,6 +72,7 @@ $duration: 1s;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100000000;
 }
 .spinner {
   animation: rotator $duration linear infinite;

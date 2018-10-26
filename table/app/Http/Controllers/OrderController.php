@@ -59,25 +59,34 @@ class OrderController extends Controller
         else{
             /**check 3 columns type, picked_Choice and order_item_id */
             foreach ($arr_order_items as $order_item) {
-                /** order_item_id && choice_type will get single record then compare with the params */
-                foreach ($new_item["choices"] as $new_choice) {
-                    $choice_in_DB = Temp_pickedChoice::where("order_item_id",$order_item["id"])->where("choice_type",$new_choice["type"])->first();
-                    if($choice_in_DB["picked_Choice"]==$new_choice["pickedChoice"]){
-                        $alreadyHave = true;
-                    }else{
-                        $alreadyHave = false;
-                        break;
+                if(count($new_item["choices"])!=0){
+                    /** order_item_id && choice_type will get single record then compare with the params */
+                    foreach ($new_item["choices"] as $new_choice) {
+                        $choice_in_DB = Temp_pickedChoice::where("order_item_id",$order_item["id"])->where("choice_type",$new_choice["type"])->first();
+                        if($choice_in_DB["picked_Choice"]==$new_choice["pickedChoice"]){
+                            $alreadyHave = true;
+                        }else{
+                            $alreadyHave = false;
+                            break;
+                        }
+                    }
+                }else{
+                    $alreadyHave = true;
+                }
+                if(count($new_item["options"])!=0){
+                    foreach ($new_item["options"] as $new_option) {
+                        $option_in_DB = Temp_pickedOption::where("order_item_id",$order_item["id"])->where("option_name",$new_option["option_name"])->first();
+                        if($option_in_DB["pickedOption"]==$new_option["pickedOption"]){
+                            $optionIsSame = true;
+                        }
+                        else{
+                            $optionIsSame=false;
+                            break;
+                        }
                     }
                 }
-                foreach ($new_item["options"] as $new_option) {
-                    $option_in_DB = Temp_pickedOption::where("order_item_id",$order_item["id"])->where("option_name",$new_option["option_name"])->first();
-                    if($option_in_DB["pickedOption"]==$new_option["pickedOption"]){
-                        $optionIsSame = true;
-                    }
-                    else{
-                        $optionIsSame=false;
-                        break;
-                    }
+                else{
+                    $optionIsSame = true;
                 }
                 if ($alreadyHave && $optionIsSame) {
                     Temp_order_item::where('id',$order_item["id"])->increment('quantity');
@@ -87,6 +96,8 @@ class OrderController extends Controller
                 }
 
             }
+            //use for debuging.
+            //return response()->json(["alreadyHave"=>$alreadyHave,"optionIsSame"=>$optionIsSame]);
             if(!$alreadyHave || !$optionIsSame){
                 $this->createOrderHelper($new_item,$request->orderId);
             }

@@ -63134,7 +63134,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     };
   },
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(["productList", "orderList", "scrollPositionId"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_1_vuex__["c" /* mapGetters */])(["productList", "orderList", "scrollPositionId", "app_conf"])),
   watch: {
     section: function section() {
       var sum = 0;
@@ -63174,9 +63174,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     /** use for choice pannel open or close*/
     wandOrder: function wandOrder(item) {
       if (this.app_conf.show_option) {
+        this.selectProduct_id = item.product_id;
         this.wantOrder = true;
       } else {
-        var newItem = JSON.parse(JSON.stringify(this.item));
+        var newItem = JSON.parse(JSON.stringify(item));
         this.addNewItemToOrderList(newItem);
       }
     },
@@ -63313,7 +63314,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.cover[data-v-48f24830] {\n  position: fixed;\n  height: 100vh;\n  background: #0000009c;\n  width: 100vw;\n  z-index: 600;\n  top: 0;\n  left: 0;\n}\n.productList[data-v-48f24830] {\n  margin-top: 50px;\n  width: 70%;\n  -webkit-box-shadow: 0px 2px 3px #00000038;\n          box-shadow: 0px 2px 3px #00000038;\n  padding: 0px 5px;\n}\n.productList .product[data-v-48f24830] {\n    color: #797876;\n    padding: 13px;\n    min-height: 80px;\n    margin: auto;\n    margin-bottom: 5px;\n    width: 80%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-shadow: 0px 1px 4px #c4c3c2;\n            box-shadow: 0px 1px 4px #c4c3c2;\n    border-radius: 8px;\n}\n.productList .product img[data-v-48f24830] {\n      width: 50px;\n      height: 50px;\n      border-radius: 20%;\n      position: absolute;\n      z-index: -1;\n      left: -10%;\n      top: 13px;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n}\n.productList .product img.activeimg[data-v-48f24830] {\n        border-top-left-radius: 8px;\n        border-top-right-radius: 8px;\n        border-bottom-left-radius: 0px;\n        border-bottom-right-radius: 0px;\n        width: 100%;\n        height: 75%;\n        left: 0;\n        top: 0;\n        -webkit-box-shadow: none;\n                box-shadow: none;\n}\n.productList .product .text-container[data-v-48f24830] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      width: 80%;\n      margin: 0 auto;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding-left: 5px;\n}\n.productList .product .text-container h5[data-v-48f24830] {\n        color: black;\n        font-weight: bold;\n        font-size: 13px;\n        margin: 0;\n        margin-bottom: 8px;\n}\n.productList .product .text-container h5.activeH5[data-v-48f24830] {\n          color: white;\n          font-size: 16px;\n}\n.productList .product .text-container p.price[data-v-48f24830] {\n        color: #eb4d4b;\n        margin: 0;\n}\n.productList .product .button[data-v-48f24830] {\n      border-radius: 50%;\n      width: 40px;\n      height: 40px;\n      background: white;\n      font-size: 20px;\n      border: none;\n      color: #f53b50;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n      position: absolute;\n      z-index: 100;\n      right: -20px;\n      outline: none;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      justify-items: center;\n}\n.productList .product .button.active[data-v-48f24830] {\n        bottom: 0px;\n}\n.productList .product .button.active.add-button[data-v-48f24830] {\n          right: 30px;\n}\n.productList .product .button.unactive[data-v-48f24830] {\n        top: 20px;\n}\n.productList .product .choice-form[data-v-48f24830] {\n      position: fixed;\n      z-index: 800;\n      width: 80%;\n      top: 30%;\n      left: 10%;\n      border-radius: 8px;\n      background-color: #fff;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .choice-form .choice-form-title[data-v-48f24830] {\n        font-size: 16px;\n        font-weight: bold;\n        color: #ffffff;\n        text-shadow: 0px 1px 1px black;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        padding: 2px 10px;\n        background-color: #eb4d4b;\n        border-top-left-radius: 8px;\n        border-top-right-radius: 8px;\n}\n.productList .product .choice-form .choice-group[data-v-48f24830] {\n        -webkit-box-shadow: 0px 2px 2px #00000094;\n                box-shadow: 0px 2px 2px #00000094;\n        padding: 8px;\n        border-radius: 8px;\n        background-color: rgba(190, 191, 192, 0.25);\n        min-height: 100px;\n        width: 80%;\n        margin: auto;\n        margin-top: 20px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.productList .product .choice-form .choice-group h4[data-v-48f24830] {\n          font-size: 16px;\n          color: #000;\n          margin: 0;\n          font-weight: 900;\n          text-align: center;\n          margin-bottom: 8px;\n}\n.productList .product .choice-form .choice-group ul[data-v-48f24830] {\n          list-style-type: none;\n          padding: 0;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          margin: 0;\n          margin-bottom: 4px;\n}\n.productList .product .choice-form .choice-group ul li[data-v-48f24830] {\n            color: black;\n            vertical-align: middle;\n            font-size: 11px;\n}\n.productList .product .choice-form .choice-group ul li input[data-v-48f24830] {\n              -webkit-box-sizing: border-box;\n                      box-sizing: border-box;\n              padding: 0;\n              vertical-align: middle;\n}\n.productList .product .choice-form .choice-group ul li span[data-v-48f24830] {\n              vertical-align: middle;\n              font-size: 12px;\n              font-weight: 800;\n              color: white;\n              text-shadow: 0px 1px 1px black;\n}\n.productList .product .form_button_container[data-v-48f24830] {\n      text-align: right;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      position: relative;\n      height: 30px;\n}\n.productList .product .form_button_container .addButton[data-v-48f24830] {\n        color: #fff;\n        padding: 5px 10px;\n        border: none;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        background: #ffc24a;\n        -webkit-box-shadow: 0px 5px 5px #00000038;\n                box-shadow: 0px 5px 5px #00000038;\n        text-shadow: 1px 1px 2px black;\n        letter-spacing: 0.6px;\n        border-radius: 8px;\n        position: fixed;\n        width: 60%;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        left: 20%;\n        margin: 12px 0px;\n}\n.productList .activeProduct[data-v-48f24830] {\n    color: black;\n}\n.productList .activeProduct h5[data-v-48f24830] {\n      color: white;\n      font-size: 18px;\n}\n.productList .activeProduct h4[data-v-48f24830] {\n      color: black;\n}\n.productList .activeProduct p[data-v-48f24830] {\n      max-height: none;\n      float: none;\n      margin: 0;\n}\n.productList h4[data-v-48f24830] {\n    margin-left: 5px;\n    margin-top: 6px;\n    margin-bottom: 0px;\n}\n", ""]);
+exports.push([module.i, "\n.detail-contianer[data-v-48f24830] {\n  min-height: 180px;\n  max-height: 250px;\n  overflow: scroll;\n}\n.cover[data-v-48f24830] {\n  position: fixed;\n  height: 100vh;\n  background: #0000009c;\n  width: 100vw;\n  z-index: 600;\n  top: 0;\n  left: 0;\n}\n.productList[data-v-48f24830] {\n  margin-top: 50px;\n  width: 70%;\n  -webkit-box-shadow: 0px 2px 3px #00000038;\n          box-shadow: 0px 2px 3px #00000038;\n  padding: 0px 5px;\n}\n.productList .product[data-v-48f24830] {\n    color: #797876;\n    padding: 13px;\n    min-height: 80px;\n    margin: auto;\n    margin-bottom: 5px;\n    width: 80%;\n    position: relative;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-shadow: 0px 1px 4px #c4c3c2;\n            box-shadow: 0px 1px 4px #c4c3c2;\n    border-radius: 8px;\n}\n.productList .product img[data-v-48f24830] {\n      width: 50px;\n      height: 50px;\n      border-radius: 20%;\n      position: absolute;\n      z-index: -1;\n      left: -10%;\n      top: 13px;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n}\n.productList .product img.activeimg[data-v-48f24830] {\n        border-top-left-radius: 8px;\n        border-top-right-radius: 8px;\n        border-bottom-left-radius: 0px;\n        border-bottom-right-radius: 0px;\n        width: 100%;\n        height: 75%;\n        left: 0;\n        top: 0;\n        -webkit-box-shadow: none;\n                box-shadow: none;\n}\n.productList .product .text-container[data-v-48f24830] {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      width: 80%;\n      margin: 0 auto;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between;\n      padding-left: 5px;\n}\n.productList .product .text-container h5[data-v-48f24830] {\n        color: black;\n        font-weight: bold;\n        font-size: 13px;\n        margin: 0;\n        margin-bottom: 8px;\n}\n.productList .product .text-container h5.activeH5[data-v-48f24830] {\n          color: white;\n          font-size: 16px;\n}\n.productList .product .text-container p.price[data-v-48f24830] {\n        color: #eb4d4b;\n        margin: 0;\n}\n.productList .product .button[data-v-48f24830] {\n      border-radius: 50%;\n      width: 40px;\n      height: 40px;\n      background: white;\n      font-size: 20px;\n      border: none;\n      color: #f53b50;\n      -webkit-box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n              box-shadow: 0px 2px 5px rgba(75, 73, 73, 0.6);\n      position: absolute;\n      z-index: 100;\n      right: -20px;\n      outline: none;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      justify-items: center;\n}\n.productList .product .button.active[data-v-48f24830] {\n        bottom: 0px;\n}\n.productList .product .button.active.add-button[data-v-48f24830] {\n          right: 30px;\n}\n.productList .product .button.unactive[data-v-48f24830] {\n        top: 20px;\n}\n.productList .product .choice-form[data-v-48f24830] {\n      position: fixed;\n      z-index: 800;\n      width: 80%;\n      top: 30%;\n      left: 10%;\n      border-radius: 8px;\n      background-color: #fff;\n      -webkit-transition: all 0.5s;\n      transition: all 0.5s;\n}\n.productList .product .choice-form .choice-form-title[data-v-48f24830] {\n        font-size: 16px;\n        font-weight: bold;\n        color: #ffffff;\n        text-shadow: 0px 1px 1px black;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-pack: justify;\n            -ms-flex-pack: justify;\n                justify-content: space-between;\n        padding: 2px 10px;\n        background-color: #eb4d4b;\n        border-top-left-radius: 8px;\n        border-top-right-radius: 8px;\n}\n.productList .product .choice-form .choice-group[data-v-48f24830] {\n        -webkit-box-shadow: 0px 2px 2px #00000094;\n                box-shadow: 0px 2px 2px #00000094;\n        padding: 8px;\n        border-radius: 8px;\n        background-color: rgba(190, 191, 192, 0.25);\n        min-height: 100px;\n        max-height: 130px;\n        overflow: scroll;\n        width: 80%;\n        margin: auto;\n        margin-top: 20px;\n        margin-bottom: 20px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column;\n        -ms-flex-pack: distribute;\n            justify-content: space-around;\n}\n.productList .product .choice-form .choice-group h4[data-v-48f24830] {\n          font-size: 16px;\n          color: #000;\n          margin: 0;\n          font-weight: 900;\n          text-align: center;\n          margin-bottom: 8px;\n}\n.productList .product .choice-form .choice-group ul[data-v-48f24830] {\n          list-style-type: none;\n          padding: 0;\n          display: -webkit-box;\n          display: -ms-flexbox;\n          display: flex;\n          -ms-flex-pack: distribute;\n              justify-content: space-around;\n          margin: 0;\n          margin-bottom: 4px;\n}\n.productList .product .choice-form .choice-group ul li[data-v-48f24830] {\n            color: black;\n            vertical-align: middle;\n            font-size: 11px;\n}\n.productList .product .choice-form .choice-group ul li input[data-v-48f24830] {\n              -webkit-box-sizing: border-box;\n                      box-sizing: border-box;\n              padding: 0;\n              vertical-align: middle;\n}\n.productList .product .choice-form .choice-group ul li span[data-v-48f24830] {\n              vertical-align: middle;\n              font-size: 12px;\n              font-weight: 800;\n              color: white;\n              text-shadow: 0px 1px 1px black;\n}\n.productList .product .form_button_container[data-v-48f24830] {\n      text-align: right;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center;\n      position: relative;\n      height: 30px;\n}\n.productList .product .form_button_container .addButton[data-v-48f24830] {\n        color: #fff;\n        padding: 5px 10px;\n        border: none;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        background: #ffc24a;\n        -webkit-box-shadow: 0px 5px 5px #00000038;\n                box-shadow: 0px 5px 5px #00000038;\n        text-shadow: 1px 1px 2px black;\n        letter-spacing: 0.6px;\n        border-radius: 8px;\n        position: fixed;\n        width: 60%;\n        display: flex;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center;\n        left: 20%;\n        margin: 12px 0px;\n}\n.productList .activeProduct[data-v-48f24830] {\n    color: black;\n}\n.productList .activeProduct h5[data-v-48f24830] {\n      color: white;\n      font-size: 18px;\n}\n.productList .activeProduct h4[data-v-48f24830] {\n      color: black;\n}\n.productList .activeProduct p[data-v-48f24830] {\n      max-height: none;\n      float: none;\n      margin: 0;\n}\n.productList h4[data-v-48f24830] {\n    margin-left: 5px;\n    margin-top: 6px;\n    margin-bottom: 0px;\n}\n", ""]);
 
 // exports
 
@@ -63331,8 +63332,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Option_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Option_vue__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
 //
 //
 //
@@ -63890,21 +63889,12 @@ var render = function() {
       }
     },
     [
-      _vm._v("\n<<<<<<< HEAD\n                "),
       _c("div", { staticClass: "choice-form-title" }, [
-        _vm._v("Make Your Choices"),
+        _vm._v(_vm._s(_vm.app_conf.choice_form_title)),
         _c("p", { on: { click: _vm.closeForm } }, [
           _c("i", { staticClass: "material-icons" }, [_vm._v("close")])
         ])
       ]),
-      _vm._v("\n=======\n                "),
-      _c("div", { staticClass: "choice-form-title" }, [
-        _vm._v(_vm._s(_vm.app_conf.choice_form_title)),
-        _c("p", { on: { click: _vm.closeChoiceForm } }, [
-          _c("i", { staticClass: "material-icons" }, [_vm._v("close")])
-        ])
-      ]),
-      _vm._v("\n>>>>>>> languageSwitch\n                "),
       _vm._v(" "),
       _vm.pickedChoices.length > 0 || _vm.pickedOptions.length > 0
         ? _c(
@@ -63945,52 +63935,54 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm._l(_vm.item.choices, function(choice_type, index) {
-        return _c(
-          "div",
-          { key: index, staticClass: "choice-group" },
-          [
-            _c("h4", [_vm._v(_vm._s(choice_type.type))]),
-            _vm._v(" "),
-            _c("Choice", {
-              attrs: { choice_type: choice_type, index: index },
-              on: { pickValue: _vm.addChoice }
-            })
-          ],
-          1
-        )
-      }),
-      _vm._v(" "),
-      _vm._l(_vm.item.options, function(option, index2) {
-        return _c(
-          "div",
-          { key: index2, staticClass: "choice-group" },
-          [
-            _c("h4", [_vm._v(_vm._s(option.option_name))]),
-            _vm._v(" "),
-            _c("Option", {
-              attrs: { option: option, index: index2 },
-              on: { pickValue: _vm.addOption }
-            })
-          ],
-          1
-        )
-      }),
+      _c(
+        "div",
+        { staticClass: "detail-contianer" },
+        [
+          _vm._l(_vm.item.choices, function(choice_type, index) {
+            return _c(
+              "div",
+              { key: index, staticClass: "choice-group" },
+              [
+                _c("h4", [_vm._v(_vm._s(choice_type.type))]),
+                _vm._v(" "),
+                _c("Choice", {
+                  attrs: { choice_type: choice_type, index: index },
+                  on: { pickValue: _vm.addChoice }
+                })
+              ],
+              1
+            )
+          }),
+          _vm._v(" "),
+          _vm._l(_vm.item.options, function(option, index2) {
+            return _c(
+              "div",
+              { key: index2, staticClass: "choice-group" },
+              [
+                _c("h4", [_vm._v(_vm._s(option.option_name))]),
+                _vm._v(" "),
+                _c("Option", {
+                  attrs: { option: option, index: index2 },
+                  on: { pickValue: _vm.addOption }
+                })
+              ],
+              1
+            )
+          })
+        ],
+        2
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "form_button_container" }, [
         _c("button", { staticClass: "addButton", attrs: { type: "submit" } }, [
           _c("i", { staticClass: "material-icons" }, [
             _vm._v("add_shopping_cart")
           ]),
-          _vm._v(
-            " " +
-              _vm._s(_vm.app_conf.choice_form_button) +
-              "\n                    "
-          )
+          _vm._v(" " + _vm._s(_vm.app_conf.choice_form_button) + "\n        ")
         ])
       ])
-    ],
-    2
+    ]
   )
 }
 var staticRenderFns = []
@@ -64130,7 +64122,7 @@ var render = function() {
                       },
                       on: {
                         click: function($event) {
-                          _vm.wandOrder(item.product_id)
+                          _vm.wandOrder(item)
                         }
                       }
                     },
@@ -65011,7 +65003,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.spinner-container[data-v-736a0b0d] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  height: 100vh;\n  width: 100vw;\n  background-color: white;\n  position: fixed;\n  top: 0;\n  left: 0;\n}\n.spinner[data-v-736a0b0d] {\n  -webkit-animation: rotator-data-v-736a0b0d 1s linear infinite;\n          animation: rotator-data-v-736a0b0d 1s linear infinite;\n}\n@-webkit-keyframes rotator-data-v-736a0b0d {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n}\n}\n@keyframes rotator-data-v-736a0b0d {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n}\n}\n.path[data-v-736a0b0d] {\n  stroke-dasharray: 187;\n  stroke-dashoffset: 180;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  -webkit-animation: dash-data-v-736a0b0d 1s ease-in-out infinite,colors-data-v-736a0b0d 4s ease-in-out infinite;\n          animation: dash-data-v-736a0b0d 1s ease-in-out infinite,colors-data-v-736a0b0d 4s ease-in-out infinite;\n}\n@-webkit-keyframes colors-data-v-736a0b0d {\n0% {\n    stroke: #4285f4;\n}\n25% {\n    stroke: #de3e35;\n}\n50% {\n    stroke: #f7c223;\n}\n75% {\n    stroke: #1b9a59;\n}\n100% {\n    stroke: #4285f4;\n}\n}\n@keyframes colors-data-v-736a0b0d {\n0% {\n    stroke: #4285f4;\n}\n25% {\n    stroke: #de3e35;\n}\n50% {\n    stroke: #f7c223;\n}\n75% {\n    stroke: #1b9a59;\n}\n100% {\n    stroke: #4285f4;\n}\n}\n@-webkit-keyframes dash-data-v-736a0b0d {\n0% {\n    stroke-dashoffset: 187;\n}\n50% {\n    stroke-dashoffset: 46.75;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n100% {\n    stroke-dashoffset: 187;\n    -webkit-transform: rotate(450deg);\n            transform: rotate(450deg);\n}\n}\n@keyframes dash-data-v-736a0b0d {\n0% {\n    stroke-dashoffset: 187;\n}\n50% {\n    stroke-dashoffset: 46.75;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n100% {\n    stroke-dashoffset: 187;\n    -webkit-transform: rotate(450deg);\n            transform: rotate(450deg);\n}\n}\n", ""]);
+exports.push([module.i, "\n.spinner-container[data-v-736a0b0d] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  height: 100vh;\n  width: 100vw;\n  background-color: white;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 100000000;\n}\n.spinner[data-v-736a0b0d] {\n  -webkit-animation: rotator-data-v-736a0b0d 1s linear infinite;\n          animation: rotator-data-v-736a0b0d 1s linear infinite;\n}\n@-webkit-keyframes rotator-data-v-736a0b0d {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n}\n}\n@keyframes rotator-data-v-736a0b0d {\n0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg);\n}\n100% {\n    -webkit-transform: rotate(270deg);\n            transform: rotate(270deg);\n}\n}\n.path[data-v-736a0b0d] {\n  stroke-dasharray: 187;\n  stroke-dashoffset: 180;\n  -webkit-transform-origin: center;\n          transform-origin: center;\n  -webkit-animation: dash-data-v-736a0b0d 1s ease-in-out infinite,colors-data-v-736a0b0d 4s ease-in-out infinite;\n          animation: dash-data-v-736a0b0d 1s ease-in-out infinite,colors-data-v-736a0b0d 4s ease-in-out infinite;\n}\n@-webkit-keyframes colors-data-v-736a0b0d {\n0% {\n    stroke: #4285f4;\n}\n25% {\n    stroke: #de3e35;\n}\n50% {\n    stroke: #f7c223;\n}\n75% {\n    stroke: #1b9a59;\n}\n100% {\n    stroke: #4285f4;\n}\n}\n@keyframes colors-data-v-736a0b0d {\n0% {\n    stroke: #4285f4;\n}\n25% {\n    stroke: #de3e35;\n}\n50% {\n    stroke: #f7c223;\n}\n75% {\n    stroke: #1b9a59;\n}\n100% {\n    stroke: #4285f4;\n}\n}\n@-webkit-keyframes dash-data-v-736a0b0d {\n0% {\n    stroke-dashoffset: 187;\n}\n50% {\n    stroke-dashoffset: 46.75;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n100% {\n    stroke-dashoffset: 187;\n    -webkit-transform: rotate(450deg);\n            transform: rotate(450deg);\n}\n}\n@keyframes dash-data-v-736a0b0d {\n0% {\n    stroke-dashoffset: 187;\n}\n50% {\n    stroke-dashoffset: 46.75;\n    -webkit-transform: rotate(135deg);\n            transform: rotate(135deg);\n}\n100% {\n    stroke-dashoffset: 187;\n    -webkit-transform: rotate(450deg);\n            transform: rotate(450deg);\n}\n}\n", ""]);
 
 // exports
 

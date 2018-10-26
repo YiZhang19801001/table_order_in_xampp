@@ -41,7 +41,7 @@
                 <transition>
                 <button class="button"
                 v-bind:class="{active:item.product_id===selectProduct_id,unactive:item.product_id!==selectProduct_id}"
-                @click="wandOrder(item.product_id)">
+                @click="wandOrder(item)">
                     <i class="material-icons">
                        add
                     </i>
@@ -89,7 +89,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["productList", "orderList", "scrollPositionId"])
+    ...mapGetters(["productList", "orderList", "scrollPositionId", "app_conf"])
   },
   watch: {
     section: function() {
@@ -134,9 +134,10 @@ export default {
     /** use for choice pannel open or close*/
     wandOrder(item) {
       if (this.app_conf.show_option) {
+        this.selectProduct_id = item.product_id;
         this.wantOrder = true;
       } else {
-        let newItem = JSON.parse(JSON.stringify(this.item));
+        let newItem = JSON.parse(JSON.stringify(item));
         this.addNewItemToOrderList(newItem);
       }
     },

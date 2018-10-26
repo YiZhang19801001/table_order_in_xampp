@@ -3,11 +3,7 @@
 
             <form class="choice-form animated zoomInDown" id="choiceForm"  @submit.prevent="addToOrder()" key="animation-form">
                 <!-- header -->
-<<<<<<< HEAD
-                <div class="choice-form-title">Make Your Choices<p @click="closeForm"><i class="material-icons">close</i></p></div>
-=======
-                <div class="choice-form-title">{{app_conf.choice_form_title}}<p @click="closeChoiceForm"><i class="material-icons">close</i></p></div>
->>>>>>> languageSwitch
+                <div class="choice-form-title">{{app_conf.choice_form_title}}<p @click="closeForm"><i class="material-icons">close</i></p></div>
                 <!-- header end -->
 
                 <!-- choice & option summary -->
@@ -22,19 +18,21 @@
                 </div>
                 <!-- choice & option summary end-->
 
-                <!-- product_ext -->
-                <div v-for="(choice_type, index) in item.choices" class="choice-group" :key="index">
-                    <h4>{{choice_type.type}}</h4>
-                    <Choice :choice_type="choice_type" :index="index" @pickValue="addChoice"></Choice>
-                </div>
-                <!-- product_ext end -->
+                <div class="detail-contianer">
+                    <!-- product_ext -->
+                    <div v-for="(choice_type, index) in item.choices" class="choice-group" :key="index">
+                        <h4>{{choice_type.type}}</h4>
+                        <Choice :choice_type="choice_type" :index="index" @pickValue="addChoice"></Choice>
+                    </div>
+                    <!-- product_ext end -->
 
-                <!-- option  -->
-                <div v-for="(option, index2) in item.options" class="choice-group" :key="index2">
-                    <h4>{{option.option_name}}</h4>
-                    <Option :option="option" :index="index2" @pickValue="addOption"></Option>
+                    <!-- option  -->
+                    <div v-for="(option, index2) in item.options" class="choice-group" :key="index2">
+                        <h4>{{option.option_name}}</h4>
+                        <Option :option="option" :index="index2" @pickValue="addOption"></Option>
+                    </div>
+                    <!-- option end -->
                 </div>
-                <!-- option end -->
 
                 <!-- confirm button -->
                 <div class="form_button_container">
@@ -124,6 +122,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.detail-contianer {
+  min-height: 180px;
+  max-height: 250px;
+  overflow: scroll;
+}
 .cover {
   position: fixed;
   height: 100vh;
@@ -251,9 +254,12 @@ export default {
         border-radius: 8px;
         background-color: rgba(190, 191, 192, 0.25);
         min-height: 100px;
+        max-height: 130px;
+        overflow: scroll;
         width: 80%;
         margin: auto;
         margin-top: 20px;
+        margin-bottom: 20px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
