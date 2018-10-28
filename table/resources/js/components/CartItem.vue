@@ -2,9 +2,9 @@
     <div class="cart-item">
         <span class="shoppingCart-item-name">
             <p class="orderItem-name">{{orderItem.item.name}}</p>
-            <ul>
+            <ul v-if="app_conf.show_option">
                 <li class="orderItem-choice" v-for="(choice,index) in orderItem.item.choices" :key="index">
-                    {{choice.type}} : {{choice.pickedChoice}}
+                    {{choice.type}} : {{choice.pickedChoice}} {{choice.price}}
                 </li>
                 <li class="orderItem-choice" v-for="(option,index2) in orderItem.item.options" :key="index2">
                     <span>{{option.option_name}}</span>
@@ -51,9 +51,11 @@ export default {
   },
   mounted() {
     let optionPrice = 0;
-    this.orderItem.item.options.forEach(option => {
-      optionPrice = optionPrice + parseFloat(option.price);
-    });
+    if (this.app_conf.show_option) {
+      this.orderItem.item.options.forEach(option => {
+        optionPrice = optionPrice + parseFloat(option.price);
+      });
+    }
 
     this.totalPrice = (
       this.orderItem.quantity *

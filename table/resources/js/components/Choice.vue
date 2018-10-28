@@ -39,7 +39,19 @@ export default {
   },
   methods: {
     pickValue() {
-      this.$emit("pickValue", this.pickedChoice, this.index);
+      let id = 0;
+      let choice_price = 0;
+      this.choice_type.choices.forEach(ele => {
+        if (ele.name === this.pickedChoice) {
+          id = ele.product_ext_id;
+          choice_price = ele.price;
+        }
+      });
+      this.$emit(
+        "pickValue",
+        { value: this.pickedChoice, product_ext_id: id, price: choice_price },
+        this.index
+      );
     }
   }
 };

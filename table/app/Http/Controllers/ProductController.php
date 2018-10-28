@@ -83,9 +83,9 @@ class ProductController extends Controller
                 $new_product["name"]          = $target_product->name;
                 $new_product["price"]         = $price;
                 $new_product["upc"]           = $upc;
+                $new_product["description"]   = $target_product->description;
                 //details only needed for show options mode
                 if($mode == 9){
-                $new_product["description"]   = $target_product->description;
                 $new_product["choices"]       = $this->getChoicesHelper($target_product->product_id,$lang);
                 $new_product["options"]       = $this->getOptionsHelper($target_product->product_id,$lang);
                 }

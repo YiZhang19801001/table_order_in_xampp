@@ -62504,21 +62504,26 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "orderItem-choice-price" }, [
-                  _c(
-                    "ul",
-                    { staticClass: "choice-list" },
-                    _vm._l(orderItem.item.choices, function(choice, index2) {
-                      return _c("li", { key: index2 }, [
-                        _vm._v(
-                          "\n                                            " +
-                            _vm._s(choice.type) +
-                            " " +
-                            _vm._s(choice.pickedChoice) +
-                            "\n                                        "
-                        )
-                      ])
-                    })
-                  ),
+                  _vm.app_conf.show_option
+                    ? _c(
+                        "ul",
+                        { staticClass: "choice-list" },
+                        _vm._l(orderItem.item.choices, function(
+                          choice,
+                          index2
+                        ) {
+                          return _c("li", { key: index2 }, [
+                            _vm._v(
+                              "\n                                            " +
+                                _vm._s(choice.type) +
+                                " " +
+                                _vm._s(choice.pickedChoice) +
+                                "\n                                        "
+                            )
+                          ])
+                        })
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("div", { staticClass: "orderItem-price" }, [
                     _c("p", [
@@ -63165,11 +63170,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     /** use for choice pannel open or close*/
     wandOrder: function wandOrder(item) {
       if (this.app_conf.show_option) {
-        this.selectProduct_id = item.product_id;
-        this.wantOrder = true;
+        if (item.choices.length < 1 && item.options < 1) {
+          var newItem = JSON.parse(JSON.stringify(item));
+          this.addNewItemToOrderList(newItem);
+        } else {
+          this.selectProduct_id = item.product_id;
+          this.wantOrder = true;
+        }
       } else {
-        var newItem = JSON.parse(JSON.stringify(item));
-        this.addNewItemToOrderList(newItem);
+        var _newItem = JSON.parse(JSON.stringify(item));
+        this.addNewItemToOrderList(_newItem);
       }
     },
     closeChoiceForm: function closeChoiceForm() {
@@ -63396,7 +63406,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
       var newItem = JSON.parse(JSON.stringify(this.item));
       newItem.choices.forEach(function (ele, index) {
-        ele.pickedChoice = _this.pickedChoices[index];
+        ele.pickedChoice = _this.pickedChoices[index].value;
+        ele.product_ext_id = _this.pickedChoices[index].product_ext_id;
+        ele.price = _this.pickedChoices[index].price;
       });
       newItem.options.forEach(function (ele, index) {
         ele.pickedOption = _this.pickedOptions[index].value;
@@ -63585,7 +63597,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     pickValue: function pickValue() {
-      this.$emit("pickValue", this.pickedChoice, this.index);
+      var _this = this;
+
+      var id = 0;
+      var choice_price = 0;
+      this.choice_type.choices.forEach(function (ele) {
+        if (ele.name === _this.pickedChoice) {
+          id = ele.product_ext_id;
+          choice_price = ele.price;
+        }
+      });
+      this.$emit("pickValue", { value: this.pickedChoice, product_ext_id: id, price: choice_price }, this.index);
     }
   }
 });
@@ -64498,9 +64520,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderList", "totalPriceOfOrder", "totalQuantityOfOrder", "orderId", "table_number", "app_conf"])),
   mounted: function mounted() {
     var optionPrice = 0;
-    this.orderItem.item.options.forEach(function (option) {
-      optionPrice = optionPrice + parseFloat(option.price);
-    });
+    if (this.app_conf.show_option) {
+      this.orderItem.item.options.forEach(function (option) {
+        optionPrice = optionPrice + parseFloat(option.price);
+      });
+    }
 
     this.totalPrice = (this.orderItem.quantity * (parseFloat(this.orderItem.item.price) + optionPrice)).toFixed(2);
   },
@@ -64533,37 +64557,51 @@ var render = function() {
         _vm._v(_vm._s(_vm.orderItem.item.name))
       ]),
       _vm._v(" "),
-      _c(
-        "ul",
-        [
-          _vm._l(_vm.orderItem.item.choices, function(choice, index) {
-            return _c("li", { key: index, staticClass: "orderItem-choice" }, [
-              _vm._v(
-                "\n                " +
-                  _vm._s(choice.type) +
-                  " : " +
-                  _vm._s(choice.pickedChoice) +
-                  "\n            "
-              )
-            ])
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.orderItem.item.options, function(option, index2) {
-            return _c("li", { key: index2, staticClass: "orderItem-choice" }, [
-              _c("span", [_vm._v(_vm._s(option.option_name))]),
-              _vm._v(" "),
-              _c("span", [_vm._v(_vm._s(option.pickedOption))]),
-              _vm._v(" "),
-              _c("span", [
-                _vm._v(
-                  _vm._s(_vm.app_conf.currency) + " $" + _vm._s(option.price)
+      _vm.app_conf.show_option
+        ? _c(
+            "ul",
+            [
+              _vm._l(_vm.orderItem.item.choices, function(choice, index) {
+                return _c(
+                  "li",
+                  { key: index, staticClass: "orderItem-choice" },
+                  [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(choice.type) +
+                        " : " +
+                        _vm._s(choice.pickedChoice) +
+                        " " +
+                        _vm._s(choice.price) +
+                        "\n            "
+                    )
+                  ]
                 )
-              ])
-            ])
-          })
-        ],
-        2
-      )
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.orderItem.item.options, function(option, index2) {
+                return _c(
+                  "li",
+                  { key: index2, staticClass: "orderItem-choice" },
+                  [
+                    _c("span", [_vm._v(_vm._s(option.option_name))]),
+                    _vm._v(" "),
+                    _c("span", [_vm._v(_vm._s(option.pickedOption))]),
+                    _vm._v(" "),
+                    _c("span", [
+                      _vm._v(
+                        _vm._s(_vm.app_conf.currency) +
+                          " $" +
+                          _vm._s(option.price)
+                      )
+                    ])
+                  ]
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "shoppingCart-button-group" }, [
@@ -66660,9 +66698,11 @@ TWEEN.Interpolation = {
 
             state.orderList.forEach(function (el) {
                 var option_sum = 0;
-                el.item.options.forEach(function (option) {
-                    option_sum += option.price;
-                });
+                if (state.app_conf.show_option) {
+                    el.item.options.forEach(function (option) {
+                        option_sum += option.price;
+                    });
+                }
                 sum += el.quantity * (parseFloat(el.item.price) + option_sum);
             });
             return sum.toFixed(2);
@@ -66709,7 +66749,8 @@ TWEEN.Interpolation = {
             /** ToDo: change the feature implements process, now just send this new_item to controller let server side determine change the database record or not, and return new order list */
             axios.post("/table/public/api/orderitem", {
                 orderItem: payload,
-                orderId: state.orderId
+                orderId: state.orderId,
+                table_id: state.table_number
             });
         },
         IncreaseItemQuantityInOrderList: function IncreaseItemQuantityInOrderList(state, newItem) {

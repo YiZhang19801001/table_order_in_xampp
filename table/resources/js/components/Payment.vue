@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="orderItem-choice-price">
-                                    <ul class="choice-list">
+                                    <ul class="choice-list" v-if="app_conf.show_option">
                                         <li v-for="(choice,index2) in orderItem.item.choices" :key="index2">
                                             {{choice.type}} {{choice.pickedChoice}}
                                         </li>

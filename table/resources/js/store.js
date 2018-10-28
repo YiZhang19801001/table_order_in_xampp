@@ -68,9 +68,11 @@ export default {
 
             state.orderList.forEach(el => {
                 let option_sum = 0;
-                el.item.options.forEach(option => {
-                    option_sum += option.price;
-                });
+                if (state.app_conf.show_option) {
+                    el.item.options.forEach(option => {
+                        option_sum += option.price;
+                    });
+                }
                 sum += el.quantity * (parseFloat(el.item.price) + option_sum);
             });
             return sum.toFixed(2);
@@ -119,7 +121,8 @@ export default {
             /** ToDo: change the feature implements process, now just send this new_item to controller let server side determine change the database record or not, and return new order list */
             axios.post("/table/public/api/orderitem", {
                 orderItem: payload,
-                orderId: state.orderId
+                orderId: state.orderId,
+                table_id: state.table_number
             });
         },
         IncreaseItemQuantityInOrderList(state, newItem) {

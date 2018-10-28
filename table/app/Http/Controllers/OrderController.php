@@ -33,29 +33,36 @@ class OrderController extends Controller
 
     public function post(Request $request)
     {
+        $mode = config('app.show_options');
         $new_item = $request->orderItem;
-        /**check new item already in the list or not
-         * if already have then update the quantity only
-         * else insert as new recorder in temp_order_items table
-        */
-        $alreadyHave = false; //flag for ext
-        $optionIsSame= false; //flag for option
-
-        /**to determin is the new_item already have or not, should check 2 things
-         * Step 1. if their is a product_id match? not-> insert new, yes-> go step 2
-         * Step 2. find $id as $order_item_id in temp_pickChoice table. will get an arr_choices
-         * Step 3. check arr_choices->(choice_type,piced_Choice) and $new_item->choices(choice_type,piced_Choice) is matched or not. no->insert new, yes->increate the quantity in temp_order_items table
-         */
-
-        /** 1. return an array which is same product_id as new_item, but may with different taste or options*/
         $arr_order_items = Temp_order_item::where('product_id',$new_item["product_id"])->where('order_id',$request->orderId)->get();
 
         /** if array is empty then insert straight away */
         if(count($arr_order_items)<1){
-            $this->createOrderHelper($new_item,$request->orderId);
-        }
-        /**if array is not empty then further checking the taste */
-        else{
+            $this->createOrderHelper($new_item,$request->orderId,$mode);
+        }else if(!$mode)
+        /**if $mode is false, no options showed, only check product_id is already in the temp_order_item or not */
+        {
+            Temp_order_item::where('id',$arr_order_items[0]["id"])->increment('quantity');
+        }else
+        /**if $mode is true, further check */
+        {
+            /**check new item already in the list or not
+             * if already have then update the quantity only
+             * else insert as new recorder in temp_order_items table
+            */
+            $alreadyHave = false; //flag for ext
+            $optionIsSame= false; //flag for option
+
+            /**to determin is the new_item already have or not, should check TWO things
+             * Step 1. if their is a product_id match? not-> insert new, yes-> go step 2
+             * Step 2. find $id as $order_item_id in temp_pickChoice table. will get an arr_choices
+             * Step 3. check arr_choices->(choice_type,piced_Choice) and $new_item->choices(choice_type,piced_Choice) is matched or not. no->insert new, yes->increate the quantity in temp_order_items table
+             */
+
+            /** 1. return an array which is same product_id as new_item, but may with different taste or options*/
+            $arr_order_items = Temp_order_item::where('product_id',$new_item["product_id"])->where('order_id',$request->orderId)->get();
+
             /**check 3 columns type, picked_Choice and order_item_id */
             foreach ($arr_order_items as $order_item) {
                 if(count($new_item["choices"])!=0){
@@ -100,12 +107,10 @@ class OrderController extends Controller
             if(!$alreadyHave || !$optionIsSame){
                 $this->createOrderHelper($new_item,$request->orderId);
             }
-
         }
-
-        $order = $this->fetchOrderListHelper($request->orderId);
+        $order = $this->fetchOrderListHelper($request->orderId,$request->table_id);
         broadcast(new newOrderItemAdded($request->orderId));
-       return response()->json($order);
+        return response()->json($order);
     }
 
     /** fetch the up to date order list once */
@@ -196,6 +201,7 @@ class OrderController extends Controller
 
             //mapping values
             $new_orderList_ele["item"]["order_item_id"] = $order_item["id"];
+            $new_orderList_ele["item"]["product_id"]    = $order_item["product_id"];
             $new_orderList_ele["quantity"]              = $order_item["quantity"];
             $new_orderList_ele["item"]["name"]          = $targe_product["name"];
             $new_orderList_ele["item"]["price"]         = $price;
@@ -283,14 +289,11 @@ class OrderController extends Controller
     public function increase(Request $request){
         $target_item = $request->orderItem;
         $order_id = $request->orderId;
-
-
         Temp_order_item::whereId($target_item["item"]["order_item_id"])->increment("quantity");
 
-       broadcast(new newOrderItemAdded($request->orderId));
+        broadcast(new newOrderItemAdded($request->orderId));
 
         return $target_item;
-
     }
 
 
@@ -304,38 +307,46 @@ class OrderController extends Controller
 
 
     public function createOrderHelper($new_item,$orderId){
+
+        $mode = config('app.show_options');
+
         $new_order_item = new Temp_order_item;
-        $new_order_item->pickedChoice = "abc";
-        $new_order_item->quantity = 1;
+        $new_order_item->quantity   = 1;
         $new_order_item->product_id = $new_item["product_id"];
-        $new_order_item->order_id = $orderId;
+        $new_order_item->order_id   = $orderId;
         $new_order_item->save();
+
+        if(!$mode)
+        {
+            return; //if $mode is no show options, stop here!!
+        }
 
         foreach ($new_item["choices"] as $choice) {
             $new_pickedChoice = new Temp_pickedChoice;
-            $new_pickedChoice->order_item_id = $new_order_item->id;
-            $new_pickedChoice->choice_type = $choice["type"];
-            $new_pickedChoice->picked_Choice = $choice["pickedChoice"];
+
+            $new_pickedChoice->product_ext_id   = $choice["product_ext_id"];
+            $new_pickedChoice->order_item_id    = $new_order_item->id;
+            $new_pickedChoice->choice_type      = $choice["type"];
+            $new_pickedChoice->picked_Choice    = $choice["pickedChoice"];
+            $new_pickedChoice->price            = $choice["price"];
 
             $new_pickedChoice->save();
         }
 
         foreach($new_item["options"] as $option){
             $new_pickedOption = new Temp_pickedOption;
-            $new_pickedOption->order_item_id = $new_order_item->id;
-            $new_pickedOption->product_option_value_id = $option["product_option_value_id"];
-            $new_pickedOption->option_name = $option["option_name"];
-            $new_pickedOption->pickedOption = $option["pickedOption"];
-            $new_pickedOption->price = $option["price"];
-            $new_pickedOption->product_id = $new_item["product_id"];
-            $new_pickedOption->option_id=$option["option_id"]["option_id"];
+
+            $new_pickedOption->order_item_id            = $new_order_item->id;
+            $new_pickedOption->product_option_value_id  = $option["product_option_value_id"];
+            $new_pickedOption->option_name              = $option["option_name"];
+            $new_pickedOption->pickedOption             = $option["pickedOption"];
+            $new_pickedOption->price                    = $option["price"];
+            $new_pickedOption->product_id               = $new_item["product_id"];
+            $new_pickedOption->option_id                = $option["option_id"]["option_id"];
 
             $new_pickedOption->save();
         }
     }
-
-
-
 
     public function confirmOrder(Request $request){
         /**request is an array of  */
@@ -497,18 +508,8 @@ class OrderController extends Controller
             /**picked choices */
             foreach ($order_product["item"]["choices"] as $choice) {
                 $new_order_ext = new Order_ext;
-                /**find the product_ext_id
-                 * 1. get type id from oc_product_add_type name = $choice["type"]
-                 * 2.
-                 * 3. find product_ext_id by type=type_id && name = $choice["pickedChoice"] from oc_prodcut_ext
-                */
 
-                $type_id = Product_add_type::where('name',$choice["type"])->first();
-
-                $product_ext_id = Product_ext::where('type',$type_id->add_type_id)->where('name',$choice["pickedChoice"])->first();
-
-                $new_order_ext->product_ext_id = $product_ext_id->product_ext_id;
-
+                $new_order_ext->product_ext_id = $choice["product_ext_id"];
                 $new_order_ext->order_product_id = $new_order_product->id;
                 $new_order_ext->product_id = $order_product["item"]["product_id"];
 
@@ -519,7 +520,6 @@ class OrderController extends Controller
                 $new_order_option = new Order_option;
                 $new_order_option->order_id = $order_id;
                 $new_order_option->order_product_id = $new_order_product->id;
-                //need Fix;
 
                 $new_order_option->product_option_id= $option["option_id"];
 

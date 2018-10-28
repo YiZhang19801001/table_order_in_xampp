@@ -134,8 +134,13 @@ export default {
     /** use for choice pannel open or close*/
     wandOrder(item) {
       if (this.app_conf.show_option) {
-        this.selectProduct_id = item.product_id;
-        this.wantOrder = true;
+        if (item.choices.length < 1 && item.options < 1) {
+          let newItem = JSON.parse(JSON.stringify(item));
+          this.addNewItemToOrderList(newItem);
+        } else {
+          this.selectProduct_id = item.product_id;
+          this.wantOrder = true;
+        }
       } else {
         let newItem = JSON.parse(JSON.stringify(item));
         this.addNewItemToOrderList(newItem);

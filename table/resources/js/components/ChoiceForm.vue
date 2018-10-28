@@ -70,7 +70,9 @@ export default {
     addToOrder() {
       let newItem = JSON.parse(JSON.stringify(this.item));
       newItem.choices.forEach((ele, index) => {
-        ele.pickedChoice = this.pickedChoices[index];
+        ele.pickedChoice = this.pickedChoices[index].value;
+        ele.product_ext_id = this.pickedChoices[index].product_ext_id;
+        ele.price = this.pickedChoices[index].price;
       });
       newItem.options.forEach((ele, index) => {
         ele.pickedOption = this.pickedOptions[index].value;
