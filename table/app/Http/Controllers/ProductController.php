@@ -124,7 +124,7 @@ class ProductController extends Controller
             foreach ($choices_to_type as $choice_to_type) {
                 $choices_item["product_ext_id"] = $choice_to_type["product_ext_id"];
                 $choices_item["name"]           = $choice_to_type["name"];
-                $choices_item["price"]          = ($choice_to_type["price"]=="0.00")?"free":$choice_to_type["price"];
+                $choices_item["price"]          = $choice_to_type["price"];
                 array_push($choices,$choices_item);
             }
 
@@ -203,7 +203,7 @@ class ProductController extends Controller
                     $new_option_value["product_option_value_id"] = $product_option_value->product_option_value_id;
                     $new_option_value["option_value_name"]       = $option_value_name;
                     //$new_option_value["option_value_sort_order"] = $option_value_sort_order;
-                    $new_option_value["price"]                   = ($price=="0.00")?"free":$price;
+                    $new_option_value["price"]                   = $price;
 
                     array_push($option_value_group,$new_option_value);
                     /** object structure

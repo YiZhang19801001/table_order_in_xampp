@@ -10,7 +10,7 @@ return [
     //    'true'=>'order product with options if there is some options to choose',
     //    'false'=>'order product without options'
     //]
-    'show_options'=>true,
+    'show_options'=>false,
 /** End */
     /*
     |--------------------------------------------------------------------------

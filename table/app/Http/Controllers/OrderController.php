@@ -505,31 +505,34 @@ class OrderController extends Controller
 
             $new_order_product->save();
 
-            /**picked choices */
-            foreach ($order_product["item"]["choices"] as $choice) {
-                $new_order_ext = new Order_ext;
+            if(config('app.show_options')){
+                /**picked choices */
+                foreach ($order_product["item"]["choices"] as $choice) {
+                    $new_order_ext = new Order_ext;
 
-                $new_order_ext->product_ext_id = $choice["product_ext_id"];
-                $new_order_ext->order_product_id = $new_order_product->id;
-                $new_order_ext->product_id = $order_product["item"]["product_id"];
+                    $new_order_ext->product_ext_id = $choice["product_ext_id"];
+                    $new_order_ext->order_product_id = $new_order_product->id;
+                    $new_order_ext->product_id = $order_product["item"]["product_id"];
 
-                $new_order_ext->save();
+                    $new_order_ext->save();
+                }
+                /**store picked options in DB*/
+                foreach($order_product["item"]["options"] as $option){
+                    $new_order_option = new Order_option;
+                    $new_order_option->order_id = $order_id;
+                    $new_order_option->order_product_id = $new_order_product->id;
+
+                    $new_order_option->product_option_id= $option["option_id"];
+
+                    $new_order_option->product_option_value_id = $option["product_option_value_id"];
+                    $new_order_option->name = $option["option_name"];
+                    $new_order_option->value = $option["pickedOption"];
+                    $new_order_option->type = "radio";
+
+                    $new_order_option->save();
+                }
             }
-            /**store picked options in DB*/
-            foreach($order_product["item"]["options"] as $option){
-                $new_order_option = new Order_option;
-                $new_order_option->order_id = $order_id;
-                $new_order_option->order_product_id = $new_order_product->id;
 
-                $new_order_option->product_option_id= $option["option_id"];
-
-                $new_order_option->product_option_value_id = $option["product_option_value_id"];
-                $new_order_option->name = $option["option_name"];
-                $new_order_option->value = $option["pickedOption"];
-                $new_order_option->type = "radio";
-
-                $new_order_option->save();
-            }
 
 
         }
