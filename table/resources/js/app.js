@@ -25,15 +25,6 @@ const app = new Vue({
     el: "#app",
     router,
     store,
-    data() {
-        return {
-            rootUrl: window.root
-        };
-    },
-
-    mounted() {
-        console.log(this.rootUrl);
-    },
     components: {
         MainApp,
         DeskApp

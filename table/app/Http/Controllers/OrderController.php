@@ -33,22 +33,21 @@ class OrderController extends Controller
 
     public function post(Request $request)
     {
-
-
         $new_item = $request->orderItem;
         /**check new item already in the list or not
          * if already have then update the quantity only
          * else insert as new recorder in temp_order_items table
         */
-        $alreadyHave = false;
-        $optionIsSame= false;
-        /**to determin is the new_item already have or not, should chenck 2 things
-         * 1. if their is a product_id match? not-> insert new, yes->fetch id
-         * 2. find $id as $order_item_id in temp_pickChoice table. will get an arr_choices
-         * 3. check arr_choices->(choice_type,piced_Choice) and $new_item->choices(choice_type,piced_Choice) is matched or not. no->insert new, yes->increate the quantity in temp_order_items table
+        $alreadyHave = false; //flag for ext
+        $optionIsSame= false; //flag for option
+
+        /**to determin is the new_item already have or not, should check 2 things
+         * Step 1. if their is a product_id match? not-> insert new, yes-> go step 2
+         * Step 2. find $id as $order_item_id in temp_pickChoice table. will get an arr_choices
+         * Step 3. check arr_choices->(choice_type,piced_Choice) and $new_item->choices(choice_type,piced_Choice) is matched or not. no->insert new, yes->increate the quantity in temp_order_items table
          */
 
-         /** 1. may return an array which is same product_id as new_item but may with different taste or options*/
+        /** 1. return an array which is same product_id as new_item, but may with different taste or options*/
         $arr_order_items = Temp_order_item::where('product_id',$new_item["product_id"])->where('order_id',$request->orderId)->get();
 
         /** if array is empty then insert straight away */
@@ -109,68 +108,160 @@ class OrderController extends Controller
        return response()->json($order);
     }
 
-    /** read: this action only for the newcomer to fetch the up to date order list once */
+    /** fetch the up to date order list once */
     public function getCart(Request $request)
     {
-
-
-        /**validate users */
-
+    /**validate users */
+        //check if this QRcode contain all infos with correct format
         if($request->cdt==null||$request->v==null){
-            return response()->json(["message"=>"this QR Code is incorrect, please contact staff!"],400);
+            return response()->json(["message"=>"this QR Code is invalid, please contact staff!"],400);
         }
 
+        //mapping value for further valided
         $cdt =  $request->cdt;
         $v =$request->v;
 
+        //check if this QRcode valid in DB
         $new_table_link = Table_link::where('validation',$v)->first();
-
-        //return $new_table_link;
-
-
+        //$new_table_link === null => QRcode is not valid
         if($new_table_link === null || $new_table_link->status!==0){
-            return response()->json(["message"=>"this QR Code is incorrect, please contact staff!"],400);
-
+            return response()->json(["message"=>"this QR Code is invalid, please contact staff!"],400);
         }
-
+        //check timestamp
         if($new_table_link!==null){
-
+            //reformat income time
             $time = strtotime($cdt);
             $day = date('y-m-d',$time);
 
+            //reformat time in DB
             $time_in_db = strtotime($new_table_link->link_generate_time);
             $day_in_db = date('y-m-d',$time_in_db);
 
-            //return array("day"=>$day,"day_in_DB"=>$day_in_db);
+            //check matched or not
             if($day != $day_in_db){
                 return response()->json(["message"=>"this QR Code is incorrect, please contact staff!"],400);
             }
         }
-        /**end validation */
+    /**end validation */
 
-        $order = $this->fetchOrderListHelper($request->order_id);
+        $order = $this->fetchOrderListHelper($request->order_id,$request->table_id);
 
         return response()->json($order);
     }
 
 
+    public function fetchOrderListHelper($order_id,$table_id){
+
+        /** step 1. check there is a temp order for this or not=> yes: fetch order details, no: create new Temp_order */
+        $order_to_table = Temp_order::where('id',$order_id)->where('table_number',$table_id)->first();
+
+        //call help method to CREATE NEW TEMP_ORDER
+        if($order_to_table === null)
+        {
+            $this->create($order_id,$table_id);
+        }
+
+
+        /**1. from 'order_id' fetching order_items
+         * 2. from 'order_item' table get 'product_id',
+         * according to those ids get details of products from product table
+         */
+        $order=[]; //result container
+
+        $arr_order_items = Temp_order_item::where('order_id',$order_id)->where('quantity','>',0)->get();
+
+        /**if $arr_order_items is empty return empty array() */
+        if(count($arr_order_items)<1){
+            return $order;
+        }
+
+        /**if $arr_order_items is not empty, build the result array with details */
+        foreach ($arr_order_items as $order_item) {
+            $new_orderList_ele=array();
+
+            $new_orderList_ele["quantity"] = $order_item["quantity"];
+
+            $targe_product = Product_description::where('product_id',$order_item["product_id"])->first();
+            $new_orderList_ele["item"] = $targe_product;
+            //add price attribute to each product
+            //fetch price first
+            $price = Product::where('product_id',$order_item["product_id"])->first()->price;
+            $posOfdecimal = strpos($price,".");
+            //cut after 2 digts decimal point
+            $length = $posOfdecimal + 3;
+            $price = substr($price,0,$length);
+
+            //add to exsiting object
+            $new_orderList_ele["item"]->price = $price;
+            //add upc
+            $upc = Product::where('product_id',$order_item["product_id"])->first()->upc;
+            $new_orderList_ele["item"]->upc = $upc;
+
+            $new_orderList_ele["item"]->order_item_id = $order_item["id"];
+
+            $pickedChoices = Temp_pickedChoice::where('order_item_id',$order_item["id"])->get();
+
+            /** Temp_pickedChoice table has column "choice_type" == "name" in add_type
+             * then we can get add_type_id which relative to "type" in product_ext, and name in prodcut_ext
+             * should group as a new array to match the format of data.
+            */
+            $productChoiceList = [];
+
+            foreach ($pickedChoices as $pickChoice) {
+                $type = Product_add_type::where('name',$pickChoice["choice_type"])->first();
+                $choices = Product_ext::where('type',$type->add_type_id)->get();
+
+                array_push($productChoiceList,array("type"=>$type->name,"choices"=>$choices,"pickedChoice"=>$pickChoice["picked_Choice"]));
+            }
+
+            $new_orderList_ele["item"]["choices"] = $productChoiceList;
+
+            /**grab all information for options */
+            $pickedOptions = Temp_pickedOption::where('order_item_id',$order_item["id"])->get();
+
+            $productOptionList = [];
+            foreach ($pickedOptions as $pickOption) {
+                /**get optionValues */
+                /** option_id && product_id can found unique [product_option_value_id] [price] [option_value_id]
+                 * [option_value_name] ->use [option_value_id] find this from [oc_option_value_description]
+                 * [option_value_sort_order] ->use [option_value_id] find this from [oc_option_value]
+                */
+                $optionValues = array();
+
+                //Todo: may need list of options
+                // foreach ($variable as $key => $value) {
+                //     # code...
+                // }
+
+                array_push($productOptionList,array(
+                "option_id"=>$pickOption["option_id"],
+                "option_name"=>$pickOption["option_name"],
+                "pickedOption"=>$pickOption["pickedOption"],
+                "price"=>$pickOption["price"],
+                "product_option_value_id"=>$pickOption["product_option_value_id"],
+                "option_values"=>$optionValues
+            ));
+                }
+            $new_orderList_ele["item"]["options"] = $productOptionList;
+            array_push($order,$new_orderList_ele);
+            }
+        return $order;
+    }
+
     /**
      * create new order request will contain an object with info of an single order
      */
-    public function create(Request $request)
+    public function create($order_id,$table_id)
     {
         //create new record in order table
-
-
         $order =new Temp_order;
-        $order->table_number = $request->table_number;
+        $order->table_number = $table_id;
+        $order->id           = $order_id;
         $order->save();
-
-        $orderId = $order->id;
 
         //return
         return response()->json([
-            "orderId" => $orderId
+            "order" => $order
         ], 200);
 
     }
@@ -189,20 +280,13 @@ class OrderController extends Controller
 
     }
 
+
     public function decrease(Request $request){
-    $target_item = $request->orderItem;
-    $order_id = $request->orderId;
-
-
+        $target_item = $request->orderItem;
+        $order_id = $request->orderId;
         Temp_order_item::whereId($target_item["item"]["order_item_id"])->decrement("quantity");
-
-
-
-
-    broadcast(new newOrderItemAdded($request->orderId));
-
-    return $target_item;
-
+        broadcast(new newOrderItemAdded($request->orderId));
+        return $target_item;
     }
 
 
@@ -237,90 +321,8 @@ class OrderController extends Controller
         }
     }
 
-public function fetchOrderListHelper($id){
-    /**1. from 'order_id' fetching or order_items
-     * 2. from 'order_item' table get 'product_id', fron those id get details of products from product table
-     */
-    $order=[]; //result container
-    $order_id = $id;
 
 
-
-    $arr_order_items = Temp_order_item::where('order_id',$order_id)->where('quantity','>',0)->get();
-
-    if(count($arr_order_items)<1){
-        return $order;
-    }
-    foreach ($arr_order_items as $order_item) {
-        $new_orderList_ele=array();
-        $new_orderList_ele["quantity"] = $order_item["quantity"];
-
-        $targe_product = Product_description::where('product_id',$order_item["product_id"])->first();
-        $new_orderList_ele["item"] = $targe_product;
-        //add price attribute to each product
-        //fetch price first
-        $price = Product::where('product_id',$order_item["product_id"])->first()->price;
-        $posOfdecimal = strpos($price,".");
-        //cut after 2 digts decimal point
-        $length = $posOfdecimal + 3;
-        $price = substr($price,0,$length);
-
-        //add to exsiting object
-        $new_orderList_ele["item"]->price = $price;
-        //add upc
-        $upc = Product::where('product_id',$order_item["product_id"])->first()->upc;
-        $new_orderList_ele["item"]->upc = $upc;
-
-        $new_orderList_ele["item"]->order_item_id = $order_item["id"];
-
-        $pickedChoices = Temp_pickedChoice::where('order_item_id',$order_item["id"])->get();
-
-        /** Temp_pickedChoice table has column "choice_type" == "name" in add_type
-         * then we can get add_type_id which relative to "type" in product_ext, and name in prodcut_ext
-         * should group as a new array to match the format of data.
-        */
-        $productChoiceList = [];
-
-        foreach ($pickedChoices as $pickChoice) {
-            $type = Product_add_type::where('name',$pickChoice["choice_type"])->first();
-            $choices = Product_ext::where('type',$type->add_type_id)->get();
-
-            array_push($productChoiceList,array("type"=>$type->name,"choices"=>$choices,"pickedChoice"=>$pickChoice["picked_Choice"]));
-        }
-
-        $new_orderList_ele["item"]["choices"] = $productChoiceList;
-
-        /**grab all information for options */
-        $pickedOptions = Temp_pickedOption::where('order_item_id',$order_item["id"])->get();
-
-        $productOptionList = [];
-        foreach ($pickedOptions as $pickOption) {
-            /**get optionValues */
-            /** option_id && product_id can found unique [product_option_value_id] [price] [option_value_id]
-             * [option_value_name] ->use [option_value_id] find this from [oc_option_value_description]
-             * [option_value_sort_order] ->use [option_value_id] find this from [oc_option_value]
-            */
-            $optionValues = array();
-
-            //Todo: may need list of options
-            // foreach ($variable as $key => $value) {
-            //     # code...
-            // }
-
-            array_push($productOptionList,array(
-            "option_id"=>$pickOption["option_id"],
-            "option_name"=>$pickOption["option_name"],
-            "pickedOption"=>$pickOption["pickedOption"],
-            "price"=>$pickOption["price"],
-            "product_option_value_id"=>$pickOption["product_option_value_id"],
-            "option_values"=>$optionValues
-        ));
-            }
-        $new_orderList_ele["item"]["options"] = $productOptionList;
-        array_push($order,$new_orderList_ele);
-        }
-    return $order;
-}
 
     public function confirmOrder(Request $request){
         /**request is an array of  */

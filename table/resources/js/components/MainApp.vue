@@ -18,7 +18,15 @@ export default {
   name: "main-app",
 
   computed: {
-    ...mapGetters(["spinnerShow", "orderList", "orderId", "cdt", "v", "site"])
+    ...mapGetters([
+      "spinnerShow",
+      "orderList",
+      "orderId",
+      "cdt",
+      "v",
+      "site",
+      "table_number"
+    ])
   },
   mounted() {
     this.setOrderId(this.$route.params.orderid);
@@ -41,18 +49,21 @@ export default {
       "setTableNumber",
       "setCdt",
       "setV",
-      "setAppConfig"
+      "setAppConfig",
+      "setSpinnerStatus"
     ]),
     updateOrderList() {
+      this.setSpinnerStatus(true);
       axios
         .post("/table/public/api/initcart", {
           order_id: this.orderId,
           cdt: this.cdt,
-          v: this.v
+          v: this.v,
+          table_id: this.table_number
         })
         .then(res => {
-          // 🎰
           this.replaceList(res.data);
+          this.setSpinnerStatus(false);
         });
     }
   }

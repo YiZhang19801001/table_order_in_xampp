@@ -2,6 +2,10 @@
 
 return [
 
+    /** CUSTOM SETTING */
+    'lang' => '1',
+    'show_options'=>true,
+
     /*
     |--------------------------------------------------------------------------
     | Application Name

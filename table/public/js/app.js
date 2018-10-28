@@ -12749,15 +12749,6 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: "#app",
     router: router,
     store: store,
-    data: function data() {
-        return {
-            rootUrl: window.root
-        };
-    },
-    mounted: function mounted() {
-        console.log(this.rootUrl);
-    },
-
     components: {
         MainApp: __WEBPACK_IMPORTED_MODULE_4__components_MainApp_vue___default.a,
         DeskApp: __WEBPACK_IMPORTED_MODULE_5__components_DeskApp_vue___default.a
@@ -64338,7 +64329,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   components: {
     CartItem: __WEBPACK_IMPORTED_MODULE_1__CartItem_vue___default.a
   },
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderList", "totalPriceOfOrder", "totalQuantityOfOrder", "orderId", "table_number", "isEN", "cdt", "v", "app_conf"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["orderList", "totalPriceOfOrder", "totalQuantityOfOrder", "orderId", "table_number", "isEN", "cdt", "v", "app_conf", "setSpinnerStatus"])),
   mounted: function mounted() {},
 
   methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["increaseItemQuantityInOrderList", "decreaseItemQuantityInOrderList", "removeItemQuantityFromOrderList"]), {
@@ -64347,15 +64338,16 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       this.isExpand = !this.isExpand;
     },
     increase: function increase(orderItem) {
+      this.setSpinnerStatus(true);
       this.increaseItemQuantityInOrderList(orderItem);
     },
     decrease: function decrease(orderItem) {
+      this.setSpinnerStatus(true);
       this.decreaseItemQuantityInOrderList(orderItem);
     },
 
     //ToDo:: save data in database.
     confirmOrder: function confirmOrder() {
-      console.log(this.orderList);
       this.$router.push("/table/public/table/" + this.table_number + "/orderid/" + this.orderId + "/payment?cdt=" + this.cdt + "&v=" + this.v);
     }
   })
@@ -65036,7 +65028,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "main-app",
 
-  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["spinnerShow", "orderList", "orderId", "cdt", "v", "site"])),
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(["spinnerShow", "orderList", "orderId", "cdt", "v", "site", "table_number"])),
   mounted: function mounted() {
     var _this = this;
 
@@ -65054,17 +65046,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     }); /**first args is the event we gonna to listen to, second args is event itself */
   },
 
-  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["replaceList", "setOrderId", "setTableNumber", "setCdt", "setV", "setAppConfig"]), {
+  methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(["replaceList", "setOrderId", "setTableNumber", "setCdt", "setV", "setAppConfig", "setSpinnerStatus"]), {
     updateOrderList: function updateOrderList() {
       var _this2 = this;
 
+      this.setSpinnerStatus(true);
       axios.post("/table/public/api/initcart", {
         order_id: this.orderId,
         cdt: this.cdt,
-        v: this.v
+        v: this.v,
+        table_id: this.table_number
       }).then(function (res) {
-        // 🎰
         _this2.replaceList(res.data);
+        _this2.setSpinnerStatus(false);
       });
     }
   })
@@ -66765,20 +66759,17 @@ TWEEN.Interpolation = {
                 context.commit("toggleSpinner", false);
             });
         },
+        setSpinnerStatus: function setSpinnerStatus(context, status) {
+            context.commit("toggleSpinner", status);
+        },
         addNewItemToOrderList: function addNewItemToOrderList(context, newItem) {
-            context.commit("toggleSpinner", true);
             context.commit("AddNewItemToOrderList", newItem);
-            context.commit("toggleSpinner", false);
         },
         increaseItemQuantityInOrderList: function increaseItemQuantityInOrderList(context, newItem) {
-            context.commit("toggleSpinner", true);
             context.commit("IncreaseItemQuantityInOrderList", newItem);
-            context.commit("toggleSpinner", false);
         },
         decreaseItemQuantityInOrderList: function decreaseItemQuantityInOrderList(context, newItem) {
-            context.commit("toggleSpinner", true);
             context.commit("decreaseQuantity", newItem);
-            context.commit("toggleSpinner", false);
         },
         removeItemFromOrderList: function removeItemFromOrderList(context, newItem) {
             context.commit("RemoveItemFromOrderList", newItem);

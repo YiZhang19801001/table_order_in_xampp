@@ -48,7 +48,8 @@ export default {
       "isEN",
       "cdt",
       "v",
-      "app_conf"
+      "app_conf",
+      "setSpinnerStatus"
     ])
   },
   mounted() {},
@@ -63,14 +64,15 @@ export default {
       this.isExpand = !this.isExpand;
     },
     increase(orderItem) {
+      this.setSpinnerStatus(true);
       this.increaseItemQuantityInOrderList(orderItem);
     },
     decrease(orderItem) {
+      this.setSpinnerStatus(true);
       this.decreaseItemQuantityInOrderList(orderItem);
     },
     //ToDo:: save data in database.
     confirmOrder() {
-      console.log(this.orderList);
       this.$router.push(
         `/table/public/table/${this.table_number}/orderid/${
           this.orderId

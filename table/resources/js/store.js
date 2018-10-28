@@ -169,21 +169,18 @@ export default {
                 context.commit("toggleSpinner", false);
             });
         },
+        setSpinnerStatus(context, status) {
+            context.commit("toggleSpinner", status);
+        },
         addNewItemToOrderList(context, newItem) {
-            context.commit("toggleSpinner", true);
             context.commit("AddNewItemToOrderList", newItem);
-            context.commit("toggleSpinner", false);
         },
         increaseItemQuantityInOrderList(context, newItem) {
-            context.commit("toggleSpinner", true);
             context.commit("IncreaseItemQuantityInOrderList", newItem);
-            context.commit("toggleSpinner", false);
         },
 
         decreaseItemQuantityInOrderList(context, newItem) {
-            context.commit("toggleSpinner", true);
             context.commit("decreaseQuantity", newItem);
-            context.commit("toggleSpinner", false);
         },
         removeItemFromOrderList(context, newItem) {
             context.commit("RemoveItemFromOrderList", newItem);
