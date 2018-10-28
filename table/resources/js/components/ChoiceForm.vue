@@ -20,14 +20,14 @@
 
                 <div class="detail-contianer">
                     <!-- product_ext -->
-                    <div v-for="(choice_type, index) in item.choices" class="choice-group" :key="index">
+                    <div v-for="(choice_type, index) in item.choices" class="choice-group" :key="`ext${index}`">
                         <h4>{{choice_type.type}}</h4>
                         <Choice :choice_type="choice_type" :index="index" @pickValue="addChoice"></Choice>
                     </div>
                     <!-- product_ext end -->
 
                     <!-- option  -->
-                    <div v-for="(option, index2) in item.options" class="choice-group" :key="index2">
+                    <div v-for="(option, index2) in item.options" class="choice-group" :key="`opt${index2}`">
                         <h4>{{option.option_name}}</h4>
                         <Option :option="option" :index="index2" @pickValue="addOption"></Option>
                     </div>
@@ -255,8 +255,8 @@ export default {
         padding: 8px;
         border-radius: 8px;
         background-color: rgba(190, 191, 192, 0.25);
-        min-height: 100px;
-        max-height: 130px;
+        min-height: 155px;
+        max-height: 160px;
         overflow: scroll;
         width: 80%;
         margin: auto;

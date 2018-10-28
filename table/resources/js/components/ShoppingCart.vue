@@ -48,16 +48,26 @@ export default {
       "isEN",
       "cdt",
       "v",
-      "app_conf",
-      "setSpinnerStatus"
+      "app_conf"
     ])
   },
-  mounted() {},
+  mounted() {
+    this.delay(1000).then(res => {
+      this.updateOrderList();
+    });
+    Echo.channel("tableOrder").listen("newOrderItemAdded", e => {
+      if (this.orderId === e.orderId) {
+        this.updateOrderList();
+      }
+    });
+  },
   methods: {
     ...mapActions([
       "increaseItemQuantityInOrderList",
       "decreaseItemQuantityInOrderList",
-      "removeItemQuantityFromOrderList"
+      "removeItemQuantityFromOrderList",
+      "setSpinnerStatus",
+      "replaceList"
     ]),
     /**methods to control only this component */
     toggle() {
@@ -78,6 +88,30 @@ export default {
           this.orderId
         }/payment?cdt=${this.cdt}&v=${this.v}`
       );
+    },
+    updateOrderList() {
+      this.setSpinnerStatus(true);
+      axios
+        .post("/table/public/api/initcart", {
+          order_id: this.orderId,
+          cdt: this.cdt,
+          v: this.v,
+          table_id: this.table_number
+        })
+        .then(res => {
+          this.replaceList(res.data);
+          this.setSpinnerStatus(false);
+        })
+        .catch(err => {
+          this.$router.push("/table/public/menu");
+        });
+    },
+    delay(time) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve("resolved");
+        }, time);
+      });
     }
   }
 };
@@ -156,8 +190,7 @@ export default {
   }
   ul {
     list-style-type: none;
-    padding: 0;
-    padding-left: 10px;
+    padding: 0px 2px;
     max-height: 300px;
     overflow: scroll;
     background-color: white;

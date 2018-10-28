@@ -34,38 +34,16 @@ export default {
     this.setCdt(this.$route.query.cdt);
     this.setV(this.$route.query.v);
     this.setAppConfig();
-    this.updateOrderList();
-    /**set channel to listen */
-    Echo.channel("tableOrder").listen("newOrderItemAdded", e => {
-      if (this.orderId === e.orderId) {
-        this.updateOrderList();
-      }
-    }); /**first args is the event we gonna to listen to, second args is event itself */
   },
   methods: {
     ...mapActions([
-      "replaceList",
       "setOrderId",
       "setTableNumber",
       "setCdt",
       "setV",
       "setAppConfig",
       "setSpinnerStatus"
-    ]),
-    updateOrderList() {
-      this.setSpinnerStatus(true);
-      axios
-        .post("/table/public/api/initcart", {
-          order_id: this.orderId,
-          cdt: this.cdt,
-          v: this.v,
-          table_id: this.table_number
-        })
-        .then(res => {
-          this.replaceList(res.data);
-          this.setSpinnerStatus(false);
-        });
-    }
+    ])
   }
 };
 </script>

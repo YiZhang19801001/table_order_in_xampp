@@ -123,7 +123,7 @@
 
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 import QrcodeVue from "qrcode.vue";
 
 export default {
@@ -137,6 +137,9 @@ export default {
     /**qrcode order command: barcode 1, qty1, sizeLevel 1;barcode2, qty2,sizeLevel2
      * example: 106,2.5,0
      */
+    this.delay(1000).then(res => {
+      this.updateOrderList();
+    });
     let qr = "";
     this.orderList.forEach(el => {
       qr = qr + el.item.upc + ",";
@@ -157,10 +160,13 @@ export default {
       "totalPriceOfOrder",
       "store_name",
       "store_url",
-      "app_conf"
+      "app_conf",
+      "v",
+      "cdt"
     ])
   },
   methods: {
+    ...mapActions(["setSpinnerStatus", "replaceList"]),
     back() {
       console.log(this.pathFrom);
       this.$router.push(this.pathFrom);
@@ -174,6 +180,30 @@ export default {
         store_url: this.store_url,
         total: this.totalPriceOfOrder,
         paymentMethod: this.paymentMethod
+      });
+    },
+    updateOrderList() {
+      this.setSpinnerStatus(true);
+      axios
+        .post("/table/public/api/initcart", {
+          order_id: this.orderId,
+          cdt: this.cdt,
+          v: this.v,
+          table_id: this.table_number
+        })
+        .then(res => {
+          this.replaceList(res.data);
+          this.setSpinnerStatus(false);
+        })
+        .catch(err => {
+          this.$router.push("/table/public/menu");
+        });
+    },
+    delay(time) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve("resolved");
+        }, time);
       });
     }
   },
@@ -218,7 +248,6 @@ export default {
       margin: 0;
       display: flex;
       margin-bottom: 10px;
-      max-width: 160px;
       .orderItem-img {
         width: 20%;
         display: flex;
@@ -261,6 +290,7 @@ export default {
               margin: 0;
               font-size: 10px;
               color: #9b9b9b;
+              max-width: 160px;
             }
           }
           .orderItem-price {

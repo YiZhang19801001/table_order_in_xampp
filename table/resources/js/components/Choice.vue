@@ -9,9 +9,15 @@
             v-model="pickedChoice"
             v-on:change="pickValue"
             >
-            <span class="checkmark-wrap"><span class="checkmark" :style="{backgroundImage:`url(${imgURL}${choice.name}.jpg)`}"></span></span>
+            <span class="checkmark-wrap">
+                <span class="checkmark" :style="{backgroundImage:`url(${imgURL}${choice.name}.jpg)`}"></span>
+
+            </span>
         </label>
-        <span class="choice-name">{{choice.name}}</span>
+        <span class="choice-info">
+            <span class="choice-name">{{choice.name}}</span>
+            <span class="choice-price">{{parseInt(choice.price)===0?"free":choice.price}}</span>
+        </span>
     </li>
 </ul>
 
@@ -31,7 +37,7 @@ export default {
   },
   computed: {
     imgURL() {
-      return "/table/public/";
+      return "/table/public/images/";
     }
   },
   mounted() {
@@ -105,6 +111,16 @@ ul {
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark-wrap {
   background-color: #eb4d4b;
+}
+.choice-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+span.choice-price {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
 }
 .choice-name {
   text-align: center;

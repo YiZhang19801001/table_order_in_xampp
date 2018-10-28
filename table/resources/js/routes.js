@@ -1,5 +1,6 @@
 import Payment from "./components/Payment.vue";
 import Order from "./components/Order.vue";
+import Menu from "./components/Menu.vue";
 
 export const routes = [
     //<- all router configrations goes here.
@@ -10,5 +11,9 @@ export const routes = [
     {
         path: "/table/public/table/:table/orderid/:orderid/payment",
         component: Payment
+    },
+    {
+        path: "/table/public/menu",
+        component: Menu
     }
 ];

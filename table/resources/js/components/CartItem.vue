@@ -1,29 +1,27 @@
 <template>
     <div class="cart-item">
+        <span class="decrease-button" @click="decrease()"><i class="material-icons">remove</i></span>
         <span class="shoppingCart-item-name">
-            <p class="orderItem-name">{{orderItem.item.name}}</p>
+            <p class="orderItem-name">
+                <span class="orderItem-name-text">{{orderItem.item.name}}</span>
+                <span class="orderItem-quantity">X {{orderItem.quantity}}</span>
+            </p>
             <ul v-if="app_conf.show_option">
-                <li class="orderItem-choice" v-for="(choice,index) in orderItem.item.choices" :key="index">
+                <li class="orderItem-choice" v-for="(choice,index) in orderItem.item.choices" :key="`choice${index}`">
                     {{choice.type}} : {{choice.pickedChoice}} {{choice.price}}
                 </li>
-                <li class="orderItem-choice" v-for="(option,index2) in orderItem.item.options" :key="index2">
+                <li class="orderItem-choice" v-for="(option,index2) in orderItem.item.options" :key="`option${index2}`">
                     <span>{{option.option_name}}</span>
                     <span>{{option.pickedOption}}</span>
                     <span>{{app_conf.currency}} ${{option.price}}</span>
                 </li>
             </ul>
         </span>
-        <div class="shoppingCart-button-group">
-            <div class="button-group-container">
-                    <span @click="decrease()">-</span>
-                    <span>{{orderItem.quantity}}</span>
-                    <span @click="increase()">+</span>
-            </div>
-        </div>
         <span class="shoppingCart-item-price">
             {{totalPrice}}
 
         </span>
+        <span class="increase-button" @click="increase()"><i class="material-icons">add</i></span>
     </div>
 </template>
 <script>
@@ -87,48 +85,70 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  max-height: 70px;
+  overflow: scroll;
+  margin: 2px 0px;
+}
+.decrease-button {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  width: 10%;
+  height: 100%;
+  background-color: #eb4d4b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+.increase-button {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  width: 10%;
+  height: 100%;
+  background-color: #eb4d4b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  color: white;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
-  max-height: 300px;
   overflow: scroll;
   li {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 5px;
+    overflow: scroll;
     .shoppingCart-item-name {
       flex: 4;
+      overflow: scroll;
       .orderItem-name {
         margin: 0;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        overflow: scroll;
+        .orderItem-quantity {
+          flex: 1;
+        }
+        .orderItem-name-text {
+          flex: 4;
+        }
       }
       .orderItem-choice {
         margin: 0;
         font-size: 10px;
         color: #9d9a9a;
+        overflow: scroll;
       }
     }
-    .shoppingCart-button-group {
-      flex: 2;
-      text-align: center;
-      .button-group-container {
-        border: 1px solid #dff9fb;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-around;
-        justify-items: center;
-        span {
-          font-size: 16px;
-          font-weight: bold;
-          display: inline-block;
-          text-align: center;
-        }
-      }
-    }
+
     .shoppingCart-item-price {
       flex: 1;
       text-align: right;

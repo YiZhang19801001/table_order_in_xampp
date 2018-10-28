@@ -97,7 +97,11 @@ export default {
     },
     mutations: {
         updateApp_conf(state, payload) {
-            state.app_conf = payload;
+            if (payload.app_conf) {
+                state.app_conf = payload.app_conf;
+            } else {
+                alert(payload.message);
+            }
         },
         updateIsEN(state, payload) {
             state.isEN = payload;
@@ -157,7 +161,7 @@ export default {
     actions: {
         setAppConfig(context) {
             axios.get("/table/public/api/init").then(res => {
-                context.commit("updateApp_conf", res.data.app_conf);
+                context.commit("updateApp_conf", res.data);
             });
         },
         getCategoryList(context) {

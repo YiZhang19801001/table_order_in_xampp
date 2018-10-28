@@ -301,6 +301,12 @@ class OrderController extends Controller
         $target_item = $request->orderItem;
         $order_id = $request->orderId;
         Temp_order_item::whereId($target_item["item"]["order_item_id"])->decrement("quantity");
+        $num = Temp_order_item::where('id',$target_item["item"]["order_item_id"])->first();
+
+        if($num["quantity"]==0)
+        {
+            Temp_order_item::whereId($target_item["item"]["order_item_id"])->delete();
+        }
         broadcast(new newOrderItemAdded($request->orderId));
         return $target_item;
     }

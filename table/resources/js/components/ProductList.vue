@@ -40,6 +40,7 @@
                 <!-- button to control folder or expand each product -->
                 <transition>
                 <button class="button"
+                v-if="table_number"
                 v-bind:class="{active:item.product_id===selectProduct_id,unactive:item.product_id!==selectProduct_id}"
                 @click="wandOrder(item)">
                     <i class="material-icons">
@@ -89,7 +90,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["productList", "orderList", "scrollPositionId", "app_conf"])
+    ...mapGetters([
+      "productList",
+      "orderList",
+      "scrollPositionId",
+      "app_conf",
+      "table_number"
+    ])
   },
   watch: {
     section: function() {
