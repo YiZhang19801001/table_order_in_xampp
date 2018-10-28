@@ -145,7 +145,6 @@ class OrderController extends Controller
     /**end validation */
 
         $order = $this->fetchOrderListHelper($request->order_id,$request->table_id);
-
         return response()->json($order);
     }
 
@@ -168,6 +167,9 @@ class OrderController extends Controller
          */
         $order=[]; //result container
 
+        /** temp_order_items
+         * [id:int(10)][quantity:int(11)][product_id:int(11)][order_id:int(11)]
+         */
         $arr_order_items = Temp_order_item::where('order_id',$order_id)->where('quantity','>',0)->get();
 
         /**if $arr_order_items is empty return empty array() */
@@ -175,76 +177,87 @@ class OrderController extends Controller
             return $order;
         }
 
+        $mode = config('app.show_options');
         /**if $arr_order_items is not empty, build the result array with details */
+        /** order_item details need: [name][quantity][price] full detail mode only [ext][option]*/
         foreach ($arr_order_items as $order_item) {
             $new_orderList_ele=array();
-
-            $new_orderList_ele["quantity"] = $order_item["quantity"];
-
             $targe_product = Product_description::where('product_id',$order_item["product_id"])->first();
-            $new_orderList_ele["item"] = $targe_product;
-            //add price attribute to each product
+            $upc = Product::where('product_id',$order_item["product_id"])->first()->upc;
+        /**make price */
             //fetch price first
             $price = Product::where('product_id',$order_item["product_id"])->first()->price;
             $posOfdecimal = strpos($price,".");
             //cut after 2 digts decimal point
             $length = $posOfdecimal + 3;
             $price = substr($price,0,$length);
+        /**END */
 
-            //add to exsiting object
-            $new_orderList_ele["item"]->price = $price;
-            //add upc
-            $upc = Product::where('product_id',$order_item["product_id"])->first()->upc;
-            $new_orderList_ele["item"]->upc = $upc;
 
-            $new_orderList_ele["item"]->order_item_id = $order_item["id"];
+            //mapping values
+            $new_orderList_ele["item"]["order_item_id"] = $order_item["id"];
+            $new_orderList_ele["quantity"]              = $order_item["quantity"];
+            $new_orderList_ele["item"]["name"]          = $targe_product["name"];
+            $new_orderList_ele["item"]["price"]         = $price;
+            $new_orderList_ele["item"]["upc"]           = $upc;
+        /**append options & exts only needed when mode is show options */
 
-            $pickedChoices = Temp_pickedChoice::where('order_item_id',$order_item["id"])->get();
+            if($mode)
+            {
+                //ToDo: add price for choice
+                /**temp_pickedchoices
+                 * [id:int(10)][order_item_id:int(11)][choice_type:varchar(255)][picked_Choice:varchar(255)]
+                 */
+                $pickedChoices = Temp_pickedChoice::where('order_item_id',$order_item["id"])->get();
 
-            /** Temp_pickedChoice table has column "choice_type" == "name" in add_type
-             * then we can get add_type_id which relative to "type" in product_ext, and name in prodcut_ext
-             * should group as a new array to match the format of data.
-            */
-            $productChoiceList = [];
+                $productChoiceList = [];
 
-            foreach ($pickedChoices as $pickChoice) {
-                $type = Product_add_type::where('name',$pickChoice["choice_type"])->first();
-                $choices = Product_ext::where('type',$type->add_type_id)->get();
+                foreach ($pickedChoices as $pickChoice) {
+                    $type = Product_add_type::where('name',$pickChoice["choice_type"])->first();
 
-                array_push($productChoiceList,array("type"=>$type->name,"choices"=>$choices,"pickedChoice"=>$pickChoice["picked_Choice"]));
-            }
+                    //$choices = Product_ext::where('type',$type->add_type_id)->get();
 
-            $new_orderList_ele["item"]["choices"] = $productChoiceList;
-
-            /**grab all information for options */
-            $pickedOptions = Temp_pickedOption::where('order_item_id',$order_item["id"])->get();
-
-            $productOptionList = [];
-            foreach ($pickedOptions as $pickOption) {
-                /**get optionValues */
-                /** option_id && product_id can found unique [product_option_value_id] [price] [option_value_id]
-                 * [option_value_name] ->use [option_value_id] find this from [oc_option_value_description]
-                 * [option_value_sort_order] ->use [option_value_id] find this from [oc_option_value]
-                */
-                $optionValues = array();
-
-                //Todo: may need list of options
-                // foreach ($variable as $key => $value) {
-                //     # code...
-                // }
-
-                array_push($productOptionList,array(
-                "option_id"=>$pickOption["option_id"],
-                "option_name"=>$pickOption["option_name"],
-                "pickedOption"=>$pickOption["pickedOption"],
-                "price"=>$pickOption["price"],
-                "product_option_value_id"=>$pickOption["product_option_value_id"],
-                "option_values"=>$optionValues
-            ));
+                    array_push($productChoiceList,array(
+                        "type"=>$type->name,
+                        "pickedChoice"=>$pickChoice["picked_Choice"],
+                        "price"=>$pickChoice["price"],
+                        "product_ext_id"=>$pickChoice["product_ext_id"]));
                 }
-            $new_orderList_ele["item"]["options"] = $productOptionList;
-            array_push($order,$new_orderList_ele);
+
+                $new_orderList_ele["item"]["choices"] = $productChoiceList;
+
+                /**grab all information for options */
+                $pickedOptions = Temp_pickedOption::where('order_item_id',$order_item["id"])->get();
+
+                $productOptionList = [];
+                foreach ($pickedOptions as $pickOption) {
+                    /**get optionValues */
+                    /** option_id && product_id can found unique [product_option_value_id] [price] [option_value_id]
+                     * [option_value_name] ->use [option_value_id] find this from [oc_option_value_description]
+                     * [option_value_sort_order] ->use [option_value_id] find this from [oc_option_value]
+                    */
+
+                    //Todo: may need list of options
+                    // $optionValues = array();
+                    // foreach ($variable as $key => $value) {
+                    //     # code...
+                    // }
+
+                    array_push($productOptionList,array(
+                    "option_id"                 =>$pickOption["option_id"],
+                    "option_name"               =>$pickOption["option_name"],
+                    "pickedOption"              =>$pickOption["pickedOption"],
+                    "price"                     =>$pickOption["price"],
+                    "product_option_value_id"   =>$pickOption["product_option_value_id"]
+                    //"option_values"             =>$optionValues
+                    ));
+                }
+                $new_orderList_ele["item"]["options"] = $productOptionList;
             }
+
+        /**End */
+            array_push($order,$new_orderList_ele);
+        }
         return $order;
     }
 

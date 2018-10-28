@@ -2,10 +2,16 @@
 
 return [
 
-    /** CUSTOM SETTING */
+/** CUSTOM SETTING */
+    //language id ['1'=>en, '2'=>cn]
     'lang' => '1',
-    'show_options'=>true,
-
+    //display mode
+    //[
+    //    'true'=>'order product with options if there is some options to choose',
+    //    'false'=>'order product without options'
+    //]
+    'show_options'=>false,
+/** End */
     /*
     |--------------------------------------------------------------------------
     | Application Name
