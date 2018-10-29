@@ -23,7 +23,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Table Booking'),
+    'name' => env('APP_NAME', 'Table Order Demo'),
 
     /*
     |--------------------------------------------------------------------------

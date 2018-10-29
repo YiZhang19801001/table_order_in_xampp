@@ -85,9 +85,11 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  max-height: 70px;
   overflow: scroll;
   margin: 2px 0px;
+
+  border-radius: 8px;
+  box-shadow: 0px 5px 5px #00000045;
 }
 .decrease-button {
   border-top-left-radius: 8px;
@@ -127,6 +129,7 @@ ul {
     .shoppingCart-item-name {
       flex: 4;
       overflow: scroll;
+      padding-left: 2px;
       .orderItem-name {
         margin: 0;
         font-size: 14px;

@@ -90,8 +90,11 @@
 </section>
         <!-- order section end -->
         <!-- QR Code Section -->
-        <section>
+        <!-- <section>
             <qrcode-vue :value="QrValue" class="qrcode"></qrcode-vue>
+        </section> -->
+        <section>
+            <vue-qr :logoSrc='`${imgURL}logo.png`' :text="QrValue" class="qrcode" :size="200"></vue-qr>
         </section>
         <!-- QR Code Section End -->
         <!-- payment footer -->
@@ -125,12 +128,14 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 import QrcodeVue from "qrcode.vue";
+import VueQr from "vue-qr";
 
 export default {
   data() {
     return {
       paymentMethod: "cash",
-      QrValue: "https://www.google.com"
+      QrValue: "https://www.google.com",
+      imgURL: "/table/public/images/"
     };
   },
   mounted() {
@@ -140,14 +145,17 @@ export default {
     this.delay(1000).then(res => {
       this.updateOrderList();
     });
-    let qr = "";
-    this.orderList.forEach(el => {
-      qr = qr + el.item.upc + ",";
-      qr = qr + el.quantity + ",";
-      qr = qr + "0" + ";";
-    });
+    this.delay(2000).then(res => {
+      let qr = "";
+      console.log(this.orderList);
+      this.orderList.forEach(el => {
+        qr = qr + el.item.upc + ",";
+        qr = qr + el.quantity + ",";
+        qr = qr + "0" + ";";
+      });
 
-    this.QrValue = qr.substr(0, qr.length - 1);
+      this.QrValue = qr.substr(0, qr.length - 1);
+    });
   },
   computed: {
     ...mapGetters([
@@ -208,7 +216,8 @@ export default {
     }
   },
   components: {
-    QrcodeVue
+    QrcodeVue,
+    VueQr
   }
 };
 </script>
