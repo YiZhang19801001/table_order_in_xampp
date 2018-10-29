@@ -62696,6 +62696,7 @@ var render = function() {
           attrs: {
             logoSrc: _vm.imgURL + "logo.png",
             text: _vm.QrValue,
+            margin: 0,
             size: 200
           }
         })

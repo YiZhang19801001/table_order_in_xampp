@@ -182,12 +182,13 @@ class OrderController extends Controller
             return $order;
         }
 
+        $lang = config('app.lang');
         $mode = config('app.show_options');
         /**if $arr_order_items is not empty, build the result array with details */
         /** order_item details need: [name][quantity][price] full detail mode only [ext][option]*/
         foreach ($arr_order_items as $order_item) {
             $new_orderList_ele=array();
-            $targe_product = Product_description::where('product_id',$order_item["product_id"])->first();
+            $targe_product = Product_description::where('product_id',$order_item["product_id"])->where('language_id',$lang)->first();
             $upc = Product::where('product_id',$order_item["product_id"])->first()->upc;
         /**make price */
             //fetch price first

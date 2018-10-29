@@ -94,7 +94,7 @@
             <qrcode-vue :value="QrValue" class="qrcode"></qrcode-vue>
         </section> -->
         <section>
-            <vue-qr :logoSrc='`${imgURL}logo.png`' :text="QrValue" class="qrcode" :size="200"></vue-qr>
+            <vue-qr :logoSrc='`${imgURL}logo.png`' :text="QrValue" :margin="0" class="qrcode" :size="200"></vue-qr>
         </section>
         <!-- QR Code Section End -->
         <!-- payment footer -->
