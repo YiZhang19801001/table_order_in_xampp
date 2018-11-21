@@ -18,11 +18,11 @@ use Illuminate\Http\Request;
 // });
 
 // get app configuration data
-Route::get('init','InitController@index');
+Route::get('init/{lang}','InitController@index');
 
 //list the categories
-Route::get('categories','categoryController@index');
-Route::get('products','ProductController@index');
+Route::get('categories/{lang}','categoryController@index');
+Route::get('products/{lang}','ProductController@index');
 // Todo: add order, MUST announce Server
 //Route::post('order','OrderController@create');
 

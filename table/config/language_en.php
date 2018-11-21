@@ -1,6 +1,9 @@
 <?php
 
 return [
+/** txt of language switch button */
+'lang_switch_en'=>'EN',
+'lang_switch_cn'=>'CN',
  /** display before the price number to indicate what currency is used in this store */
  'currency'=>'AUD',
 //  display in choice form title should let user understand the function of choice form

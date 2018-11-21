@@ -18,7 +18,7 @@ export default {
     ...mapGetters(["categoryList", "scrollPositionId"])
   },
   mounted() {
-    this.getCategoryList();
+    this.$nextTick(() => this.getCategoryList());
   },
   methods: {
     ...mapMutations(["updateCategoryList"]),
@@ -35,10 +35,9 @@ export default {
 
 <style lang="scss" scoped>
 .listContainer {
-  margin-top: 45px;
   justify-content: space-between;
   display: flex;
-  height: 80vh;
+  height: 100%;
   width: 30%;
   flex-direction: column;
   position: relative;
@@ -49,7 +48,9 @@ export default {
     position: fixed;
     width: 30%;
     overflow: scroll;
-    height: 90%;
+    height: 80%;
+    margin-top: 15%;
+    margin-bottom: 15%;
 
     .categoryList {
       padding: 5px 10px;

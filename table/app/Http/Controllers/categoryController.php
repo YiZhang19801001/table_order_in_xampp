@@ -7,10 +7,10 @@ use App\Category_description;
 
 class categoryController extends Controller
 {
-    public function index()
+    public function index($lang)
     {
         //fetch app_conf
-        $lang = config("app.lang");
+        //$lang = config("app.lang");
 
         //this is the result
         $categories = array();

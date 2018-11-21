@@ -1,10 +1,10 @@
 <template>
 <div class="header">
     <div class="languageSwitchButtonGroup">
-<!-- <span class="button-wrapper">
-            <span @click="setToCN" class="languageButton" :class="{languageButtonInactive:!isEN}">CN</span>
-            <span @click="setToEN" class="languageButton" :class="{languageButtonInactive:isEN}">EN</span>
-</span> -->
+    <span class="button-wrapper">
+                <span @click="setToCN" class="languageButton" :class="{languageButtonInactive:lang!=1}">{{app_conf.lang_switch_cn}}</span>
+                <span @click="setToEN" class="languageButton" :class="{languageButtonInactive:lang==1}">{{app_conf.lang_switch_en}}</span>
+    </span>
     </div>
     <h2>{{app_conf.app_header_title}} {{table_number}}</h2>
 </div>
@@ -14,15 +14,19 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["table_number", "app_conf"])
+    ...mapGetters(["table_number", "app_conf", "lang", "pathFrom"])
   },
   methods: {
-    ...mapActions(["setIsEN"]),
+    ...mapActions(["setLang"]),
     setToCN() {
-      this.setIsEN(false);
+      localStorage.language_id = 2;
+      this.setLang(2);
+      this.$router.go();
     },
     setToEN() {
-      this.setIsEN(true);
+      localStorage.language_id = 1;
+      this.setLang(1);
+      this.$router.go();
     }
   }
 };
@@ -32,8 +36,8 @@ export default {
 .header {
   position: fixed;
   width: 100%;
-  height: 30px;
-  background-color: rgba(235, 77, 75, 0.8);
+  height: 8%;
+  background-color: rgb(235, 77, 75);
   color: #f8fafc;
   //   padding: 6px;
   box-shadow: 0px 5px 5px #00000038;

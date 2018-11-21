@@ -4,7 +4,7 @@ return [
 
 /** CUSTOM SETTING */
     //language id ['1'=>en, '2'=>cn]
-    'lang' => '2',
+    // 'lang' => '1',
     //display mode
     //[
     //    'true'=>'order product with options if there is some options to choose',

@@ -109,7 +109,7 @@ export default {
     }
   },
   mounted() {
-    this.getProductList();
+    this.$nextTick(() => this.getProductList());
     window.addEventListener("scroll", this.handleScroll);
   },
   destroyed() {
@@ -246,7 +246,7 @@ span.orderQty {
   //position: relative;
 
   .product {
-    color: #797876;
+    color: #8a8a8a;
     padding: 5px 13px;
     min-height: 80px;
     margin: auto;
@@ -312,7 +312,7 @@ span.orderQty {
       }
 
       h5 {
-        color: black;
+        color: #5c5a5a;
         font-weight: 900;
         font-size: 14px;
         margin: 0;
@@ -462,7 +462,8 @@ span.orderQty {
     margin-top: 6px;
     margin-bottom: 0px;
     text-shadow: 1px 1px 1px #c9c2c2;
-    font-weight: bold;
+    font-weight: 300;
+    color: #9b9b9b;
   }
   .product-description {
     font-size: 10px;

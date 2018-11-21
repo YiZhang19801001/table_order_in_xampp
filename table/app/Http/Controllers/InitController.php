@@ -6,10 +6,10 @@ use Illuminate\Http\Request;
 
 class InitController extends Controller
 {
-    public function index(){
+    public function index($lang){
         /**create config file */
-        $language_id = config("app.lang");
-
+        //$language_id = config("app.lang");
+        $language_id = $lang;
 
         /** mapping values for app_conf */
 
@@ -29,7 +29,6 @@ class InitController extends Controller
 
 
         $app_conf["show_option"] = config("app.show_options");
-        $app_conf["lang"]        = $language_id;
 
         /**return app_conf to client side */
         return response()->json([

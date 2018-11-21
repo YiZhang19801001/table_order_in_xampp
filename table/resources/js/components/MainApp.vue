@@ -33,6 +33,12 @@ export default {
     this.setTableNumber(this.$route.params.table);
     this.setCdt(this.$route.query.cdt);
     this.setV(this.$route.query.v);
+    if (localStorage.language_id) {
+      this.setLang(localStorage.language_id);
+    } else {
+      localStorage.language_id = 1;
+      this.setLang(1);
+    }
     this.setAppConfig();
   },
   methods: {
@@ -42,7 +48,8 @@ export default {
       "setCdt",
       "setV",
       "setAppConfig",
-      "setSpinnerStatus"
+      "setSpinnerStatus",
+      "setLang"
     ])
   }
 };

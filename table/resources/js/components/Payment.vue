@@ -142,9 +142,10 @@ export default {
     /**qrcode order command: barcode 1, qty1, sizeLevel 1;barcode2, qty2,sizeLevel2
      * example: 106,2.5,0
      */
-    this.delay(1000).then(res => {
+    this.$nextTick(() => {
       this.updateOrderList();
     });
+
     this.delay(2000).then(res => {
       let qr = "";
       console.log(this.orderList);
@@ -170,13 +171,13 @@ export default {
       "store_url",
       "app_conf",
       "v",
-      "cdt"
+      "cdt",
+      "lang"
     ])
   },
   methods: {
     ...mapActions(["setSpinnerStatus", "replaceList"]),
     back() {
-      console.log(this.pathFrom);
       this.$router.push(this.pathFrom);
     },
     confirm() {
@@ -187,8 +188,13 @@ export default {
         store_name: this.store_name,
         store_url: this.store_url,
         total: this.totalPriceOfOrder,
-        paymentMethod: this.paymentMethod
+        paymentMethod: this.paymentMethod,
+        v: this.v
       });
+
+      if (this.paymentMethod === "cash") {
+        this.$router.push("/table/public/confirm");
+      }
     },
     updateOrderList() {
       this.setSpinnerStatus(true);
@@ -197,7 +203,8 @@ export default {
           order_id: this.orderId,
           cdt: this.cdt,
           v: this.v,
-          table_id: this.table_number
+          table_id: this.table_number,
+          lang: this.lang
         })
         .then(res => {
           this.replaceList(res.data);

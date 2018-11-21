@@ -48,7 +48,8 @@ export default {
       "isEN",
       "cdt",
       "v",
-      "app_conf"
+      "app_conf",
+      "lang"
     ])
   },
   mounted() {
@@ -96,7 +97,8 @@ export default {
           order_id: this.orderId,
           cdt: this.cdt,
           v: this.v,
-          table_id: this.table_number
+          table_id: this.table_number,
+          lang: this.lang
         })
         .then(res => {
           this.replaceList(res.data);
@@ -134,11 +136,11 @@ export default {
 }
 .shoppingCart {
   position: fixed;
-  bottom: 10px;
-  width: 70%;
-  left: 15%;
+  bottom: 0;
+  width: 100%;
+  left: 0;
   z-index: 200;
-  box-shadow: 0px 5px 5px #00000038;
+  box-shadow: 0px -5px 5px #00000038;
 
   .shoppingCart-header {
     display: flex;
@@ -148,11 +150,9 @@ export default {
     // background-image: url("http://www.aupos.com.au/wp-content/uploads/2017/03/logo.png");
     // background-repeat: no-repeat;
     // background-size: contain;
-    background-color: rgba(235, 77, 75, 0.8);
+    background-color: rgb(235, 77, 75);
     transition: all 0.3s;
     &.expandHeader {
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
       background-color: rgb(235, 77, 75);
       transition: all 0.3s;
     }
@@ -196,8 +196,6 @@ export default {
     background-color: white;
     margin: 0;
     padding-bottom: 50px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
     li {
       display: flex;
       flex-direction: row;
@@ -257,9 +255,9 @@ export default {
   }
 }
 .expand {
-  width: 90%;
-  left: 5%;
-  bottom: 5%;
+  width: 100%;
+  left: 0;
+  bottom: 0;
   transition: all 0.3s;
 }
 i.material-icons {

@@ -1,6 +1,6 @@
 export default {
     state: {
-        isEN: true,
+        lang: 1,
         categoryList: [],
         productList: [],
         orderList: [],
@@ -25,8 +25,8 @@ export default {
         app_conf: state => {
             return state.app_conf;
         },
-        isEN: state => {
-            return state.isEN;
+        lang: state => {
+            return state.lang;
         },
         site: state => {
             return state.site;
@@ -96,12 +96,13 @@ export default {
         }
     },
     mutations: {
-        updateApp_conf(state, payload) {
-            if (payload.app_conf) {
-                state.app_conf = payload.app_conf;
-            } else {
-                alert(payload.message);
-            }
+        updateLang(state, payload) {
+            state.lang = payload;
+        },
+        updateApp_conf(state) {
+            axios.get("/table/public/api/init/" + state.lang).then(res => {
+                state.app_conf = res.data.app_conf;
+            });
         },
         updateIsEN(state, payload) {
             state.isEN = payload;
@@ -112,11 +113,12 @@ export default {
         updateV(state, payload) {
             state.v = payload;
         },
-        updateCategoryList(state, payload) {
-            state.categoryList = payload;
-        },
-        updateProductList(state, payload) {
-            state.productList = payload;
+        updateProductList(state) {
+            state.spinnerShow = true;
+            axios.get("/table/public/api/products/" + state.lang).then(res => {
+                state.productList = res.data.products;
+                state.spinnerShow = false;
+            });
         },
         updateOrderList(state, payload) {
             state.orderList = payload;
@@ -126,7 +128,8 @@ export default {
             axios.post("/table/public/api/orderitem", {
                 orderItem: payload,
                 orderId: state.orderId,
-                table_id: state.table_number
+                table_id: state.table_number,
+                lang: state.lang
             });
         },
         IncreaseItemQuantityInOrderList(state, newItem) {
@@ -155,26 +158,28 @@ export default {
         },
         updateScrollPositionId(state, newId) {
             state.scrollPositionId = newId;
+        },
+        updateCategoryList(state) {
+            axios
+                .get("/table/public/api/categories/" + state.lang)
+                .then(res => {
+                    state.categoryList = res.data.categories;
+                });
         }
     },
 
     actions: {
+        setLang(context, newStatus) {
+            context.commit("updateLang", newStatus);
+        },
         setAppConfig(context) {
-            axios.get("/table/public/api/init").then(res => {
-                context.commit("updateApp_conf", res.data);
-            });
+            context.commit("updateApp_conf");
         },
         getCategoryList(context) {
-            axios.get("/table/public/api/categories").then(res => {
-                context.commit("updateCategoryList", res.data.categories);
-            });
+            context.commit("updateCategoryList");
         },
         getProductList(context) {
-            context.commit("toggleSpinner", true);
-            axios.get("/table/public/api/products").then(res => {
-                context.commit("updateProductList", res.data.products);
-                context.commit("toggleSpinner", false);
-            });
+            context.commit("updateProductList");
         },
         setSpinnerStatus(context, status) {
             context.commit("toggleSpinner", status);

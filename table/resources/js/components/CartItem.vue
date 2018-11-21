@@ -1,10 +1,10 @@
 <template>
     <div class="cart-item">
-        <span class="decrease-button" @click="decrease()"><i class="material-icons">remove</i></span>
+
         <span class="shoppingCart-item-name">
             <p class="orderItem-name">
                 <span class="orderItem-name-text">{{orderItem.item.name}}</span>
-                <span class="orderItem-quantity">X {{orderItem.quantity}}</span>
+
             </p>
             <ul v-if="app_conf.show_option">
                 <li class="orderItem-choice" v-for="(choice,index) in orderItem.item.choices" :key="`choice${index}`">
@@ -21,7 +21,11 @@
             {{totalPrice}}
 
         </span>
-        <span class="increase-button" @click="increase()"><i class="material-icons">add</i></span>
+        <div class="quantity-wrap">
+            <span class="decrease-button" @click="decrease()"><i class="material-icons">remove</i></span>
+            <span class="orderItem-quantity">{{orderItem.quantity}}</span>
+            <span class="increase-button" @click="increase()"><i class="material-icons">add</i></span>
+        </div>
     </div>
 </template>
 <script>
@@ -87,15 +91,9 @@ export default {
   justify-content: space-between;
   overflow: scroll;
   margin: 2px 0px;
-
-  border-radius: 8px;
-  box-shadow: 0px 5px 5px #00000045;
+  border-bottom: 1px solid #e4e0e0;
 }
 .decrease-button {
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  width: 10%;
-  height: 100%;
   background-color: #eb4d4b;
   display: flex;
   flex-direction: column;
@@ -104,10 +102,6 @@ export default {
   color: white;
 }
 .increase-button {
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  width: 10%;
-  height: 100%;
   background-color: #eb4d4b;
   display: flex;
   flex-direction: column;
@@ -158,6 +152,11 @@ ul {
       padding-right: 10px;
     }
   }
+}
+span.orderItem-quantity {
+  display: flex;
+  justify-content: center;
+  box-shadow: inset 0px 0px 1px black;
 }
 
 .shoppingCart-confirm-button {

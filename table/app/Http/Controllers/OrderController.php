@@ -20,6 +20,9 @@ use App\Order_ext;
 use App\Table_link;
 use App\Temp_pickedOption;
 use App\Order_option;
+use App\order_table_linksub;
+use DateTime;
+use DateTimeZone;
 
 class OrderController extends Controller
 {
@@ -149,12 +152,12 @@ class OrderController extends Controller
         }
     /**end validation */
 
-        $order = $this->fetchOrderListHelper($request->order_id,$request->table_id);
+        $order = $this->fetchOrderListHelper($request->order_id,$request->table_id,$request->lang);
         return response()->json($order);
     }
 
 
-    public function fetchOrderListHelper($order_id,$table_id){
+    public function fetchOrderListHelper($order_id,$table_id,$lang){
 
         /** step 1. check there is a temp order for this or not=> yes: fetch order details, no: create new Temp_order */
         $order_to_table = Temp_order::where('id',$order_id)->where('table_number',$table_id)->first();
@@ -182,7 +185,7 @@ class OrderController extends Controller
             return $order;
         }
 
-        $lang = config('app.lang');
+        //$lang = config('app.lang');
         $mode = config('app.show_options');
         /**if $arr_order_items is not empty, build the result array with details */
         /** order_item details need: [name][quantity][price] full detail mode only [ext][option]*/
@@ -357,7 +360,6 @@ class OrderController extends Controller
 
     public function confirmOrder(Request $request){
         /**request is an array of  */
-
         //get new order
         $new_order = $this->createOcOrderHelper($request);
         $order_id = $new_order->id;
@@ -372,11 +374,32 @@ class OrderController extends Controller
         //create record in oc_order_product
         $this->createOrderProductHelper($request->orderList,$order_id);
 
+        //create record in oc_table_linksub
+        $this->createOrderLinkSubHelper($new_order,$request->v);
+
         return response()->json(["new_order"=>$new_order],200);
 
     }
 
+    public function createOrderLinkSubHelper($new_order,$v){
+        $new_order_linksub = new order_table_linksub;
+        $new_order_linksub->sub_add_time = $new_order->date_added;
+        $new_order_linksub->downloaded = 0;
+        $new_order_linksub->order_id = $new_order->id;
+        $new_order_linksub->sub_status=0;
+
+        $new_table_link = Table_link::where('validation',$v)->first();
+        $new_order_linksub->link_id = $new_table_link->link_id;
+
+        $new_order_linksub->save();
+    }
+
     public function createOcOrderHelper($request){
+        $tz = 'Australia/Sydney';
+        $timestamp = time();
+        $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+        
         /**create order in oc_order */
         $new_order = new Order;
         $new_order->invoice_no = 0;
@@ -427,8 +450,8 @@ class OrderController extends Controller
         $new_order->shipping_address_format = " ";
         $new_order->shipping_custom_field = " ";
         $new_order->shipping_method = "DineIn";
-        $new_order->shipping_orderTime = date("H:i");
-        $new_order->shipping_orderDate = date_create()->format("D, d M y");
+        $new_order->shipping_orderTime = $dt->format('H:i');
+        $new_order->shipping_orderDate = $dt->format("D, d M y");
         $new_order->shipping_orderWhen = "now";
         $new_order->shipping_code = " ";
         $new_order->comment = " ";
@@ -449,8 +472,8 @@ class OrderController extends Controller
         $new_order->user_agent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36";
         //Todo: fetch from accept_language
         $new_order->accept_language = "en-GB,en-US;q=0.8,en;q=0.6";
-        $new_order->date_added = date_create()->format("y-m-d h:i:s");
-        $new_order->date_modified = date_create()->format("y-m-d h:i:s");
+        $new_order->date_added = $dt->format("y-m-d h:i:s");
+        $new_order->date_modified = $dt->format("y-m-d h:i:s");
 
         //save to database
         $new_order->save();
@@ -460,16 +483,22 @@ class OrderController extends Controller
     }
 
     public function createOcOrderHistoryHelper($order_id){
+        $tz = 'Australia/Sydney';
+        $timestamp = time();
+        $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+        $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+
         $new_order_history = new Order_history;
         $new_order_history->order_id = $order_id;
         $new_order_history->notify = 0;
         //Todo: read from new order??
         $new_order_history->order_status_id = 1;
         $new_order_history->comment = " ";
-        $new_order_history->date_added = date_create()->format("y-m-d h:i:s");
+        $new_order_history->date_added = $dt->format("y-m-d h:i:s");
     }
 
     public function createOrderTotalHelper($order_id,$value){
+
         $new_order_total_1 = new Order_total;
         $new_order_total_1->order_id = $order_id;
         $new_order_total_1->code = "sub_total";

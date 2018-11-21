@@ -16,7 +16,7 @@ use App\Product_option_value;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index($lang)
     {
         /** product object full details
          * need for displaying:
@@ -40,7 +40,7 @@ class ProductController extends Controller
          * }
          */
         //fetch app_conf
-        $lang = config("app.lang");
+        //$lang = config("app.lang");
 
         /** clear mode do not need details [1], full detail mode need everything. [9]*/
         $mode = config("app.show_options");
